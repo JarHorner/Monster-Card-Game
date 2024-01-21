@@ -7,13 +7,11 @@ public class GameBoard : MonoBehaviour
     public GameObject board;
     public List<GameObject> boardPositions = new List<GameObject>();
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -27,5 +25,10 @@ public class GameBoard : MonoBehaviour
         {
             boardPositions[i].SetActive(true);      
         }
+    }
+
+    public void AddCardToPosition(GameObject chosenPosition)
+    {
+        
     }
 }

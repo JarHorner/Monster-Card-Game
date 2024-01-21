@@ -7,6 +7,7 @@ public enum Phase
 {
     Setup,
     Turn,
+    Effects,
     Ending,
 }
 
@@ -79,10 +80,15 @@ public class TimeTracker : MonoBehaviour
         currentPhase = Phase.Turn;
     }
 
+    public void EffectsOfMovePlayingOut()
+    {
+        currentPhase = Phase.Effects;
+    }
+
     public void PlayerPlayCardEndTurn()
     {
         currentPhase = Phase.Ending;
-        
+
         currentTurnTime = playerTurnTime;
         currentTimeText.text = currentTurnTime.ToString("0.00");
 

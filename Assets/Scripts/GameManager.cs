@@ -71,18 +71,24 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < maxNumCardsInHand; i++)
         {
             GameObject randCard = monsterCards[Random.Range(0, monsterCards.Count)];
+            randCard.GetComponent<CardDisplay>().playerOwner = 1;
             Instantiate(randCard, player1CardSlots[i].transform);       
         }
 
         for (int i = 0; i < maxNumCardsInHand; i++)
         {
             GameObject randCard = monsterCards[Random.Range(0, monsterCards.Count)];
+            randCard.GetComponent<CardDisplay>().playerOwner = 2;
             Instantiate(randCard, player2CardSlots[i].transform);       
         }
     }
 
     public void setCard(GameObject position, GameObject cardSelected)
     {
+        timeTracker.EffectsOfMovePlayingOut();
+
+        gameBoard.AddCardToPosition(position);
+
         StartCoroutine(removeCardFromHand(cardSelected));
     }
 

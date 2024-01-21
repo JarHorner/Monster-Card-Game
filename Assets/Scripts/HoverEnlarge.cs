@@ -67,7 +67,7 @@ public class HoverEnlarge : MonoBehaviour
             cardDisplay.element.sortingLayerName = layerName;
             cardDisplay.selectedBorder.sortingLayerName = layerName; 
 
-            cardDisplay.monsterArtworkBackground.color = new Color(0.1715319f, 0.4243631f, 0.9245283f, 1f);
+            cardDisplay.ChangeBGColorOnHover();
         }
         else
         {
@@ -84,7 +84,7 @@ public class HoverEnlarge : MonoBehaviour
             cardDisplay.element.sortingLayerName = layerName;
             cardDisplay.selectedBorder.sortingLayerName = layerName; 
 
-            cardDisplay.monsterArtworkBackground.color = new Color(0.3607843f, 0.5405295f, 0.8980392f, 1f);
+            cardDisplay.ChangeBGColorToPlayer();
         }
         
 

@@ -6,7 +6,6 @@ using UnityEngine;
 public class Card : ScriptableObject
 {
     public Sprite artwork;
-    public Sprite artworkBackground;
     public Sprite element;
 
     public string cardName;
