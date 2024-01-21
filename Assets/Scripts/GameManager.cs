@@ -83,15 +83,38 @@ public class GameManager : MonoBehaviour
 
     public void setCard(GameObject position, GameObject cardSelected)
     {
-        removeCardFromHand(cardSelected);
-
-        timeTracker.PlayerPlayCardEndTurn();
+        StartCoroutine(removeCardFromHand(cardSelected));
     }
 
-    private void removeCardFromHand(GameObject cardSelected)
+    IEnumerator removeCardFromHand(GameObject cardSelected)
     {
-        GameObject slot = cardSelected.transform.parent.gameObject;
-        Debug.Log(slot);
-        
+        GameObject selectedSlot = cardSelected.transform.parent.gameObject;
+
+        if (timeTracker.playersTurn == 1)
+        {
+            foreach(GameObject slot in player1CardSlots)
+            {
+                if (selectedSlot == slot) 
+                {
+                    Debug.Log(selectedSlot.name + " = " + slot.name);
+                    Destroy(selectedSlot.transform.GetChild(0).gameObject);
+                }
+            }
+        }
+        else
+        {
+            foreach(GameObject slot in player2CardSlots)
+            {
+                if (selectedSlot == slot) 
+                {
+                    Debug.Log(selectedSlot.name + " = " + slot.name);
+                    Destroy(selectedSlot.transform.GetChild(0).gameObject);
+                }
+            }
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        timeTracker.PlayerPlayCardEndTurn();
     }
 }
