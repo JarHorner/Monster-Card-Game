@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class InputHandler : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager;
+    public TimeTracker timeTracker;
     private Camera mainCamera;
     private bool selectedCard = false;
     private CardDisplay cardSelected;
@@ -13,6 +14,14 @@ public class InputHandler : MonoBehaviour
     void Awake()
     {
         mainCamera = Camera.main;
+    }
+
+    void Update()
+    {
+        if (timeTracker.currentPhase == Phase.Ending && cardSelected != null)
+        {
+            UnselectCard(cardSelected);
+        }
     }
 
     // when mouse clicked, checks what object has been clicked, and processes accordingly.
@@ -52,8 +61,9 @@ public class InputHandler : MonoBehaviour
         else if (rayHit.collider.gameObject.name.Contains("Position") && selectedCard)
         {
             GameObject position = rayHit.collider.gameObject;
+            gameManager.setCard(position, cardSelected.gameObject);
+            
             UnselectCard(cardSelected);
-            gameManager.setCard(position, cardSelected.card);
         }
     }
 

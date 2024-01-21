@@ -5,12 +5,22 @@ using UnityEngine.InputSystem;
 
 public class HoverEnlarge : MonoBehaviour
 {
+    public TimeTracker timeTracker;
+
     private GameObject card;
     private bool enlarged = false;
 
+    void Start() 
+    {
+        timeTracker = GameObject.Find("TimeTracker").GetComponent<TimeTracker>();
+    }
+
     void Update()
     {
-        Enlarge();
+        if (timeTracker.currentPhase == Phase.Turn)
+        {
+            Enlarge();  
+        }
     }
 
     // casts a ray that checks if the mouse cursor is over a card. If it is, the scale of the card will enlarge.

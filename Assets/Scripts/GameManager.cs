@@ -8,17 +8,17 @@ public class GameManager : MonoBehaviour
     private bool gameStarted = false;
     public TimeTracker timeTracker;
     public CoinFlip coinFlip;
+    public GameBoard gameBoard;
 
     // player 1 variables
     public GameObject player1Hand;
-    public List<GameObject> player1Cards = new List<GameObject>();
-    public Transform[] player1CardSlots;
+    public GameObject[] player1CardSlots;
 
     // player 2 variables
     public GameObject player2Hand;
-    public List<GameObject> player2Cards = new List<GameObject>();
-    public Transform[] player2CardSlots;
+    public GameObject[] player2CardSlots;
 
+    public List<GameObject> monsterCards = new List<GameObject>();
     public int maxNumCardsInHand;
 
     void Start()
@@ -37,15 +37,16 @@ public class GameManager : MonoBehaviour
 
             SwapHands();
 
+            gameBoard.ActivateBoard();
             gameStarted = true;
         }
 
-        if (coinFlip.flipComplete && timeTracker.timeRunning)
+        if (coinFlip.flipComplete && timeTracker.currentPhase == Phase.Turn)
         {
             timeTracker.TrackTime();
         }
 
-        if (timeTracker.playerTurnOver)
+        if (timeTracker.currentPhase == Phase.Ending)
         {
             SwapHands();
         }
@@ -69,24 +70,28 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < maxNumCardsInHand; i++)
         {
-            GameObject randCard = player1Cards[Random.Range(0, player1Cards.Count)];
-            Instantiate(randCard, player1CardSlots[i]);       
+            GameObject randCard = monsterCards[Random.Range(0, monsterCards.Count)];
+            Instantiate(randCard, player1CardSlots[i].transform);       
         }
 
         for (int i = 0; i < maxNumCardsInHand; i++)
         {
-            GameObject randCard = player2Cards[Random.Range(0, player2Cards.Count)];
-            Instantiate(randCard, player2CardSlots[i]);       
+            GameObject randCard = monsterCards[Random.Range(0, monsterCards.Count)];
+            Instantiate(randCard, player2CardSlots[i].transform);       
         }
     }
 
-    public void setCard(GameObject position, Card cardSelected)
+    public void setCard(GameObject position, GameObject cardSelected)
     {
+        removeCardFromHand(cardSelected);
 
+        timeTracker.PlayerPlayCardEndTurn();
     }
 
-    public void removeCardFromHand()
+    private void removeCardFromHand(GameObject cardSelected)
     {
-
+        GameObject slot = cardSelected.transform.parent.gameObject;
+        Debug.Log(slot);
+        
     }
 }

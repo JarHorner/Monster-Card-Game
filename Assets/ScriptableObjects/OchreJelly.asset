@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2bda7151b6221d4fb370f8acbedb84e, type: 3}
-  m_Name: Goblin
+  m_Name: OchreJelly
   m_EditorClassIdentifier: 
-  artwork: {fileID: 21300000, guid: 1375143ffcb8dac4f90c0705f91e870f, type: 3}
+  artwork: {fileID: 21300000, guid: 819e1cf08e0c2c0418faef05126edf12, type: 3}
   artworkBackground: {fileID: 0}
   element: {fileID: 0}
-  cardName: Goblin
-  topLevel: 2
-  rightLevel: 3
-  bottomLevel: 2
-  leftLevel: 3
+  cardName: Ochre Jelly
+  topLevel: 3
+  rightLevel: 4
+  bottomLevel: 7
+  leftLevel: 4

@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8152738
 Transform:
   m_ObjectHideFlags: 0
@@ -447,7 +447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &25273501
@@ -470,9 +470,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Heads is chosen
+  m_text: 'Heads!
 
-    You go first!'
+    You go first'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -568,7 +568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &102529878
 Transform:
   m_ObjectHideFlags: 0
@@ -724,7 +724,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &107140354
 Transform:
   m_ObjectHideFlags: 0
@@ -907,26 +907,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeTracker: {fileID: 812109376}
   coinFlip: {fileID: 2003042006}
+  gameBoard: {fileID: 1579992200}
   player1Hand: {fileID: 1603952987}
-  player1Cards:
-  - {fileID: 8962956826016214500, guid: 1f52995457449164497723b4d8ad1ac7, type: 3}
-  - {fileID: 6948228792774302274, guid: 1853ea36810f57147b7ba1f9b5e57f69, type: 3}
   player1CardSlots:
-  - {fileID: 205398280}
-  - {fileID: 596766666}
-  - {fileID: 1788479971}
-  - {fileID: 1082289381}
-  - {fileID: 1654702971}
+  - {fileID: 205398279}
+  - {fileID: 596766665}
+  - {fileID: 1788479970}
+  - {fileID: 1082289380}
+  - {fileID: 1654702970}
   player2Hand: {fileID: 953920376}
-  player2Cards:
+  player2CardSlots:
+  - {fileID: 1250388934}
+  - {fileID: 365975156}
+  - {fileID: 1189630978}
+  - {fileID: 1158520876}
+  - {fileID: 1979011007}
+  monsterCards:
   - {fileID: 8962956826016214500, guid: 1f52995457449164497723b4d8ad1ac7, type: 3}
   - {fileID: 6948228792774302274, guid: 1853ea36810f57147b7ba1f9b5e57f69, type: 3}
-  player2CardSlots:
-  - {fileID: 1250388935}
-  - {fileID: 365975157}
-  - {fileID: 1189630979}
-  - {fileID: 1158520877}
-  - {fileID: 1979011008}
+  - {fileID: 6758223388538141854, guid: ced6d00477758a940894c77dc2afcaed, type: 3}
+  - {fileID: 1810396035030501625, guid: 22668d474248c6a4aa2d1743ef95ef83, type: 3}
   maxNumCardsInHand: 5
 --- !u!1 &141814997
 GameObject:
@@ -1016,7 +1016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 205398280}
   m_Layer: 0
-  m_Name: Slot1
+  m_Name: Player1Slot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1047,7 +1047,7 @@ GameObject:
   m_Component:
   - component: {fileID: 365975157}
   m_Layer: 0
-  m_Name: Slot2
+  m_Name: Player2Slot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1387,7 +1387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 596766666}
   m_Layer: 0
-  m_Name: Slot2
+  m_Name: Player1Slot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1571,9 +1571,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a7999a279c627c4ba1ea29373d0a204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeText: {fileID: 2013139608}
-  playerTurnTime: 5
-  currentTurnTime: 5
+  timeText: {fileID: 1041445335}
+  currentTimeText: {fileID: 2013139608}
+  playerTurnTime: 30
+  currentTurnTime: 30
   turnText: {fileID: 1122054814}
   turnChangeText: {fileID: 926884043}
   playersTurn: 0
@@ -1611,7 +1612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &885169391
 Transform:
   m_ObjectHideFlags: 0
@@ -1779,6 +1780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 110855243}
+  timeTracker: {fileID: 812109376}
 --- !u!114 &895176293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1859,7 +1861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &923916709
 Transform:
   m_ObjectHideFlags: 0
@@ -2211,7 +2213,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041445333}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -2320,7 +2322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1051498730
 Transform:
   m_ObjectHideFlags: 0
@@ -2512,7 +2514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1082289381}
   m_Layer: 0
-  m_Name: Slot4
+  m_Name: Player1Slot4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2811,7 +2813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1158520877}
   m_Layer: 0
-  m_Name: Slot4
+  m_Name: Player2Slot4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2848,7 +2850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1171438163
 Transform:
   m_ObjectHideFlags: 0
@@ -2926,7 +2928,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1189630979}
   m_Layer: 0
-  m_Name: Slot3
+  m_Name: Player2Slot3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3035,7 +3037,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1250388935}
   m_Layer: 0
-  m_Name: Slot1
+  m_Name: Player2Slot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3168,7 +3170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1548969395
 Transform:
   m_ObjectHideFlags: 0
@@ -3314,6 +3316,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1579992199}
+  - component: {fileID: 1579992200}
   m_Layer: 0
   m_Name: GameBoard
   m_TagString: Untagged
@@ -3346,6 +3349,29 @@ Transform:
   - {fileID: 8152738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1579992200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579992197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf05e840cf866564d9944f1e5fcdd723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  board: {fileID: 1171438162}
+  boardPositions:
+  - {fileID: 885169390}
+  - {fileID: 1673642059}
+  - {fileID: 107140353}
+  - {fileID: 1548969394}
+  - {fileID: 1706445913}
+  - {fileID: 102529877}
+  - {fileID: 1051498729}
+  - {fileID: 923916708}
+  - {fileID: 8152737}
 --- !u!1 &1603952987
 GameObject:
   m_ObjectHideFlags: 0
@@ -3496,7 +3522,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1654702971}
   m_Layer: 0
-  m_Name: Slot5
+  m_Name: Player1Slot5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3536,7 +3562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1673642060
 Transform:
   m_ObjectHideFlags: 0
@@ -3692,7 +3718,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1706445914
 Transform:
   m_ObjectHideFlags: 0
@@ -3839,7 +3865,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1788479971}
   m_Layer: 0
-  m_Name: Slot3
+  m_Name: Player1Slot3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3870,7 +3896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1979011008}
   m_Layer: 0
-  m_Name: Slot5
+  m_Name: Player2Slot5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3944,6 +3970,7 @@ MonoBehaviour:
   flipWinnerText: {fileID: 25273501}
   choicePanel: {fileID: 141814997}
   isSideChosen: 0
+  flipComplete: 0
 --- !u!1 &2013139606
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,12 +36,12 @@ public class CoinFlip : MonoBehaviour
         {
             if (sideChosen == decision)
             {
-                flipWinnerText.text = $"Heads is chosen, You go first!";
+                flipWinnerText.text = "Heads!" + "\n" + "You Go First";
                 playerGoingFirst = 1;
             }
             else
             {
-                flipWinnerText.text = $"Heads is chosen, You go second!";
+                flipWinnerText.text = "Heads!" + "\n" + "You Go Second";
                 playerGoingFirst = 2;
             }
         }
@@ -49,12 +49,12 @@ public class CoinFlip : MonoBehaviour
         {
             if (sideChosen == decision)
             {
-                flipWinnerText.text = $"Tails is chosen, You go first!";
+                flipWinnerText.text = "Tails!" + "\n" + "You Go First";
                 playerGoingFirst = 1;
             }
             else
             {
-                flipWinnerText.text = $"Tails is chosen, You go second!";
+                flipWinnerText.text = "Tails!" + "\n" + "You Go Second";
                 playerGoingFirst = 2;
             }
         }

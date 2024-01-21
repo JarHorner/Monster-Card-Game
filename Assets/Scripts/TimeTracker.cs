@@ -3,51 +3,60 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+public enum Phase
+{
+    Setup,
+    Turn,
+    Ending,
+}
+
 public class TimeTracker : MonoBehaviour
 {
-
+    public Phase currentPhase { get; private set; }
     public TMP_Text timeText;
+    public TMP_Text currentTimeText;
     public float playerTurnTime;
     public float currentTurnTime;
-    public bool timeRunning { get; private set; }
 
     public TMP_Text turnText;
     public TMP_Text turnChangeText;
 
-    public bool playerTurnOver { get; private set; }
     public int playersTurn;
 
     void Start()
     {
-
+        currentPhase = Phase.Setup;
     }
 
     public void StartFirstTurn(int firstTurnPlayer)
     {
-        timeText.text = playerTurnTime.ToString("0.00");
+        currentTimeText.text = playerTurnTime.ToString("0.00");
 
         playersTurn = firstTurnPlayer;
         turnText.text = $"Player {playersTurn} Turn";
 
-        timeRunning = true;
+        timeText.enabled = true;
+
+         currentPhase = Phase.Turn;
     }
 
     public void TrackTime()
     {
         currentTurnTime -= Time.deltaTime;
-        timeText.text = currentTurnTime.ToString("0.00");
+        currentTimeText.text = currentTurnTime.ToString("0.00");
 
         if (currentTurnTime <= 0f)
         {
-            timeRunning = false;
-            PlayerEndTurn();
+            PlayerOutOfTimeEndTurn();
         }
     }
 
-    private void PlayerEndTurn()
+    private void PlayerOutOfTimeEndTurn()
     {
+        currentPhase = Phase.Ending;
+
         currentTurnTime = playerTurnTime;
-        timeText.text = currentTurnTime.ToString("0.00");
+        currentTimeText.text = currentTurnTime.ToString("0.00");
 
         if (playersTurn == 1)
             playersTurn = 2;
@@ -55,8 +64,6 @@ public class TimeTracker : MonoBehaviour
             playersTurn = 1;
         
         turnText.text = $"Player {playersTurn} Turn";
-
-        playerTurnOver = true;
 
         StartCoroutine(ShowChangeTurnText());
     }
@@ -69,20 +76,25 @@ public class TimeTracker : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         turnChangeText.enabled = false;
-        timeRunning = true;
-        playerTurnOver = false;
+        currentPhase = Phase.Turn;
     }
-    
-    // public void AiEndTurn()
-    // {
-    //     currentTurnTime = playerTurnTime;
-    //     timeText.text = currentTurnTime.ToString("0.00");
 
-    //     turnText.text = "Player Turn";
+    public void PlayerPlayCardEndTurn()
+    {
+        currentPhase = Phase.Ending;
+        
+        currentTurnTime = playerTurnTime;
+        currentTimeText.text = currentTurnTime.ToString("0.00");
 
-    //     timeRunning = true;
-    //     playerTurnOver = false;
-    // }
+        if (playersTurn == 1)
+            playersTurn = 2;
+        else
+            playersTurn = 1;
+        
+        turnText.text = $"Player {playersTurn} Turn";
+
+        StartCoroutine(ShowChangeTurnText());
+    }
 
 }
 
