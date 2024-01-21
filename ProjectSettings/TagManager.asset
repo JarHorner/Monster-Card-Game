@@ -47,3 +47,6 @@ TagManager:
   - name: BoardPosition
     uniqueID: 2279010919
     locked: 0
+  - name: Card
+    uniqueID: 1184437183
+    locked: 0
