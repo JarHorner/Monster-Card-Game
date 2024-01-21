@@ -8,9 +8,6 @@ public class CardDisplay : MonoBehaviour
 {
     public Card card;
 
-    private Transform cardScale;
-    private bool enlarged = false;
-
     public TMP_Text nameText;
 
     public TMP_Text topLevelText;
@@ -19,6 +16,7 @@ public class CardDisplay : MonoBehaviour
     public TMP_Text leftLevelText;
 
     public SpriteRenderer monsterArtwork;
+    public SpriteRenderer monsterArtworkBackground;
     public SpriteRenderer element;
     public SpriteRenderer selectedBorder;
 
@@ -38,33 +36,4 @@ public class CardDisplay : MonoBehaviour
         card.Print();
     }
 
-    void Update()
-    {
-        HoverEnlarge();
-    }
-
-    // casts a ray that checks if the mouse cursor is over a card. If it is, the scale of the card will enlarge.
-    private void HoverEnlarge()
-    {
-        var rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()));
-
-        // if nothing hit, ensures if a card was enlarged before, scales it to normal size.
-        if (!rayHit) {
-            if (enlarged)
-            {
-                cardScale.localScale = new Vector3(0.5f, 0.5f, 1f);
-                enlarged = false;
-            }
-            return; 
-        } 
-
-        // an object is hit, and if it is a card that is not already been enlarged, that card will enlarge.
-        if (rayHit.collider.gameObject.name.Contains("Card") && !enlarged)
-        {
-            cardScale = rayHit.collider.gameObject.transform;
-            Debug.Log(rayHit.collider.gameObject.name);
-            cardScale.localScale = new Vector3(cardScale.localScale.x * 1.1f, cardScale.localScale.y * 1.1f, 1f);
-            enlarged = true;
-        }
-    }
 }

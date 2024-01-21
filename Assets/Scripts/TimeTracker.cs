@@ -12,16 +12,19 @@ public class TimeTracker : MonoBehaviour
     public bool timeRunning { get; private set; }
 
     public TMP_Text turnText;
+    public TMP_Text turnChangeText;
 
     public bool playerTurnOver { get; private set; }
+    public int playersTurn;
 
     void Start()
     {
         timeText.text = playerTurnTime.ToString("0.00");
 
-        turnText.text = "Player1 Turn";
+        playersTurn = 1;
+        turnText.text = $"Player {playersTurn} Turn";
+
         timeRunning = true;
-        playerTurnOver = false;
     }
 
     public void TrackTime()
@@ -41,9 +44,25 @@ public class TimeTracker : MonoBehaviour
         currentTurnTime = playerTurnTime;
         timeText.text = currentTurnTime.ToString("0.00");
 
-        turnText.text = "Player2 Turn";
+        if (playersTurn == 1)
+            playersTurn = 2;
+        else
+            playersTurn = 1;
+        
+        turnText.text = $"Player {playersTurn} Turn";
 
-        playerTurnOver = true;
+        StartCoroutine(ShowChangeTurnText());
+    }
+
+    IEnumerator ShowChangeTurnText()
+    {
+        turnChangeText.text = $"Player {playersTurn} Turn";
+        turnChangeText.enabled = true;
+
+        yield return new WaitForSeconds(2f);
+
+        turnChangeText.enabled = false;
+        timeRunning = true;
     }
     
     // public void AiEndTurn()

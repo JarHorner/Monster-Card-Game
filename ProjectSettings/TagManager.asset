@@ -50,3 +50,6 @@ TagManager:
   - name: Card
     uniqueID: 1184437183
     locked: 0
+  - name: SelectedCard
+    uniqueID: 2587314981
+    locked: 0

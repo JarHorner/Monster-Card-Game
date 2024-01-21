@@ -52,11 +52,12 @@ public class InputHandler : MonoBehaviour
         else if (rayHit.collider.gameObject.name.Contains("Position") && selectedCard)
         {
             GameObject position = rayHit.collider.gameObject;
-            gameManager.setCard(position, cardSelected);
+            UnselectCard(cardSelected);
+            gameManager.setCard(position, cardSelected.card);
         }
     }
 
-    // "selects" card by adding border.
+    // "selects" card by adding border and changing sorting layer/order for greater visiblility.
     private void SelectCard(CardDisplay cardDisplay)
     {
         cardDisplay.selectedBorder.enabled = true;
