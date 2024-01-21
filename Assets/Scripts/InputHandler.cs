@@ -14,6 +14,7 @@ public class InputHandler : MonoBehaviour
         mainCamera = Camera.main;
     }
 
+    // when mouse clicked, checks what object has been clicked, and processes accordingly.
     public void OnClick(InputAction.CallbackContext context)
     {
         if (!context.started) return;
@@ -39,18 +40,20 @@ public class InputHandler : MonoBehaviour
         else if (rayHit.collider.gameObject.name.Contains("Card") && selectedCard)
         {
             UnselectCard(cardSelected);
-            
+
             cardSelected = rayHit.collider.gameObject.GetComponent<CardDisplay>();
             SelectCard(cardSelected);
         }
     }
 
+    // "selects" card by adding border.
     private void SelectCard(CardDisplay cardDisplay)
     {
         cardDisplay.selectedBorder.enabled = true;
         selectedCard = true;
     }
 
+    // "unselects" card by removing border.
     private void UnselectCard(CardDisplay cardDisplay)
     {
         cardDisplay.selectedBorder.enabled = false;

@@ -22,9 +22,9 @@ public class CardDisplay : MonoBehaviour
     public SpriteRenderer element;
     public SpriteRenderer selectedBorder;
 
+    // Assigns the scriptable objects values to the gameobject, and prints the information
     void Start()
     {
-        //cardScale = this.gameObject.transform;
         nameText.text = card.cardName;
 
         topLevelText.text = card.topLevel.ToString();
@@ -43,10 +43,12 @@ public class CardDisplay : MonoBehaviour
         HoverEnlarge();
     }
 
+    // casts a ray that checks if the mouse cursor is over a card. If it is, the scale of the card will enlarge.
     private void HoverEnlarge()
     {
         var rayHit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()));
 
+        // if nothing hit, ensures if a card was enlarged before, scales it to normal size.
         if (!rayHit) {
             if (enlarged)
             {
@@ -56,6 +58,7 @@ public class CardDisplay : MonoBehaviour
             return; 
         } 
 
+        // an object is hit, and if it is a card that is not already been enlarged, that card will enlarge.
         if (rayHit.collider.gameObject.name.Contains("Card") && !enlarged)
         {
             cardScale = rayHit.collider.gameObject.transform;

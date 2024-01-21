@@ -15,6 +15,7 @@ public class Card : ScriptableObject
     public int bottomLevel;
     public int leftLevel;
 
+    // logs basic information of the card
     public void Print() 
     {
         Debug.Log("Card Played: " + cardName + " | Levels(clockwise): " + topLevel + " " + rightLevel + " " + bottomLevel + " " + leftLevel);
