@@ -19,9 +19,14 @@ public class TimeTracker : MonoBehaviour
 
     void Start()
     {
+
+    }
+
+    public void StartFirstTurn(int firstTurnPlayer)
+    {
         timeText.text = playerTurnTime.ToString("0.00");
 
-        playersTurn = 1;
+        playersTurn = firstTurnPlayer;
         turnText.text = $"Player {playersTurn} Turn";
 
         timeRunning = true;
@@ -51,6 +56,8 @@ public class TimeTracker : MonoBehaviour
         
         turnText.text = $"Player {playersTurn} Turn";
 
+        playerTurnOver = true;
+
         StartCoroutine(ShowChangeTurnText());
     }
 
@@ -63,6 +70,7 @@ public class TimeTracker : MonoBehaviour
 
         turnChangeText.enabled = false;
         timeRunning = true;
+        playerTurnOver = false;
     }
     
     // public void AiEndTurn()
