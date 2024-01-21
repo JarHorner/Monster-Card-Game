@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
+    [SerializeField] private GameManager gameManager;
     private Camera mainCamera;
     private bool selectedCard = false;
     private CardDisplay cardSelected;
@@ -31,7 +32,11 @@ public class InputHandler : MonoBehaviour
             return;
         }
 
-        Debug.Log(rayHit.collider.gameObject.name);
+        CheckClickTarget(rayHit);
+    }
+
+    private void CheckClickTarget(RaycastHit2D rayHit) 
+    {
         if (rayHit.collider.gameObject.name.Contains("Card") && !selectedCard)
         {
             cardSelected = rayHit.collider.gameObject.GetComponent<CardDisplay>();
@@ -43,6 +48,11 @@ public class InputHandler : MonoBehaviour
 
             cardSelected = rayHit.collider.gameObject.GetComponent<CardDisplay>();
             SelectCard(cardSelected);
+        }
+        else if (rayHit.collider.gameObject.name.Contains("Position") && selectedCard)
+        {
+            GameObject position = rayHit.collider.gameObject;
+            gameManager.setCard(position, cardSelected);
         }
     }
 
