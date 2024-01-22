@@ -49,7 +49,8 @@ public class HoverEnlarge : MonoBehaviour
             ChangeCardLayer(card.GetComponent<CardDisplay>());
         }
     }
-
+    
+    // Changes layer when card is hovered over so it appears higher than other cards
     private void ChangeCardLayer(CardDisplay cardDisplay)
     {
         if (enlarged)

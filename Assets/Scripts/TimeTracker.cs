@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+// enum state machine to help guide the gameplay
 public enum Phase
 {
-    Setup,
-    Turn,
-    Effects,
-    Ending,
+    Setup, // state  before Turn, and the beginning state
+    Turn, // state for each players turn
+    Effects, // state between Turn and Ending, and allows for effects to play before ending turn
+    Ending, // state after Effects, wrapping up and preparing for Turn state
 }
 
 public class TimeTracker : MonoBehaviour
@@ -29,6 +30,7 @@ public class TimeTracker : MonoBehaviour
         currentPhase = Phase.Setup;
     }
 
+    // enables text, and ensures the state of the game is in the Turn phase
     public void StartFirstTurn(int firstTurnPlayer)
     {
         currentTimeText.text = playerTurnTime.ToString("0.00");
@@ -38,9 +40,11 @@ public class TimeTracker : MonoBehaviour
 
         timeText.enabled = true;
 
-         currentPhase = Phase.Turn;
+        currentPhase = Phase.Turn;
     }
 
+    // Used by the Gamemanager to constaly update a timer for a turn
+    // if timer runs to 0, the turn will end.
     public void TrackTime()
     {
         currentTurnTime -= Time.deltaTime;
@@ -52,6 +56,7 @@ public class TimeTracker : MonoBehaviour
         }
     }
 
+    // sets the current phase to Ending, and changes text indicating the ending of the turn
     private void PlayerOutOfTimeEndTurn()
     {
         currentPhase = Phase.Ending;
@@ -69,6 +74,7 @@ public class TimeTracker : MonoBehaviour
         StartCoroutine(ShowChangeTurnText());
     }
 
+    // shows text indicating the ending of the turn, then initiates the Turn phase
     IEnumerator ShowChangeTurnText()
     {
         turnChangeText.text = $"Player {playersTurn} Turn";
@@ -80,11 +86,13 @@ public class TimeTracker : MonoBehaviour
         currentPhase = Phase.Turn;
     }
 
+    // used to change to the Effects phase, when a card has been place in a turn.
     public void EffectsOfMovePlayingOut()
     {
         currentPhase = Phase.Effects;
     }
 
+    // a seperate function for ending a turn for future changes needed when ending turn by playing
     public void PlayerPlayCardEndTurn()
     {
         currentPhase = Phase.Ending;

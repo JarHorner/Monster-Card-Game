@@ -17,6 +17,7 @@ public class GameBoard : MonoBehaviour
         
     }
 
+    // enables the entire board
     public void ActivateBoard()
     {
         board.SetActive(true);
@@ -29,6 +30,6 @@ public class GameBoard : MonoBehaviour
 
     public void AddCardToPosition(GameObject chosenPosition)
     {
-        
+
     }
 }

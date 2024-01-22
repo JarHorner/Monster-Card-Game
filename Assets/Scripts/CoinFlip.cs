@@ -17,6 +17,7 @@ public class CoinFlip : MonoBehaviour
     
     public bool flipComplete;
 
+    // chooses 1, deactivates choice panel commencing coin flip
     public void ChooseHeads()
     {
         sideChosen = 1;
@@ -27,6 +28,7 @@ public class CoinFlip : MonoBehaviour
         FlipCoin();
     }
 
+    // chooses 2, deactivates choice panel commencing coin flip
     public void ChooseTails()
     {
         sideChosen = 2;
@@ -37,6 +39,7 @@ public class CoinFlip : MonoBehaviour
         FlipCoin();
     }
 
+    // Makes a 50/50 choice on the winner, starts the flip coin animation and changes text based on the decision. 
     public void FlipCoin()
     {
         // chooses between 1 & 2
@@ -70,11 +73,10 @@ public class CoinFlip : MonoBehaviour
         StartCoroutine(DisplayWinner(decision));
     }
 
+    // displays the results of the flip, timed when the coin flip anim is finished, waits, the disables all.
     IEnumerator DisplayWinner(int decision)
     {
-        choicePanel.SetActive(false);
-
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
 
         flipWinnerText.enabled = true;
 

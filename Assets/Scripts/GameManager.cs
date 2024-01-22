@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        // if game hasnt started but coin flip sequence is complete, sets up the game
         if (!gameStarted && coinFlip.flipComplete)
         {
             firstTurnPlayer = coinFlip.decision;
@@ -43,17 +44,21 @@ public class GameManager : MonoBehaviour
             gameStarted = true;
         }
 
+        // once coin flip sequence is complete and a Turn phase begins, the timer starts.
+        // Doing this also stops timer when not in Turn phase
         if (coinFlip.flipComplete && timeTracker.currentPhase == Phase.Turn)
         {
             timeTracker.TrackTime();
         }
 
+        // if in Ending phase, player hands swap, so other player can play
         if (timeTracker.currentPhase == Phase.Ending)
         {
             SwapHands();
         }
     }
 
+    // swaps hands by enabling and disabling the different player hands
     private void SwapHands()
     {
         if( timeTracker.playersTurn == 1)
@@ -68,6 +73,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // randomly grabs different monster cards from an arry and instantiates them in each players hands
     public void DrawCards()
     {
         for (int i = 0; i < maxNumCardsInHand; i++)
@@ -85,6 +91,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
     public void setCard(GameObject position, GameObject cardSelected)
     {
         timeTracker.EffectsOfMovePlayingOut();
@@ -94,6 +101,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(removeCardFromHand(cardSelected));
     }
 
+    // finds the card selected and place on the board, and destorys it from the players hand, then ends the turn
     IEnumerator removeCardFromHand(GameObject cardSelected)
     {
         GameObject selectedSlot = cardSelected.transform.parent.gameObject;

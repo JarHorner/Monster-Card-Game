@@ -18,6 +18,7 @@ public class InputHandler : MonoBehaviour
 
     void Update()
     {
+        // when phase is ending, unselects card so it doesnt stay selected in in player turn swap
         if (timeTracker.currentPhase == Phase.Ending && cardSelected != null)
         {
             UnselectCard(cardSelected);
@@ -44,6 +45,7 @@ public class InputHandler : MonoBehaviour
         CheckClickTarget(rayHit);
     }
 
+    // checks which gameobject the ray hit.
     private void CheckClickTarget(RaycastHit2D rayHit) 
     {
         if (rayHit.collider.gameObject.name.Contains("Card") && !selectedCard)

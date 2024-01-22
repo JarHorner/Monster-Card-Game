@@ -9,6 +9,7 @@ public class FlipScript : MonoBehaviour
     private int flipCount = 1;
     private int amtFlips;
 
+    // determines how many flips will play based on winning side and starts flip animation coroutine
     public void Flip(int winningSide)
     {
         if (winningSide == 1)
@@ -25,6 +26,9 @@ public class FlipScript : MonoBehaviour
         StartCoroutine(FlipAnimation(0.0001f, 1.0f));
     }
 
+    // "flips" the coin using a duration and size of the coin
+    // the duration is how fast between changes in size is done
+    // the size is the y size of the coin, which is beeing changed every frame after duration
     IEnumerator FlipAnimation(float duration, float size)
     {
         while (flipCount <= amtFlips)
