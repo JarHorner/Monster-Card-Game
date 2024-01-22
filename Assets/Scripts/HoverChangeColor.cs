@@ -8,6 +8,9 @@ public class HoverChangeColor : MonoBehaviour
     private bool hovering = false;
     private SpriteRenderer positionSprite;
 
+    [SerializeField] private Color regularColor;
+    [SerializeField] private Color HoverColor;
+
     void Update()
     {
         HoverBorder();
@@ -22,7 +25,7 @@ public class HoverChangeColor : MonoBehaviour
         if (!rayHit) {
             if (hovering)
             {
-                positionSprite.color = new Color(0.8584906f, 0.8584906f, 0.8584906f);
+                positionSprite.color = regularColor;
                 hovering = false;
             }
             return; 
@@ -32,7 +35,7 @@ public class HoverChangeColor : MonoBehaviour
         if (rayHit.collider.gameObject.name.Contains("Position") && !hovering)
         {
             positionSprite = rayHit.collider.gameObject.GetComponent<SpriteRenderer>();
-            positionSprite.color = new Color(0.8117647f, 0.4627451f, 0.4705882f, 0.5f);
+            positionSprite.color = HoverColor;
             hovering = true;
         }
     }
