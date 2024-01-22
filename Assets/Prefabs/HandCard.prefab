@@ -601,11 +601,15 @@ MonoBehaviour:
   card: {fileID: 0}
   playerOwner: 0
   nameText: {fileID: 3961729353815969968}
-  topRankText: {fileID: 0}
-  rightRankText: {fileID: 0}
-  bottomRankText: {fileID: 0}
-  leftRankText: {fileID: 0}
-  levelText: {fileID: 0}
+  topRankText: {fileID: 1363379620776178359}
+  topRank: 0
+  rightRankText: {fileID: 1170321139568817827}
+  rightRank: 0
+  bottomRankText: {fileID: 6934342303754295596}
+  bottomRank: 0
+  leftRankText: {fileID: 2833227393912783996}
+  leftRank: 0
+  levelText: {fileID: 4850114394459500809}
   monsterArtwork: {fileID: 1419443291905134834}
   monsterArtworkBackground: {fileID: 6432527963432962287}
   element: {fileID: 8545806021952755660}
