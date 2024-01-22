@@ -62,7 +62,7 @@ public class InputHandler : MonoBehaviour
         {
             GameObject position = rayHit.collider.gameObject;
             gameManager.setCard(position, cardSelected.gameObject);
-            
+
             UnselectCard(cardSelected);
         }
     }

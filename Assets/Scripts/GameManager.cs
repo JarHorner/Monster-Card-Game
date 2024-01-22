@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public CoinFlip coinFlip;
     public GameBoard gameBoard;
 
+    private int firstTurnPlayer;
+
     // player 1 variables
     public GameObject player1Hand;
     public GameObject[] player1CardSlots;
@@ -28,9 +30,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (!gameStarted && coinFlip.isSideChosen)
+        if (!gameStarted && coinFlip.flipComplete)
         {
-            int firstTurnPlayer = coinFlip.FlipCoin();
+            firstTurnPlayer = coinFlip.decision;
             timeTracker.StartFirstTurn(firstTurnPlayer);
 
             DrawCards();
