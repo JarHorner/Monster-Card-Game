@@ -49,6 +49,25 @@ public class CoinFlip : MonoBehaviour
 
         if (decision == 1)
         {
+            flipWinnerText.text = "You Chose Heads!";
+        }
+        else if (decision == 2)
+        {
+            flipWinnerText.text = "You Chose Tails!";
+        }
+
+        StartCoroutine(DisplayWinner(decision));
+    }
+
+    // displays the results of the flip, timed when the coin flip anim is finished, waits, the disables all.
+    IEnumerator DisplayWinner(int decision)
+    {
+        flipWinnerText.enabled = true;
+
+        yield return new WaitForSeconds(2.5f);
+
+        if (decision == 1)
+        {
             if (sideChosen == decision)
             {
                 flipWinnerText.text = "Heads! You Go First";
@@ -69,16 +88,6 @@ public class CoinFlip : MonoBehaviour
                 flipWinnerText.text = "Tails! You Go Second";
             }
         }
-
-        StartCoroutine(DisplayWinner(decision));
-    }
-
-    // displays the results of the flip, timed when the coin flip anim is finished, waits, the disables all.
-    IEnumerator DisplayWinner(int decision)
-    {
-        yield return new WaitForSeconds(2.5f);
-
-        flipWinnerText.enabled = true;
 
         yield return new WaitForSeconds(2f);
 

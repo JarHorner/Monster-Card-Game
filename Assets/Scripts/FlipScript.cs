@@ -14,11 +14,11 @@ public class FlipScript : MonoBehaviour
     {
         if (winningSide == 1)
         {
-            amtFlips = 20;
+            amtFlips = 21;
         }
         else
         {
-            amtFlips = 21;
+            amtFlips = 20;
         }
 
         spriteRenderer.enabled = true;
@@ -45,7 +45,7 @@ public class FlipScript : MonoBehaviour
             while (size < 0.99)
             {
                 size = size + 0.07f;
-                transform.localScale = new Vector3(1f, size, 1f);
+                transform.localScale = new Vector3(1f, size, size);
                 yield return new WaitForSeconds(duration);
             }
 

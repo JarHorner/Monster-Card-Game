@@ -36,6 +36,8 @@ public class CardDisplay : MonoBehaviour
     public Color player2Color;
     public Color player2HoverColor;
 
+    public Vector3 baseScale;
+
     // Assigns the scriptable objects values to the gameobject, and prints the information
     void Start()
     {

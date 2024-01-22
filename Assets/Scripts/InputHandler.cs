@@ -48,12 +48,12 @@ public class InputHandler : MonoBehaviour
     // checks which gameobject the ray hit.
     private void CheckClickTarget(RaycastHit2D rayHit) 
     {
-        if (rayHit.collider.gameObject.name.Contains("Card") && !selectedCard)
+        if (rayHit.collider.gameObject.name.Contains("HandCard") && !selectedCard)
         {
             cardSelected = rayHit.collider.gameObject.GetComponent<CardDisplay>();
             SelectCard(cardSelected);
         }
-        else if (rayHit.collider.gameObject.name.Contains("Card") && selectedCard)
+        else if (rayHit.collider.gameObject.name.Contains("HandCard") && selectedCard)
         {
             UnselectCard(cardSelected);
 

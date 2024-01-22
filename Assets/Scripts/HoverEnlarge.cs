@@ -32,7 +32,7 @@ public class HoverEnlarge : MonoBehaviour
         if (!rayHit) {
             if (enlarged)
             {
-                card.transform.localScale = new Vector3(0.4f, 0.4f, 1f);
+                card.transform.localScale = card.GetComponent<CardDisplay>().baseScale;
                 enlarged = false;
                 ChangeCardLayer(card.GetComponent<CardDisplay>());
             }
@@ -40,7 +40,7 @@ public class HoverEnlarge : MonoBehaviour
         } 
 
         // an object is hit, and if it is a card that is not already been enlarged, that card will enlarge.
-        if (rayHit.collider.gameObject.name.Contains("HandCard") && !enlarged)
+        if (rayHit.collider.gameObject.name.Contains("Card") && !enlarged)
         {
             card = rayHit.collider.gameObject;
             Debug.Log(rayHit.collider.gameObject.name);

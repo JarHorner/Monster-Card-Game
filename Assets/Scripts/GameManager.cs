@@ -94,11 +94,14 @@ public class GameManager : MonoBehaviour
 
     public void setCard(GameObject position, GameObject cardSelected)
     {
-        timeTracker.EffectsOfMovePlayingOut();
+        if (position.transform.childCount == 0)
+        {
+             timeTracker.EffectsOfMovePlayingOut();
 
-        gameBoard.AddCardToPosition(position);
+            gameBoard.AddCardToPosition(position, cardSelected);
 
-        StartCoroutine(removeCardFromHand(cardSelected));
+            StartCoroutine(removeCardFromHand(cardSelected));
+        }
     }
 
     // finds the card selected and place on the board, and destorys it from the players hand, then ends the turn
