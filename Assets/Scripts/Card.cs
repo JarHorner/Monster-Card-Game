@@ -9,14 +9,9 @@ public class Card : ScriptableObject
     public Sprite element;
 
     public string cardName;
-    public int topLevel;
-    public int rightLevel;
-    public int bottomLevel;
-    public int leftLevel;
+    public int[] rangeOfRanks;
+    public int minRank;
+    public int maxRank;
 
-    // logs basic information of the card
-    public void Print() 
-    {
-        Debug.Log("Card Played: " + cardName + " | Levels(clockwise): " + topLevel + " " + rightLevel + " " + bottomLevel + " " + leftLevel);
-    }
+    public int level;
 }

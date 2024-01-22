@@ -55,38 +55,18 @@ public class HoverEnlarge : MonoBehaviour
         if (enlarged)
         {
             string layerName = "SelectedCard";
-            cardDisplay.nameText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = layerName;
 
-            cardDisplay.topLevelText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = layerName;
-            cardDisplay.rightLevelText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = layerName;
-            cardDisplay.bottomLevelText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = layerName;
-            cardDisplay.leftLevelText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = layerName;
-
-            cardDisplay.monsterArtwork.sortingLayerName = layerName;
-            cardDisplay.monsterArtworkBackground.sortingLayerName = layerName;
-            cardDisplay.element.sortingLayerName = layerName;
-            cardDisplay.selectedBorder.sortingLayerName = layerName; 
+            cardDisplay.ChangeCardLayers(layerName);
 
             cardDisplay.ChangeBGColorOnHover();
         }
         else
         {
             string layerName = "Card";
-            cardDisplay.nameText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = layerName;
 
-            cardDisplay.topLevelText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = layerName;
-            cardDisplay.rightLevelText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = layerName;
-            cardDisplay.bottomLevelText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = layerName;
-            cardDisplay.leftLevelText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = layerName;
-
-            cardDisplay.monsterArtwork.sortingLayerName = layerName;
-            cardDisplay.monsterArtworkBackground.sortingLayerName = layerName;
-            cardDisplay.element.sortingLayerName = layerName;
-            cardDisplay.selectedBorder.sortingLayerName = layerName; 
+            cardDisplay.ChangeCardLayers(layerName);
 
             cardDisplay.ChangeBGColorToPlayer();
         }
-        
-
     }
 }

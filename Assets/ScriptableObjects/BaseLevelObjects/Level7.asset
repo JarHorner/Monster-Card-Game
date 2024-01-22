@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2bda7151b6221d4fb370f8acbedb84e, type: 3}
-  m_Name: HumanFighter
+  m_Name: Level7
   m_EditorClassIdentifier: 
-  artwork: {fileID: 21300000, guid: 7b3e2468afe2c4f42b62a99a7318ddf9, type: 3}
-  artworkBackground: {fileID: 0}
+  artwork: {fileID: 0}
   element: {fileID: 0}
-  cardName: Human Fighter
-  topLevel: 4
-  rightLevel: 4
-  bottomLevel: 4
-  leftLevel: 4
+  cardName: 
+  rangeOfRanks: 0100000002000000030000000400000005000000060000000700000008000000
+  minRank: 23
+  maxRank: 26
+  level: 7

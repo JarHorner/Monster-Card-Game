@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: OchreJelly
   m_EditorClassIdentifier: 
   artwork: {fileID: 21300000, guid: 819e1cf08e0c2c0418faef05126edf12, type: 3}
-  artworkBackground: {fileID: 0}
   element: {fileID: 0}
   cardName: Ochre Jelly
-  topLevel: 3
-  rightLevel: 4
-  bottomLevel: 7
-  leftLevel: 4
+  rangeOfRanks: 01000000020000000300000004000000050000000600000007000000
+  minRank: 20
+  maxRank: 22
+  level: 5

@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2bda7151b6221d4fb370f8acbedb84e, type: 3}
-  m_Name: Beholder
+  m_Name: Level3
   m_EditorClassIdentifier: 
-  artwork: {fileID: 21300000, guid: cebd0b0d9bf7b454fa49e744906da94f, type: 3}
-  artworkBackground: {fileID: 0}
+  artwork: {fileID: 0}
   element: {fileID: 0}
-  cardName: Beholder
-  topLevel: 3
-  rightLevel: 6
-  bottomLevel: 7
-  leftLevel: 6
+  cardName: 
+  rangeOfRanks: 01000000020000000300000004000000050000000600000007000000
+  minRank: 16
+  maxRank: 18
+  level: 3
