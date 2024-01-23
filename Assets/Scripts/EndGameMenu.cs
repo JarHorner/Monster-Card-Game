@@ -13,12 +13,14 @@ public class EndGameMenu : MonoBehaviour
     // begins the resetting of all values in the game to play a new game
     public void Replay() 
     {
+        Debug.Log("Replay Game");
         gameManager.ResetGame();
     }
 
     // exits out of the game
     public void Quit() 
     {
+        Debug.Log("Quit Game");
         Application.Quit();
     }
 }

@@ -5,7 +5,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject endGameMenuPanel;
+    public GameObject endGameMenu;
 
     private bool gameStarted = false;
     public TimeTracker timeTracker;
@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public GameBoard gameBoard;
 
     private int firstTurnPlayer;
+    private bool gameEnded = false;
+    private bool timeOutCardPlaced = false;
 
     // player 1 variables
     public GameObject player1Hand;
@@ -32,36 +34,45 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // if game hasnt started but coin flip sequence is complete, sets up the game
-        if (!gameStarted && coinFlip.flipComplete)
+        if(!gameEnded)
         {
-            firstTurnPlayer = coinFlip.decision;
-            timeTracker.StartFirstTurn(firstTurnPlayer);
-
-            DrawCards();
-
-            SwapHands();
-
-            gameBoard.ActivateBoard();
-            gameStarted = true;
-        }
-
-        // once coin flip sequence is complete and a Turn phase begins, the timer starts.
-        // Doing this also stops timer when not in Turn phase
-        if (coinFlip.flipComplete && timeTracker.currentPhase == Phase.Turn)
-        {
-            timeTracker.TrackTime();
-        }
-
-        // if in Ending phase, player hands swap, so other player can play
-        if (timeTracker.currentPhase == Phase.Ending)
-        {
-            if (player1CardSlots.Count == 0 || player2CardSlots.Count == 0)
+            // if game hasnt started but coin flip sequence is complete, sets up the game
+            if (!gameStarted && coinFlip.flipComplete)
             {
-                EndGame();
+                firstTurnPlayer = coinFlip.decision;
+                timeTracker.StartFirstTurn(firstTurnPlayer);
+
+                DrawCards();
+
+                SwapHands();
+
+                gameBoard.ActivateBoard();
+                gameStarted = true;
             }
-            SwapHands();
+
+            // once coin flip sequence is complete and a Turn phase begins, the timer starts.
+            // Doing this also stops timer when not in Turn phase
+            if (coinFlip.flipComplete && timeTracker.currentPhase == Phase.Turn)
+            {
+                timeTracker.TrackTime();
+            }
+
+            // if in Ending phase, player hands swap, so other player can play
+            if (timeTracker.currentPhase == Phase.Ending)
+            {
+                if (player1CardSlots.Count == 0 || player2CardSlots.Count == 0)
+                {
+                    gameEnded = true;
+                    EndGame();
+                }
+                if (timeTracker.timedOut && !timeOutCardPlaced)
+                {
+                    PlaceCardRandomly();
+                }
+                SwapHands();
+            }  
         }
+
     }
 
     // swaps hands by enabling and disabling the different player hands
@@ -77,6 +88,29 @@ public class GameManager : MonoBehaviour
             player1Hand.SetActive(false);
             player2Hand.SetActive(true);
         }
+    }
+
+    // if timed out (not played before end of time) a random card from players hand is removed
+    private void PlaceCardRandomly()
+    {
+        GameObject randomChosenCard; 
+
+        if (timeTracker.playersTurn == 1)
+        {
+            int randomIndex = Random.Range(0, player1CardSlots.Count);
+            randomChosenCard = player1CardSlots[randomIndex];
+
+        }
+        else
+        {
+            int randomIndex = Random.Range(0, player2CardSlots.Count);
+            randomChosenCard = player2CardSlots[randomIndex];
+        }
+        GameObject randomPositon = gameBoard.RandomEmptyPosition();
+
+        setCard(randomPositon.transform, randomChosenCard);
+
+        timeOutCardPlaced = true;
     }
 
     // randomly grabs different monster cards from an arry and instantiates them in each players hands
@@ -100,7 +134,7 @@ public class GameManager : MonoBehaviour
     // sets the card up using method of other classes to put it on the board and battle
     public void setCard(Transform position, GameObject cardSelected)
     {
-        if (transform.childCount == 0)
+        if (position.transform.childCount == 0)
         {
             timeTracker.BattlePlayingOut();
 
@@ -146,6 +180,8 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        timeOutCardPlaced = false;
+
         timeTracker.PlayerPlayCardEndTurn();
     }
 
@@ -157,13 +193,13 @@ public class GameManager : MonoBehaviour
         // Calculate who won
 
         //pull up menu for exiting to replaying
-        endGameMenuPanel.SetActive(true);
+        endGameMenu.SetActive(true);
     }
 
     // resets all values needed to get the game to the beginning state
     public void ResetGame()
     {
-        endGameMenuPanel.SetActive(false);
+        endGameMenu.SetActive(false);
 
         coinFlip.EnableCoinFlipMenu();
 
@@ -171,15 +207,27 @@ public class GameManager : MonoBehaviour
 
         timeTracker.ResetTimer();
 
+        gameBoard.ResetGameBoard();
+
         ResetPlayerHands();
+
+        gameEnded = false;
     }
 
     // since the card slots for each player was deleted, adds them back for a fresh game.
     private void ResetPlayerHands()
     {
+        player1CardSlots.Clear();
+        player2CardSlots.Clear();
+
         foreach (Transform child in player1Hand.transform)
         {
             GameObject childGameObject = child.gameObject;
+
+            if (childGameObject.transform.childCount != 0)
+            {
+                Destroy(childGameObject.transform.GetChild(0).gameObject);
+            }
 
             player1CardSlots.Add(childGameObject);
         }   
@@ -187,6 +235,11 @@ public class GameManager : MonoBehaviour
         foreach (Transform child in player2Hand.transform)
         {
             GameObject childGameObject = child.gameObject;
+
+            if (childGameObject.transform.childCount != 0)
+            {
+                Destroy(childGameObject.transform.GetChild(0).gameObject);
+            }
 
             player2CardSlots.Add(childGameObject);
         }  

@@ -44,11 +44,11 @@ public class CoinFlip : MonoBehaviour
 
         flipScript.Flip(decision);
 
-        if (decision == 1)
+        if (sideChosen == 1)
         {
             flipWinnerText.text = "You Chose Heads!";
         }
-        else if (decision == 2)
+        else if (sideChosen == 2)
         {
             flipWinnerText.text = "You Chose Tails!";
         }

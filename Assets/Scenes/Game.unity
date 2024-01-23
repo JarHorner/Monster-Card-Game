@@ -267,7 +267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554e0c867fb1cdc40946ff28ff745254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTracker: {fileID: 812109376}
   regularColor: {r: 1, g: 1, b: 1, a: 0}
   HoverColor: {r: 0.6037736, g: 0.27150822, b: 0.27150822, a: 0.5019608}
 --- !u!114 &8152742
@@ -634,8 +633,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 128
-  m_fontSizeBase: 128
+  m_fontSize: 112
+  m_fontSizeBase: 112
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -929,7 +928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554e0c867fb1cdc40946ff28ff745254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTracker: {fileID: 812109376}
   regularColor: {r: 1, g: 1, b: 1, a: 0}
   HoverColor: {r: 0.6037736, g: 0.27150822, b: 0.27150822, a: 0.5019608}
 --- !u!114 &102529882
@@ -1088,7 +1086,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554e0c867fb1cdc40946ff28ff745254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTracker: {fileID: 812109376}
   regularColor: {r: 1, g: 1, b: 1, a: 0}
   HoverColor: {r: 0.6037736, g: 0.27150822, b: 0.27150822, a: 0.5019608}
 --- !u!114 &107140358
@@ -1147,7 +1144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf93e3f1a7b82141bf0059e3b9eb5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endGameMenuPanel: {fileID: 0}
+  endGameMenu: {fileID: 300771912}
   timeTracker: {fileID: 812109376}
   coinFlip: {fileID: 2003042006}
   gameBoard: {fileID: 1579992200}
@@ -1429,7 +1426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &300771913
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1465,8 +1462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc8d32f9fbb255489c4d0cb7c5c35fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  timeTracker: {fileID: 0}
+  gameManager: {fileID: 110855243}
   title: {fileID: 22584770}
   panel: {fileID: 733793026}
 --- !u!1 &365975156
@@ -2079,11 +2075,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeText: {fileID: 1041445335}
   currentTimeText: {fileID: 2013139608}
-  playerTurnTime: 30
-  currentTurnTime: 30
+  playerTurnTime: 5
+  currentTurnTime: 5
   turnText: {fileID: 1122054814}
   turnChangeText: {fileID: 926884043}
   playersTurn: 0
+  timedOut: 0
 --- !u!4 &812109377
 Transform:
   m_ObjectHideFlags: 0
@@ -2243,7 +2240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554e0c867fb1cdc40946ff28ff745254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTracker: {fileID: 812109376}
   regularColor: {r: 1, g: 1, b: 1, a: 0}
   HoverColor: {r: 0.6037736, g: 0.27150822, b: 0.27150822, a: 0.5019608}
 --- !u!114 &885169395
@@ -2495,7 +2491,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554e0c867fb1cdc40946ff28ff745254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTracker: {fileID: 812109376}
   regularColor: {r: 1, g: 1, b: 1, a: 0}
   HoverColor: {r: 0.6037736, g: 0.27150822, b: 0.27150822, a: 0.5019608}
 --- !u!114 &923916713
@@ -3093,7 +3088,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554e0c867fb1cdc40946ff28ff745254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTracker: {fileID: 812109376}
   regularColor: {r: 1, g: 1, b: 1, a: 0}
   HoverColor: {r: 0.6037736, g: 0.27150822, b: 0.27150822, a: 0.5019608}
 --- !u!114 &1051498734
@@ -3854,7 +3848,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554e0c867fb1cdc40946ff28ff745254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTracker: {fileID: 812109376}
   regularColor: {r: 1, g: 1, b: 1, a: 0}
   HoverColor: {r: 0.6037736, g: 0.27150822, b: 0.27150822, a: 0.5019608}
 --- !u!114 &1548969399
@@ -4262,7 +4255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554e0c867fb1cdc40946ff28ff745254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTracker: {fileID: 812109376}
   regularColor: {r: 1, g: 1, b: 1, a: 0}
   HoverColor: {r: 0.6037736, g: 0.27150822, b: 0.27150822, a: 0.5019608}
 --- !u!114 &1673642064
@@ -4421,7 +4413,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 554e0c867fb1cdc40946ff28ff745254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTracker: {fileID: 812109376}
   regularColor: {r: 1, g: 1, b: 1, a: 0}
   HoverColor: {r: 0.6037736, g: 0.27150822, b: 0.27150822, a: 0.5019608}
 --- !u!114 &1706445918
@@ -4684,7 +4675,6 @@ MonoBehaviour:
   flipScript: {fileID: 51954603}
   flipWinnerText: {fileID: 25273501}
   choicePanel: {fileID: 141814997}
-  isSideChosen: 0
   flipComplete: 0
 --- !u!1 &2013139606
 GameObject:

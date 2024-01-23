@@ -40,6 +40,36 @@ public class GameBoard : MonoBehaviour
         placedCard.GetComponent<CardDisplay>().selectedBorder.enabled = false;
     }
 
+    public GameObject RandomEmptyPosition()
+    {
+        List<GameObject> emptyPositions = new List<GameObject>();
+
+        for (int i = 0; i < boardPositions.Length; i++)
+        {
+            if (boardPositions[i].transform.childCount == 0)
+            {
+                emptyPositions.Add(boardPositions[i]);
+            }    
+        }
+
+        int randomIndex = Random.Range(0, emptyPositions.Count);
+
+        return emptyPositions[randomIndex];
+    }
+
+    public void ResetGameBoard()
+    {
+        placedCards = new CardDisplay[9];
+
+        for (int i = 0; i < boardPositions.Length; i++)
+        {
+            Destroy(boardPositions[i].transform.GetChild(0).gameObject);
+            boardPositions[i].SetActive(false);      
+        }
+
+        board.SetActive(false);
+    }
+
     public void CommenceBattle()
     {
 

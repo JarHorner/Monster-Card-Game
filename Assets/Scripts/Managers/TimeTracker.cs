@@ -25,6 +25,8 @@ public class TimeTracker : MonoBehaviour
 
     public int playersTurn;
 
+    public bool timedOut;
+
     void Start()
     {
         currentPhase = Phase.Setup;
@@ -54,6 +56,7 @@ public class TimeTracker : MonoBehaviour
 
         if (currentTurnTime <= 0f)
         {
+            timedOut = true;
             PlayerOutOfTimeEndTurn();
         }
     }
@@ -65,13 +68,8 @@ public class TimeTracker : MonoBehaviour
 
         currentTurnTime = playerTurnTime;
         currentTimeText.text = currentTurnTime.ToString("0.00");
-
-        if (playersTurn == 1)
-            playersTurn = 2;
-        else
-            playersTurn = 1;
         
-        turnText.text = $"Player {playersTurn} Turn";
+        turnText.enabled = false;
 
         StartCoroutine(ShowChangeTurnText());
     }
@@ -79,10 +77,18 @@ public class TimeTracker : MonoBehaviour
     // shows text indicating the ending of the turn, then initiates the Turn phase
     IEnumerator ShowChangeTurnText()
     {
+        if (playersTurn == 1)
+            playersTurn = 2;
+        else
+            playersTurn = 1;
+
         turnChangeText.text = $"Player {playersTurn} Turn";
         turnChangeText.enabled = true;
 
         yield return new WaitForSeconds(2f);
+
+        turnText.text = $"Player {playersTurn} Turn";
+        turnText.enabled = true;
 
         turnChangeText.enabled = false;
         currentPhase = Phase.Turn;
@@ -101,13 +107,8 @@ public class TimeTracker : MonoBehaviour
 
         currentTurnTime = playerTurnTime;
         currentTimeText.text = currentTurnTime.ToString("0.00");
-
-        if (playersTurn == 1)
-            playersTurn = 2;
-        else
-            playersTurn = 1;
         
-        turnText.text = $"Player {playersTurn} Turn";
+        turnText.enabled = false;
 
         StartCoroutine(ShowChangeTurnText());
     }
