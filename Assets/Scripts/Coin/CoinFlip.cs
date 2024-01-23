@@ -11,7 +11,6 @@ public class CoinFlip : MonoBehaviour
     public TMP_Text flipWinnerText;
     public GameObject choicePanel;
 
-    public bool isSideChosen;
     public int sideChosen { get; private set; }
     public int decision { get; private set; }
     
@@ -21,7 +20,6 @@ public class CoinFlip : MonoBehaviour
     public void ChooseHeads()
     {
         sideChosen = 1;
-        isSideChosen = true;
 
         choicePanel.SetActive(false);
 
@@ -32,7 +30,6 @@ public class CoinFlip : MonoBehaviour
     public void ChooseTails()
     {
         sideChosen = 2;
-        isSideChosen = true;
 
         choicePanel.SetActive(false);
 
@@ -95,6 +92,19 @@ public class CoinFlip : MonoBehaviour
         flipScript.spriteRenderer.enabled = false;
 
         flipComplete = true;
+    }
+
+    // enables the coinflip panel, reseting values so coin can be flipped again
+    public void EnableCoinFlipMenu()
+    {
+        flipComplete = false;
+
+        choicePanel.SetActive(true);
+
+        flipWinnerText.text = "";
+
+        sideChosen = 0;
+        decision = 0;
     }
 
     

@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class HoverChangeColor : MonoBehaviour
 {
+    public TimeTracker timeTracker;
+    
     private bool hovering = false;
     private SpriteRenderer positionSprite;
 
@@ -13,7 +15,10 @@ public class HoverChangeColor : MonoBehaviour
 
     void Update()
     {
-        HoverBorder();
+        if (timeTracker.currentPhase == Phase.Turn)
+        {
+            HoverBorder();
+        }
     }
 
     // casts a ray that checks if the mouse cursor is over a position. If it is, the color of the position will change.

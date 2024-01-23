@@ -33,11 +33,13 @@ public class TimeTracker : MonoBehaviour
     // enables text, and ensures the state of the game is in the Turn phase
     public void StartFirstTurn(int firstTurnPlayer)
     {
+        currentTimeText.enabled = true;
         currentTimeText.text = playerTurnTime.ToString("0.00");
 
         playersTurn = firstTurnPlayer;
         turnText.text = $"Player {playersTurn} Turn";
 
+        turnText.enabled = true;
         timeText.enabled = true;
 
         currentPhase = Phase.Turn;
@@ -108,6 +110,18 @@ public class TimeTracker : MonoBehaviour
         turnText.text = $"Player {playersTurn} Turn";
 
         StartCoroutine(ShowChangeTurnText());
+    }
+
+    // Resets values to beginning state
+    public void ResetTimer()
+    {
+        currentPhase = Phase.Setup;
+
+        currentTimeText.enabled = false;
+        turnText.enabled = false;
+        timeText.enabled = false;
+
+        playersTurn = 0;
     }
 
 }

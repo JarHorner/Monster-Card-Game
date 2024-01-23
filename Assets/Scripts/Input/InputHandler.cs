@@ -19,7 +19,7 @@ public class InputHandler : MonoBehaviour
     void Update()
     {
         // when phase is ending, unselects card so it doesnt stay selected in in player turn swap
-        if (timeTracker.currentPhase == Phase.Ending && cardSelected != null)
+        if (cardSelected != null && timeTracker.currentPhase == Phase.Ending)
         {
             UnselectCard(cardSelected);
         }
@@ -28,6 +28,8 @@ public class InputHandler : MonoBehaviour
     // when mouse clicked, checks what object has been clicked, and processes accordingly.
     public void OnClick(InputAction.CallbackContext context)
     {
+        if (timeTracker.currentPhase == Phase.Ending) return;
+        
         if (!context.started) return;
 
         var rayHit = Physics2D.GetRayIntersection(mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
@@ -62,7 +64,7 @@ public class InputHandler : MonoBehaviour
         }
         else if (rayHit.collider.gameObject.name.Contains("Position") && selectedCard)
         {
-            GameObject position = rayHit.collider.gameObject;
+            Transform position = rayHit.collider.gameObject.transform;
             gameManager.setCard(position, cardSelected.gameObject);
 
             UnselectCard(cardSelected);

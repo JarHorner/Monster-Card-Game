@@ -5,6 +5,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject endGameMenuPanel;
+
     private bool gameStarted = false;
     public TimeTracker timeTracker;
     public CoinFlip coinFlip;
@@ -14,11 +16,11 @@ public class GameManager : MonoBehaviour
 
     // player 1 variables
     public GameObject player1Hand;
-    public GameObject[] player1CardSlots;
+    public List<GameObject> player1CardSlots;
 
     // player 2 variables
     public GameObject player2Hand;
-    public GameObject[] player2CardSlots;
+    public List<GameObject> player2CardSlots;
 
     public List<GameObject> monsterCards = new List<GameObject>();
     public int maxNumCardsInHand;
@@ -54,6 +56,10 @@ public class GameManager : MonoBehaviour
         // if in Ending phase, player hands swap, so other player can play
         if (timeTracker.currentPhase == Phase.Ending)
         {
+            if (player1CardSlots.Count == 0 || player2CardSlots.Count == 0)
+            {
+                EndGame();
+            }
             SwapHands();
         }
     }
@@ -91,10 +97,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    public void setCard(GameObject position, GameObject cardSelected)
+    // sets the card up using method of other classes to put it on the board and battle
+    public void setCard(Transform position, GameObject cardSelected)
     {
-        if (position.transform.childCount == 0)
+        if (transform.childCount == 0)
         {
             timeTracker.BattlePlayingOut();
 
@@ -113,23 +119,27 @@ public class GameManager : MonoBehaviour
 
         if (timeTracker.playersTurn == 1)
         {
-            foreach(GameObject slot in player1CardSlots)
+            for(int i = 0; i < player1CardSlots.Count; i++)
             {
-                if (selectedSlot == slot) 
+                if (selectedSlot == player1CardSlots[i]) 
                 {
-                    Debug.Log(selectedSlot.name + " = " + slot.name);
+                    Debug.Log(selectedSlot.name + " = " + player1CardSlots[i].name);
                     Destroy(selectedSlot.transform.GetChild(0).gameObject);
+                    player1CardSlots.RemoveAt(i);
+                    yield return null;
                 }
             }
         }
         else
         {
-            foreach(GameObject slot in player2CardSlots)
+            for(int i = 0; i < player2CardSlots.Count; i++)
             {
-                if (selectedSlot == slot) 
+                if (selectedSlot == player2CardSlots[i]) 
                 {
-                    Debug.Log(selectedSlot.name + " = " + slot.name);
+                    Debug.Log(selectedSlot.name + " = " + player2CardSlots[i].name);
                     Destroy(selectedSlot.transform.GetChild(0).gameObject);
+                    player2CardSlots.RemoveAt(i);
+                    yield return null;
                 }
             }
         }
@@ -137,5 +147,48 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         timeTracker.PlayerPlayCardEndTurn();
+    }
+
+    // ends the game after the board is full, by calculating a winner and opening end game panel
+    private void EndGame()
+    {
+        Debug.Log("Ending Game!");
+        
+        // Calculate who won
+
+        //pull up menu for exiting to replaying
+        endGameMenuPanel.SetActive(true);
+    }
+
+    // resets all values needed to get the game to the beginning state
+    public void ResetGame()
+    {
+        endGameMenuPanel.SetActive(false);
+
+        coinFlip.EnableCoinFlipMenu();
+
+        gameStarted = false;
+
+        timeTracker.ResetTimer();
+
+        ResetPlayerHands();
+    }
+
+    // since the card slots for each player was deleted, adds them back for a fresh game.
+    private void ResetPlayerHands()
+    {
+        foreach (Transform child in player1Hand.transform)
+        {
+            GameObject childGameObject = child.gameObject;
+
+            player1CardSlots.Add(childGameObject);
+        }   
+
+        foreach (Transform child in player2Hand.transform)
+        {
+            GameObject childGameObject = child.gameObject;
+
+            player2CardSlots.Add(childGameObject);
+        }  
     }
 }
