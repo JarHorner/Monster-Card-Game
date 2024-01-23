@@ -8,8 +8,8 @@ public enum Phase
 {
     Setup, // state  before Turn, and the beginning state
     Turn, // state for each players turn
-    Effects, // state between Turn and Ending, and allows for effects to play before ending turn
-    Ending, // state after Effects, wrapping up and preparing for Turn state
+    Battle, // state between Turn and Ending, and allows for effects to play before ending turn
+    Ending, // state after Battle, wrapping up and preparing for Turn state
 }
 
 public class TimeTracker : MonoBehaviour
@@ -86,10 +86,10 @@ public class TimeTracker : MonoBehaviour
         currentPhase = Phase.Turn;
     }
 
-    // used to change to the Effects phase, when a card has been place in a turn.
-    public void EffectsOfMovePlayingOut()
+    // used to change to the Battle phase, when a card has been place in a turn.
+    public void BattlePlayingOut()
     {
-        currentPhase = Phase.Effects;
+        currentPhase = Phase.Battle;
     }
 
     // a seperate function for ending a turn for future changes needed when ending turn by playing

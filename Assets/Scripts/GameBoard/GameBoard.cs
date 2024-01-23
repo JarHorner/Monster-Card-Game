@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class GameBoard : MonoBehaviour
 {
+    public BattleManager battleManager;
+
     public GameObject board;
-    public List<GameObject> boardPositions = new List<GameObject>();
+    public GameObject[] boardPositions = new GameObject[9];
+    public CardDisplay[] placedCards = new CardDisplay[9];
 
     public Vector3 baseCardOnBoardScale;
 
-    void Start()
+    void Start() 
     {
-        
-    }
-
-    void Update()
-    {
-        
+    
+    
     }
 
     // enables the entire board
@@ -24,7 +23,7 @@ public class GameBoard : MonoBehaviour
     {
         board.SetActive(true);
 
-        for (int i = 0; i < boardPositions.Count; i++)
+        for (int i = 0; i < boardPositions.Length; i++)
         {
             boardPositions[i].SetActive(true);      
         }
@@ -40,6 +39,13 @@ public class GameBoard : MonoBehaviour
             placedCard.GetComponent<CardDisplay>().baseScale = baseCardOnBoardScale;
             placedCard.transform.localScale = baseCardOnBoardScale;
             placedCard.GetComponent<CardDisplay>().selectedBorder.enabled = false;
+
+
         }
+    }
+
+    public void CommenceBattle()
+    {
+
     }
 }

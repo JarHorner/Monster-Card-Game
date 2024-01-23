@@ -96,11 +96,13 @@ public class GameManager : MonoBehaviour
     {
         if (position.transform.childCount == 0)
         {
-             timeTracker.EffectsOfMovePlayingOut();
+            timeTracker.BattlePlayingOut();
 
             gameBoard.AddCardToPosition(position, cardSelected);
 
             StartCoroutine(removeCardFromHand(cardSelected));
+
+            gameBoard.CommenceBattle();
         }
     }
 
