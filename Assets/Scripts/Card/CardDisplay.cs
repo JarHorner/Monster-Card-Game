@@ -7,10 +7,8 @@ using UnityEngine.InputSystem;
 
 public class CardDisplay : MonoBehaviour
 {
-    public Card card;
+    public CardSO card;
     public int playerOwner;
-
-    public TMP_Text nameText;
 
     public TMP_Text topRankText;
     public int topRank;
@@ -24,11 +22,8 @@ public class CardDisplay : MonoBehaviour
     public TMP_Text leftRankText;
     public int leftRank;
 
-    public TMP_Text levelText;
 
-    public SpriteRenderer monsterArtwork;
     public SpriteRenderer monsterArtworkBackground;
-    public SpriteRenderer element;
     public SpriteRenderer selectedBorder;
 
     public Color player1Color;
@@ -41,13 +36,6 @@ public class CardDisplay : MonoBehaviour
     // Assigns the scriptable objects values to the gameobject, and prints the information
     void Start()
     {
-        nameText.text = card.cardName;
-
-        monsterArtwork.sprite = card.artwork;
-        element.sprite = card.element;
-
-        levelText.text = card.level.ToString();
-
         AssignRanks();
 
         topRankText.text = topRank.ToString();
@@ -148,17 +136,13 @@ public class CardDisplay : MonoBehaviour
     // Changes layers, used for enlarging the card when cursor is over it
     public void ChangeCardLayers(string newLayer)
     {
-        nameText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
 
         topRankText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
         rightRankText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
         bottomRankText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
         leftRankText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
-        levelText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
 
-        monsterArtwork.sortingLayerName = newLayer;
         monsterArtworkBackground.sortingLayerName = newLayer;
-        element.sortingLayerName = newLayer;
         selectedBorder.sortingLayerName = newLayer; 
     }
 

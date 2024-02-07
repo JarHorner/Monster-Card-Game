@@ -12,6 +12,26 @@ PrefabInstance:
       propertyPath: card
       value: 
       objectReference: {fileID: 11400000, guid: 900a468c74ce1c84393a4e10bbaf0c7e, type: 2}
+    - target: {fileID: 1419443291905134834, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_Size.x
+      value: 5.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 1419443291905134834, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_Size.y
+      value: 4.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1419443291905134834, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 819e1cf08e0c2c0418faef05126edf12, type: 3}
+    - target: {fileID: 1419443291905134834, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140512091509117589, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 3140512091509117589, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -52,9 +72,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3961729353815969968, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_text
+      value: Ochre Jelly
+      objectReference: {fileID: 0}
     - target: {fileID: 4530876716268103752, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
       propertyPath: m_Name
-      value: HandCard Variant
+      value: HandCard_OchreJelly
+      objectReference: {fileID: 0}
+    - target: {fileID: 4850114394459500809, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_text
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545806021952755660, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8782451005483176011, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8782451005483176011, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

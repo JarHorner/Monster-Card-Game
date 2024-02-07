@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: card
       value: 
       objectReference: {fileID: 11400000, guid: 6f957f779d6480f479e751c538f94103, type: 2}
+    - target: {fileID: 1419443291905134834, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1375143ffcb8dac4f90c0705f91e870f, type: 3}
+    - target: {fileID: 1419443291905134834, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3140512091509117589, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -52,9 +60,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3961729353815969968, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_text
+      value: Goblin
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431671260521132283, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4530876716268103752, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
       propertyPath: m_Name
-      value: HandCard Variant
+      value: HandCard_Goblin
+      objectReference: {fileID: 0}
+    - target: {fileID: 4850114394459500809, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_text
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -5,30 +5,30 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
-    [SerializeField] private GameManager gameManager;
-    public TimeTracker timeTracker;
+
+    public static InputHandler Instance { get; private set; }
     private Camera mainCamera;
     private bool selectedCard = false;
     private CardDisplay cardSelected;
 
     void Awake()
     {
+        Instance = this;
         mainCamera = Camera.main;
     }
 
     void Update()
     {
         // when phase is ending, unselects card so it doesnt stay selected in in player turn swap
-        if (cardSelected != null && timeTracker.currentPhase == Phase.Ending)
-        {
-            UnselectCard(cardSelected);
-        }
+        //if (cardSelected != null)
+        //{
+        //    UnselectCard(cardSelected);
+        //}
     }
 
     // when mouse clicked, checks what object has been clicked, and processes accordingly.
     public void OnClick(InputAction.CallbackContext context)
     {
-        if (timeTracker.currentPhase == Phase.Ending) return;
         
         if (!context.started) return;
 
@@ -65,7 +65,7 @@ public class InputHandler : MonoBehaviour
         else if (rayHit.collider.gameObject.name.Contains("Position") && selectedCard)
         {
             Transform position = rayHit.collider.gameObject.transform;
-            gameManager.setCard(position, cardSelected.gameObject);
+            //gameManager.setCard(position, cardSelected.gameObject);
 
             UnselectCard(cardSelected);
         }
