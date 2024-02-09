@@ -223,7 +223,7 @@ public class GameLobby : MonoBehaviour
         OnJoinStarted?.Invoke(this, EventArgs.Empty);
         try
         {
-            await LobbyService.Instance.JoinLobbyByIdAsync(lobbyId);
+            joinedLobby = await LobbyService.Instance.JoinLobbyByIdAsync(lobbyId);
 
             string relayJoinCode = joinedLobby.Data[KEY_RELAY_JOIN_CODE].Value;
             JoinAllocation joinAllocation = await JoinRelay(relayJoinCode);
@@ -243,7 +243,7 @@ public class GameLobby : MonoBehaviour
         OnJoinStarted?.Invoke(this, EventArgs.Empty);
         try
         {
-            await LobbyService.Instance.JoinLobbyByCodeAsync(lobbyCode);
+            joinedLobby = await LobbyService.Instance.JoinLobbyByCodeAsync(lobbyCode);
 
             string relayJoinCode = joinedLobby.Data[KEY_RELAY_JOIN_CODE].Value;
             JoinAllocation joinAllocation = await JoinRelay(relayJoinCode);

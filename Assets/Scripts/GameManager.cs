@@ -76,16 +76,7 @@ public class GameManager : NetworkBehaviour
     {
         foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
-            Vector3 position;
-            if (clientId == 0)
-            {
-                position = new Vector3(7f, 0f, 0f);
-            }
-            else
-            {
-                position = new Vector3(-7f, 0f, 0f);
-            }
-            Transform playerTransform = Instantiate(playerPrefab, position, Quaternion.identity);
+            Transform playerTransform = Instantiate(playerPrefab);
             playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
         }
     }
