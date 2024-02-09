@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuScene.unity
     guid: 9054fbfb073db8e42ad4e482515f00f1
   - enabled: 1
+    path: Assets/Scenes/CardSelectionScene.unity
+    guid: a120b5d2d4f116844aa468b8d471f9a6
+  - enabled: 1
     path: Assets/Scenes/LobbyScene.unity
     guid: abec3b9331a9f6f43b214bdb3d47092b
   - enabled: 1

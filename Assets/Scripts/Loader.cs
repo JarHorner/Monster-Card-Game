@@ -14,6 +14,7 @@ public static class Loader
         LobbyScene,
         CharacterSelectScene,
         MainMenuScene,
+        CardSelectionScene,
     }
 
 

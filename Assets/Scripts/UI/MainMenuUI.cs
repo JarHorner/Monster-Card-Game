@@ -12,8 +12,7 @@ public class MainMenuUI : MonoBehaviour
     private void Awake()
     {
         playButton.onClick.AddListener(() => {
-            GameMultiplayer.playMultiplayer = true;
-            Loader.Load(Loader.Scene.LobbyScene);
+            Loader.Load(Loader.Scene.CardSelectionScene);
         });
         quitButton.onClick.AddListener(() => {
             Application.Quit();

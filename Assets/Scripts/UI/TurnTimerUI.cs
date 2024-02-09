@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GameStartCountdownTimerUI : MonoBehaviour
+public class TurnTimerUI : MonoBehaviour
 {
 
-    [SerializeField] private TextMeshProUGUI countdownText;
+    [SerializeField] private TextMeshProUGUI timerText;
 
-    private int previousCountdownNumber;
+    private int previousTimerNumber;
 
 
     private void Awake()
     {
-        
+
     }
 
     private void Start()
@@ -25,7 +25,7 @@ public class GameStartCountdownTimerUI : MonoBehaviour
 
     private void GameManager_OnStateChanged(object sender, System.EventArgs e)
     {
-        if (GameManager.Instance.IsCountdownToStartActive())
+        if (GameManager.Instance.IsPlayerTurn())
         {
             Show();
         }
@@ -37,12 +37,12 @@ public class GameStartCountdownTimerUI : MonoBehaviour
 
     private void Update()
     {
-        int countdownNumber = Mathf.CeilToInt(GameManager.Instance.GetCountdownToStartTimer());
-        countdownText.text = countdownNumber.ToString();
+        int countdownNumber = Mathf.CeilToInt(GameManager.Instance.GetPlayerTurnTimer());
+        timerText.text = countdownNumber.ToString();
 
-        if (previousCountdownNumber != countdownNumber)
+        if (previousTimerNumber != countdownNumber)
         {
-            previousCountdownNumber = countdownNumber;
+            previousTimerNumber = countdownNumber;
         }
     }
 

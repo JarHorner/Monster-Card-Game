@@ -556,6 +556,7 @@ GameObject:
   - component: {fileID: 3140512091509117589}
   - component: {fileID: 1307167269717633616}
   - component: {fileID: 1338914528784456873}
+  - component: {fileID: 8883781675267118008}
   m_Layer: 0
   m_Name: HandCard
   m_TagString: Untagged
@@ -599,6 +600,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   card: {fileID: 0}
   playerOwner: 0
+  cardName: {fileID: 3961729353815969968}
+  level: {fileID: 4850114394459500809}
   topRankText: {fileID: 1363379620776178359}
   topRank: 0
   rightRankText: {fileID: 1170321139568817827}
@@ -608,12 +611,14 @@ MonoBehaviour:
   leftRankText: {fileID: 2833227393912783996}
   leftRank: 0
   monsterArtworkBackground: {fileID: 6432527963432962287}
+  monsterArtwork: {fileID: 1419443291905134834}
+  element: {fileID: 8545806021952755660}
   selectedBorder: {fileID: 1460422651408323601}
   player1Color: {r: 0.3607843, g: 0.5405295, b: 0.8980392, a: 1}
   player1HoverColor: {r: 0.1715319, g: 0.4243631, b: 0.9245283, a: 1}
   player2Color: {r: 0.8980392, g: 0.3607843, b: 0.38122693, a: 1}
   player2HoverColor: {r: 0.9254902, g: 0.172549, b: 0.1800872, a: 1}
-  baseScale: {x: 0.4, y: 0.4, z: 1}
+  baseScale: {x: 0.35, y: 0.35, z: 1}
 --- !u!61 &1338914528784456873
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -659,6 +664,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 3}
   m_EdgeRadius: 0
+--- !u!114 &8883781675267118008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4530876716268103752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d01420e9ea1912e488d97af1577de622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4698622523579897823
 GameObject:
   m_ObjectHideFlags: 0
