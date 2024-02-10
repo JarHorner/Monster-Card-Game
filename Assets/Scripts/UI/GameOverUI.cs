@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Unity.Netcode;
 
 public class GameOverUI : MonoBehaviour
 {
@@ -15,17 +16,39 @@ public class GameOverUI : MonoBehaviour
     private void Awake()
     {
         quickJoinButton.onClick.AddListener(() => {
+            //NetworkManager.Singleton.Shutdown();
             //Loader.Load(Loader.Scene.LobbyScene);
         });
         newCardsButton.onClick.AddListener(() => {
+            NetworkManager.Singleton.Shutdown();
             Loader.Load(Loader.Scene.CardSelectionScene);
         });
         mainMenuButton.onClick.AddListener(() =>
         {
+            NetworkManager.Singleton.Shutdown();
             Loader.Load(Loader.Scene.MainMenuScene);
         });
 
         Hide();
+    }
+
+    private void Start()
+    {
+        GameManager.Instance.OnStateChanged += GameManager_OnStateChanged;
+
+        Hide();
+    }
+
+    private void GameManager_OnStateChanged(object sender, System.EventArgs e)
+    {
+        if (GameManager.Instance.IsGameOver())
+        {
+            Show();
+        }
+        else
+        {
+            Hide();
+        }
     }
 
     private void Show()
