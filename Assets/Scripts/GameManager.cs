@@ -57,7 +57,6 @@ public class GameManager : NetworkBehaviour
 
         if (IsServer)
         {
-            // NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback;
             NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += NetworkManager_OnLoadEventCompleted;
         }
     }
@@ -66,11 +65,6 @@ public class GameManager : NetworkBehaviour
     {
         OnStateChanged?.Invoke(this, EventArgs.Empty);
     }
-
-    //private void NetworkManager_OnClientDisconnectCallback(ulong obj)
-    //{
-    //    autoTestGamePauseState = false;
-    //}
 
     private void NetworkManager_OnLoadEventCompleted(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     {
