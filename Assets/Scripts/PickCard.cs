@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 
-public class PickCard : MonoBehaviour
+public class PickCard : NetworkBehaviour
 {
     public CardSO card;
+
     private bool selected = false;
+    private bool enlarged = false;
 
     public TMP_Text cardName;
     public TMP_Text level;
@@ -24,9 +27,6 @@ public class PickCard : MonoBehaviour
     public TMP_Text leftRankText;
     public int leftRank;
 
-    public GameObject selectButton;
-
-
     public SpriteRenderer monsterArtworkBackground;
     public SpriteRenderer monsterArtwork;
     public SpriteRenderer element;
@@ -38,12 +38,6 @@ public class PickCard : MonoBehaviour
     public Vector3 baseScale;
 
     private void Awake()
-    {
-        
-    }
-
-    // Assigns the scriptable objects values to the gameobject, and prints the information
-    void Start()
     {
         AssignRanks();
 
@@ -172,5 +166,53 @@ public class PickCard : MonoBehaviour
         monsterArtwork.sortingLayerName = newLayer;
         element.sortingLayerName = newLayer;
         selectedBorder.sortingLayerName = newLayer;
+    }
+
+    private void OnMouseEnter()
+    {
+        Debug.Log("Enter");
+        Enlarge();
+    }
+
+    private void OnMouseExit()
+    {
+        Debug.Log("Out");
+        Decrease();
+    }
+
+    // casts a ray that checks if the mouse cursor is over a card. If it is, the scale of the card will enlarge.
+    public void Enlarge()
+    {
+        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * 1.5f, gameObject.transform.localScale.y * 1.5f, 1f);
+        enlarged = true;
+        ChangeCardLayer(gameObject.GetComponent<PickCard>());
+    }
+
+    private void Decrease()
+    {
+        gameObject.transform.localScale = gameObject.GetComponent<PickCard>().baseScale;
+        enlarged = false;
+        ChangeCardLayer(gameObject.GetComponent<PickCard>());
+    }
+
+    // Changes layer when card is hovered over so it appears higher than other cards
+    private void ChangeCardLayer(PickCard pickCard)
+    {
+        if (enlarged)
+        {
+            string layerName = "SelectedCard";
+
+            pickCard.ChangeCardLayers(layerName);
+
+            pickCard.ChangeBGColorOnHover();
+        }
+        else
+        {
+            string layerName = "Card";
+
+            pickCard.ChangeCardLayers(layerName);
+
+            pickCard.ChangeBGColorToPlayer();
+        }
     }
 }

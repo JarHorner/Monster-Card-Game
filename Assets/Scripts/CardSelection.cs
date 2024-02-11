@@ -5,9 +5,13 @@ using UnityEngine.InputSystem;
 
 public class CardSelection : MonoBehaviour
 {
+    public const int MAX_CARD_AMT = 5;
+
     public static CardSelection Instance;
 
     private GameObject selectedCard;
+
+    private bool maxCardsSelected = false;
 
     [SerializeField] private List<GameObject> pickedCards;
 
@@ -22,16 +26,16 @@ public class CardSelection : MonoBehaviour
 
     public void AddCard()
     {
-        if (selectedCard != null)
+        if (selectedCard != null && !maxCardsSelected)
         {
-            pickedCards.Add(selectedCard);
-            selectedCard.GetComponent<PickCard>().UnselectCard();
-        }
-           
+            GameObject addedCard = selectedCard;
+            Debug.Log(addedCard.name);
+            pickedCards.Add(addedCard);
 
-        foreach(GameObject card in pickedCards)
-        {
-            Debug.Log(card.name);
+            if (pickedCards.Count == MAX_CARD_AMT)
+            {
+                maxCardsSelected = true;
+            }
         }
     }
 
@@ -45,6 +49,10 @@ public class CardSelection : MonoBehaviour
         selectedCard = null;
     }
 
+    public List<GameObject> GetPickedCards()
+    {
+        return pickedCards;
+    }    
 
 
 

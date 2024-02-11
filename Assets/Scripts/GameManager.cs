@@ -72,6 +72,14 @@ public class GameManager : NetworkBehaviour
         {
             Transform playerTransform = Instantiate(playerPrefab);
             playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
+
+            List<GameObject> playerCards = CardSelection.Instance.GetPickedCards();
+
+            foreach (GameObject card in playerCards)
+            {
+                GameObject cardTransform = Instantiate(card);
+                cardTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
+            }
         }
     }
 
