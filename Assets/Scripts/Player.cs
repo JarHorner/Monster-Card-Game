@@ -37,6 +37,15 @@ public class Player : NetworkBehaviour
 
     private void Update()
     {
+
+    }
+
+    private void OnMouseDown()
+    {
+        if (IsLocalPlayer)
+        {
+            Debug.Log("Click registers");
+        }
     }
 
 
@@ -51,5 +60,10 @@ public class Player : NetworkBehaviour
     public NetworkObject GetNetworkObject()
     {
         return NetworkObject;
+    }
+
+    public bool IsLocalPlayerHovering()
+    {
+        return IsLocalPlayer;
     }
 }

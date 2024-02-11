@@ -18,13 +18,13 @@ public class GameMultiplayer : NetworkBehaviour
     public event EventHandler OnTryingToJoinGame;
     public event EventHandler OnFailedToJoinGame;
     public event EventHandler OnPlayerDataNetworkListChanged;
+    public event EventHandler OnCardDataNetworkListChanged;
 
     //[SerializeField] private KitchenObjectListSO kitchenObjectListSO;
     [SerializeField] private List<Color> portraitColorList;
 
     private NetworkList<PlayerData> playerDataNetworkList;
     private string playerName;
-
 
     void Awake()
     {
@@ -35,6 +35,7 @@ public class GameMultiplayer : NetworkBehaviour
         playerName = PlayerPrefs.GetString(PLAYER_PREFS_PLAYER_NAME_MULTIPLAYER, "playerName" + UnityEngine.Random.Range(100, 1000));
         playerDataNetworkList = new NetworkList<PlayerData>();
         playerDataNetworkList.OnListChanged += playerDataNetworkList_OnListChanged;
+
     }
 
     private void Start()
@@ -45,6 +46,11 @@ public class GameMultiplayer : NetworkBehaviour
             StartHost();
             Loader.LoadNetwork(Loader.Scene.GameScene);
         }
+    }
+
+    private void cardDataNetworkList_OnListChanged(NetworkListEvent<CardData> changeEvent)
+    {
+        OnCardDataNetworkListChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void playerDataNetworkList_OnListChanged(NetworkListEvent<PlayerData> changeEvent)
@@ -83,6 +89,7 @@ public class GameMultiplayer : NetworkBehaviour
         SetPlayerNameServerRpc(GetPlayerName());
         SetPlayerIdServerRpc(AuthenticationService.Instance.PlayerId);
     }
+
 
     private void NetworkManager_ConnectionApprovalCallback(NetworkManager.ConnectionApprovalRequest connectionApprovalRequest, NetworkManager.ConnectionApprovalResponse connectionApprovalResponse)
     {
@@ -147,7 +154,7 @@ public class GameMultiplayer : NetworkBehaviour
         OnFailedToJoinGame?.Invoke(this, EventArgs.Empty);
     }
 
-    //public void SpawnKitchenObject(KitchenObjectSO kitchenObjectSO, IKitchenObjectParent kitchenObjectParent)
+    //public void SpawnCardObject(CardObjectSO cardObjectSO, IKitchenObjectParent kitchenObjectParent)
     //{
     //    SpawnKitchenObjectServerRpc(GetKitchenObjectSOIndex(kitchenObjectSO), kitchenObjectParent.GetNetworkObject());
     //}
@@ -176,7 +183,7 @@ public class GameMultiplayer : NetworkBehaviour
     //    kitchenObject.SetKitchenObjectParent(kitchenObjectParent);
     //}
 
-    //public int GetKitchenObjectSOIndex(KitchenObjectSO kitchenObjectSO)
+    //public int GetCardObjectSOIndex(CardObjectSO cardObjectSO)
     //{
     //    return kitchenObjectListSO.kitchenObjectSOList.IndexOf(kitchenObjectSO);
     //}
