@@ -21,5 +21,10 @@ public class MultiplayerObjectCleanup : MonoBehaviour
         {
             Destroy(GameLobby.Instance.gameObject);
         }
+
+        if (CardSelection.Instance != null)
+        {
+            Destroy(CardSelection.Instance.gameObject);
+        }
     }
 }

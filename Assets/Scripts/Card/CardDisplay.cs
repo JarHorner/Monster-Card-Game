@@ -41,8 +41,6 @@ public class CardDisplay : MonoBehaviour
     // Assigns the scriptable objects values to the gameobject, and prints the information
     void Start()
     {
-        AssignRanks();
-
         topRankText.text = topRank.ToString();
         rightRankText.text = rightRank.ToString();
         bottomRankText.text = bottomRank.ToString();
@@ -58,67 +56,6 @@ public class CardDisplay : MonoBehaviour
         ChangeBGColorToPlayer();
     }
 
-    // Assigns ranks to each side of the card randomly, 
-    // based on information on the Card scriptable object
-    private void AssignRanks()
-    {
-        int[] assignedRanks = new int[4];
-        int totalOfRanks;
-
-        int attempts = 0;
-        int maxAttempts = 50;
-
-        do
-        {
-            int[] ranks = ShuffleArray(card.rangeOfRanks);
-
-            // Take the first 4 values from the shuffled array
-            Array.Copy(ranks, assignedRanks, 4);
-
-            totalOfRanks = CalculateSum(assignedRanks);
-
-            attempts++;
-
-            // Check if the attempts exceed the limit to prevent infinit loop
-            if (attempts >= maxAttempts)
-            {
-                Debug.LogError("Exceeded maximum attempts. Unable to find a valid combination.");
-                return;
-            }
-        }
-        while (Array.Exists(assignedRanks, v => v == 0) || totalOfRanks < card.minRank || totalOfRanks > card.maxRank);
-
-        topRank = assignedRanks[0];
-        rightRank = assignedRanks[1];
-        bottomRank = assignedRanks[2];
-        leftRank = assignedRanks[3];
-    }
-
-    // Shuffles the array using the Fisher-Yates shuffle
-    private int[] ShuffleArray(int[] array)
-    {
-        int n = array.Length;
-        for (int i = n - 1; i > 0; i--)
-        {
-            int j = UnityEngine.Random.Range(0, i + 1);
-            // Swap array[i] and array[j]
-            int temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
-        }
-        return array;
-    }
-
-    // calculates sum of array
-    private int CalculateSum(int[] array)
-    {
-        int sum = 0;
-        foreach (int value in array)
-        {
-            sum += value;
-        }
-        return sum;
-    }
     // Changes background color, used when assigning card to players
     public void ChangeBGColorToPlayer()
     {

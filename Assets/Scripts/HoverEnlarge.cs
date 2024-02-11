@@ -26,34 +26,34 @@ public class HoverEnlarge : MonoBehaviour
     {
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * 1.5f, gameObject.transform.localScale.y * 1.5f, 1f);
         enlarged = true;
-        ChangeCardLayer(gameObject.GetComponent<CardDisplay>());
+        ChangeCardLayer(gameObject.GetComponent<PickCard>());
     }
 
     private void Decrease()
     {
-        gameObject.transform.localScale = gameObject.GetComponent<CardDisplay>().baseScale;
+        gameObject.transform.localScale = gameObject.GetComponent<PickCard>().baseScale;
         enlarged = false;
-        ChangeCardLayer(gameObject.GetComponent<CardDisplay>());
+        ChangeCardLayer(gameObject.GetComponent<PickCard>());
     }
 
     // Changes layer when card is hovered over so it appears higher than other cards
-    private void ChangeCardLayer(CardDisplay cardDisplay)
+    private void ChangeCardLayer(PickCard pickCard)
     {
         if (enlarged)
         {
             string layerName = "SelectedCard";
 
-            cardDisplay.ChangeCardLayers(layerName);
+            pickCard.ChangeCardLayers(layerName);
 
-            cardDisplay.ChangeBGColorOnHover();
+            pickCard.ChangeBGColorOnHover();
         }
         else
         {
             string layerName = "Card";
 
-            cardDisplay.ChangeCardLayers(layerName);
+            pickCard.ChangeCardLayers(layerName);
 
-            cardDisplay.ChangeBGColorToPlayer();
+            pickCard.ChangeBGColorToPlayer();
         }
     }
 }

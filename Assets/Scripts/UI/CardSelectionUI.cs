@@ -7,6 +7,7 @@ public class CardSelectionUI : MonoBehaviour
 {
     [SerializeField] private Button mainMenuButton;
     [SerializeField] private Button ConnectButton;
+    [SerializeField] private Button addCardButton;
 
     private void Awake()
     {
@@ -17,5 +18,10 @@ public class CardSelectionUI : MonoBehaviour
             GameMultiplayer.playMultiplayer = true;
             Loader.Load(Loader.Scene.LobbyScene);
         });
+        addCardButton.onClick.AddListener(() => {
+            CardSelection.Instance.AddCard();
+        });
     }
+
+
 }

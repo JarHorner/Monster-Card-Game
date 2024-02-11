@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,6 +15,7 @@ public class Player : NetworkBehaviour
 
     [SerializeField] private List<Vector3> spawnPositionList;
     [SerializeField] private PlayerVisual playerVisual;
+    [SerializeField] private TMP_Text playerName;
 
     public override void OnNetworkSpawn()
     {
@@ -33,6 +35,7 @@ public class Player : NetworkBehaviour
     {
         PlayerData playerData = GameMultiplayer.Instance.GetPlayerDataFromClientId(OwnerClientId);
         playerVisual.SetPlayerColor(GameMultiplayer.Instance.GetPlayerColor(playerData.portraitColorId));
+        playerName.text = playerData.playerName.ToString();
     }
 
     private void Update()
