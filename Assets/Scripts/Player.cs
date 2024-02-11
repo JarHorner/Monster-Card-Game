@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : NetworkBehaviour
 {
@@ -28,19 +29,23 @@ public class Player : NetworkBehaviour
         NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback;
     }
 
+    private void Start()
+    {
+        PlayerData playerData = GameMultiplayer.Instance.GetPlayerDataFromClientId(OwnerClientId);
+        playerVisual.SetPlayerColor(GameMultiplayer.Instance.GetPlayerColor(playerData.portraitColorId));
+    }
+
+    private void Update()
+    {
+    }
+
+
     private void NetworkManager_OnClientDisconnectCallback(ulong clientId)
     {
         if (clientId == OwnerClientId)
         {
 
         }
-    }
-
-    private void Start()
-    {
-
-        PlayerData playerData = GameMultiplayer.Instance.GetPlayerDataFromClientId(OwnerClientId);
-        playerVisual.SetPlayerColor(GameMultiplayer.Instance.GetPlayerColor(playerData.portraitColorId));
     }
 
     public NetworkObject GetNetworkObject()

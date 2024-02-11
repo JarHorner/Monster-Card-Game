@@ -7,7 +7,6 @@ public class PlayerVisual : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    private Material material;
 
     private void Awake()
     {
