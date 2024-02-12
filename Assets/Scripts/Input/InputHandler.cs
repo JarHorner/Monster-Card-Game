@@ -9,7 +9,7 @@ public class InputHandler : MonoBehaviour
     public static InputHandler Instance { get; private set; }
     private Camera mainCamera;
     private bool selectedCard = false;
-    private CardDisplay cardSelected;
+    private PickCard cardSelected;
 
     void Awake()
     {
@@ -20,16 +20,16 @@ public class InputHandler : MonoBehaviour
     void Update()
     {
         // when phase is ending, unselects card so it doesnt stay selected in in player turn swap
-        //if (cardSelected != null)
-        //{
-        //    UnselectCard(cardSelected);
-        //}
+        if (cardSelected != null)
+        {
+            UnselectCard(cardSelected);
+        }
     }
 
     // when mouse clicked, checks what object has been clicked, and processes accordingly.
     public void OnClick(InputAction.CallbackContext context)
     {
-        
+        Debug.Log("Clicking");
         if (!context.started) return;
 
         var rayHit = Physics2D.GetRayIntersection(mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
@@ -50,39 +50,41 @@ public class InputHandler : MonoBehaviour
     // checks which gameobject the ray hit.
     private void CheckClickTarget(RaycastHit2D rayHit) 
     {
-        if (rayHit.collider.gameObject.name.Contains("HandCard") && !selectedCard)
+        if (rayHit.collider.gameObject.name.Contains("Card") && !selectedCard)
         {
-            cardSelected = rayHit.collider.gameObject.GetComponent<CardDisplay>();
+            cardSelected = rayHit.collider.gameObject.GetComponent<PickCard>();
             SelectCard(cardSelected);
         }
-        else if (rayHit.collider.gameObject.name.Contains("HandCard") && selectedCard)
+        else if (rayHit.collider.gameObject.name.Contains("Card") && selectedCard)
         {
             UnselectCard(cardSelected);
 
-            cardSelected = rayHit.collider.gameObject.GetComponent<CardDisplay>();
+            cardSelected = rayHit.collider.gameObject.GetComponent<PickCard>();
             SelectCard(cardSelected);
         }
-        else if (rayHit.collider.gameObject.name.Contains("Position") && selectedCard)
-        {
-            Transform position = rayHit.collider.gameObject.transform;
-            //gameManager.setCard(position, cardSelected.gameObject);
+        //else if (rayHit.collider.gameObject.name.Contains("Position") && selectedCard)
+        //{
+        //    Transform position = rayHit.collider.gameObject.transform;
+        //    //gameManager.setCard(position, cardSelected.gameObject);
 
-            UnselectCard(cardSelected);
-        }
+        //    UnselectCard(cardSelected);
+        //}
     }
 
     // "selects" card by adding border and changing sorting layer/order for greater visiblility.
-    private void SelectCard(CardDisplay cardDisplay)
+    private void SelectCard(PickCard pickCard)
     {
-        cardDisplay.selectedBorder.enabled = true;
+        pickCard.selectedBorder.enabled = true;
         selectedCard = true;
+        CardSelection.Instance.SetSelectedCard(pickCard.gameObject);
     }
 
     // "unselects" card by removing border.
-    private void UnselectCard(CardDisplay cardDisplay)
+    private void UnselectCard(PickCard pickCard)
     {
-        cardDisplay.selectedBorder.enabled = false;
+        pickCard.selectedBorder.enabled = false;
         selectedCard = false;
         cardSelected = null;
+        CardSelection.Instance.RemoveSelectedCard();
     }
 }

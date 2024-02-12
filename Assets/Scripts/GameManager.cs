@@ -11,11 +11,11 @@ public class GameManager : NetworkBehaviour
     public static GameManager Instance { get; private set; }
 
     public event EventHandler OnStateChanged;
-    public event EventHandler OnLocalGamePaused;
-    public event EventHandler OnLocalGameUnpaused;
-    public event EventHandler OnMultiplayerGamePaused;
-    public event EventHandler OnMultiplayerGameUnpaused;
-    public event EventHandler OnLocalPlayerReadyChanged;
+    //public event EventHandler OnLocalGamePaused;
+    //public event EventHandler OnLocalGameUnpaused;
+   // public event EventHandler OnMultiplayerGamePaused;
+    // public event EventHandler OnMultiplayerGameUnpaused;
+    //public event EventHandler OnLocalPlayerReadyChanged;
 
     // enum state machine to help guide the gameplay
     public enum State

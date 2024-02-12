@@ -20,6 +20,7 @@ public class CardSelectionUI : MonoBehaviour
         });
         addCardButton.onClick.AddListener(() => {
             CardSelection.Instance.AddCard();
+            
         });
     }
 

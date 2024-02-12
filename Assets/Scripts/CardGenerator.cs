@@ -5,25 +5,55 @@ using UnityEngine;
 public class CardGenerator : MonoBehaviour
 {
     public const int MAX_SPAWNED_CARDS = 8;
-    
-    [SerializeField] private GameObject[] possibleCards;
+
+    public static CardGenerator Instance;
+
+    [SerializeField] private GameObject[] possibleCardsToSpawn;
+    [SerializeField] private List<GameObject> spawnedCards;
     [SerializeField] private Vector3[] cardLocations;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        SpawnCards();
+    }
+
+    private void SpawnCards()
+    {
         for (int i = 0; i < MAX_SPAWNED_CARDS; i++)
         {
-            int randomCard = Random.Range(0, possibleCards.Length);
+            int randomCard = Random.Range(0, possibleCardsToSpawn.Length);
 
-            Instantiate(possibleCards[randomCard], cardLocations[i], Quaternion.identity);
+            GameObject spawnedCard = Instantiate(possibleCardsToSpawn[randomCard], cardLocations[i], Quaternion.identity);
+
+            spawnedCards.Add(spawnedCard);
         }
-
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SpawnNewSetOfCards()
     {
-        
+        DestroySpawnedCards();
+
+        SpawnCards();
     }
+
+    private void DestroySpawnedCards()
+    {
+        foreach(GameObject spawnedCard in spawnedCards)
+        {
+            Destroy(spawnedCard);
+        }
+        spawnedCards.Clear();
+    }
+
+    public List<GameObject> GetSpawnedCardsList()
+    {
+        return spawnedCards;
+    }
+
 }

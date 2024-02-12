@@ -244,11 +244,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0321205314529f541964366345c767d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possibleCards:
+  possibleCardsToSpawn:
   - {fileID: 8129800694268818839, guid: 31032478b006aa14c98bcf1d1a554334, type: 3}
   - {fileID: 5644683469391381917, guid: c02860bbb9e945544b7ef9c827ed6f01, type: 3}
   - {fileID: 8139400038977065933, guid: 09dd9b9502e62a44db70531ac83280cd, type: 3}
   - {fileID: 9157098571149762564, guid: 6d510073cbaf54a45b7e0e48222c5eaf, type: 3}
+  spawnedCards: []
   cardLocations:
   - {x: -7, y: 0, z: 0}
   - {x: -5, y: 0, z: 0}
@@ -438,7 +439,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01bcb92370b78b4f896d877769ff5a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedCard: {fileID: 0}
+  cardSelected: 0
   pickedCards: []
+  testData: []
 --- !u!1 &253773914
 GameObject:
   m_ObjectHideFlags: 0

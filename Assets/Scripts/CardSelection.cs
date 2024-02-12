@@ -9,7 +9,8 @@ public class CardSelection : MonoBehaviour
 
     public static CardSelection Instance;
 
-    private GameObject selectedCard;
+    [SerializeField]private GameObject selectedCard;
+    public bool cardSelected = false;
 
     private bool maxCardsSelected = false;
 
@@ -32,6 +33,8 @@ public class CardSelection : MonoBehaviour
             Debug.Log(addedCard.name);
             pickedCards.Add(addedCard);
 
+            CardGenerator.Instance.SpawnNewSetOfCards();
+
             if (pickedCards.Count == MAX_CARD_AMT)
             {
                 maxCardsSelected = true;
@@ -41,6 +44,7 @@ public class CardSelection : MonoBehaviour
 
     public void SetSelectedCard(GameObject card)
     {
+        Debug.Log("sets selected card");
         selectedCard = card;
     }
 

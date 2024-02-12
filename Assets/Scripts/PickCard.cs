@@ -9,7 +9,7 @@ public class PickCard : NetworkBehaviour
 {
     public CardSO card;
 
-    private bool selected = false;
+    public bool selected = false;
     private bool enlarged = false;
 
     public TMP_Text cardName;
@@ -55,13 +55,25 @@ public class PickCard : NetworkBehaviour
 
     private void OnMouseDown()
     {
+        ClearSelectedCards();
+
         if (!selected)
             SelectCard();
         else
             UnselectCard();
     }
 
-    // "selects" card by adding border and changing sorting layer/order for greater visiblility.
+    private void ClearSelectedCards()
+    {
+        List<GameObject> spawnedCardsList = CardGenerator.Instance.GetSpawnedCardsList();
+        
+        foreach (GameObject spawnedCard in spawnedCardsList)
+        {
+            spawnedCard.GetComponent<PickCard>().UnselectCard();
+        }
+    }
+
+    //"selects" card by adding border and changing sorting layer/order for greater visiblility.
     private void SelectCard()
     {
         selectedBorder.enabled = true;
@@ -69,7 +81,7 @@ public class PickCard : NetworkBehaviour
         CardSelection.Instance.SetSelectedCard(this.gameObject);
     }
 
-    // "unselects" card by removing border.
+    //"unselects" card by removing border.
     public void UnselectCard()
     {
 
@@ -86,7 +98,7 @@ public class PickCard : NetworkBehaviour
         int totalOfRanks;
 
         int attempts = 0;
-        int maxAttempts = 50;
+        int maxAttempts = 100;
 
         do
         {
@@ -143,7 +155,7 @@ public class PickCard : NetworkBehaviour
     // Changes background color, used when assigning card to players
     public void ChangeBGColorToPlayer()
     {
-            monsterArtworkBackground.color = playerColor;
+        monsterArtworkBackground.color = playerColor;
     }
     // Changes background color, used when enlarging
     public void ChangeBGColorOnHover()
