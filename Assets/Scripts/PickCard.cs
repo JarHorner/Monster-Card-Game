@@ -197,34 +197,34 @@ public class PickCard : NetworkBehaviour
     {
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * 1.5f, gameObject.transform.localScale.y * 1.5f, 1f);
         enlarged = true;
-        ChangeCardLayer(gameObject.GetComponent<PickCard>());
+        ChangeCardLayer();
     }
 
     private void Decrease()
     {
-        gameObject.transform.localScale = gameObject.GetComponent<PickCard>().baseScale;
+        gameObject.transform.localScale = baseScale;
         enlarged = false;
-        ChangeCardLayer(gameObject.GetComponent<PickCard>());
+        ChangeCardLayer();
     }
 
     // Changes layer when card is hovered over so it appears higher than other cards
-    private void ChangeCardLayer(PickCard pickCard)
+    private void ChangeCardLayer()
     {
         if (enlarged)
         {
             string layerName = "SelectedCard";
 
-            pickCard.ChangeCardLayers(layerName);
+           ChangeCardLayers(layerName);
 
-            pickCard.ChangeBGColorOnHover();
+           ChangeBGColorOnHover();
         }
         else
         {
             string layerName = "Card";
 
-            pickCard.ChangeCardLayers(layerName);
+            ChangeCardLayers(layerName);
 
-            pickCard.ChangeBGColorToPlayer();
+            ChangeBGColorToPlayer();
         }
     }
 }

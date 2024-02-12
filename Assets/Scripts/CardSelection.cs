@@ -15,6 +15,10 @@ public class CardSelection : MonoBehaviour
     private bool maxCardsSelected = false;
 
     [SerializeField] private List<GameObject> pickedCards;
+    [SerializeField] private List<int> topRanks;
+    [SerializeField] private List<int> rightRanks;
+    [SerializeField] private List<int> bottomRanks;
+    [SerializeField] private List<int> leftRanks;
 
     private void Awake()
     {
@@ -32,6 +36,11 @@ public class CardSelection : MonoBehaviour
             GameObject addedCard = selectedCard;
             Debug.Log(addedCard.name);
             pickedCards.Add(addedCard);
+
+            topRanks.Add(addedCard.GetComponent<PickCard>().topRank);
+            rightRanks.Add(addedCard.GetComponent<PickCard>().rightRank);
+            bottomRanks.Add(addedCard.GetComponent<PickCard>().bottomRank);
+            leftRanks.Add(addedCard.GetComponent<PickCard>().leftRank);
 
             CardGenerator.Instance.SpawnNewSetOfCards();
 
@@ -56,7 +65,24 @@ public class CardSelection : MonoBehaviour
     public List<GameObject> GetPickedCards()
     {
         return pickedCards;
-    }    
+    }
+
+    public int GetTopRank(int cardNum)
+    {
+        return topRanks[cardNum];
+    }
+    public int GetRightRank(int cardNum)
+    {
+        return rightRanks[cardNum];
+    }
+    public int GetBottomRank(int cardNum)
+    {
+        return bottomRanks[cardNum];
+    }
+    public int GetLeftRank(int cardNum)
+    {
+        return leftRanks[cardNum];
+    }
 
 
 

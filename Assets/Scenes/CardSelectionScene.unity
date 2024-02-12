@@ -442,7 +442,6 @@ MonoBehaviour:
   selectedCard: {fileID: 0}
   cardSelected: 0
   pickedCards: []
-  testData: []
 --- !u!1 &253773914
 GameObject:
   m_ObjectHideFlags: 0

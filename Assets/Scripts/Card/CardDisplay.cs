@@ -9,6 +9,7 @@ using Unity.Netcode;
 public class CardDisplay : NetworkBehaviour
 {
     public CardSO card;
+    public int cardNum;
 
     public bool enlarged = false;
 
@@ -43,10 +44,7 @@ public class CardDisplay : NetworkBehaviour
     // Assigns the scriptable objects values to the gameobject, and prints the information
     void Start()
     {
-        topRankText.text = topRank.ToString();
-        rightRankText.text = rightRank.ToString();
-        bottomRankText.text = bottomRank.ToString();
-        leftRankText.text = leftRank.ToString();
+        AssignCardRanks();
 
         cardName.text = card.cardName;
         level.text = card.level.ToString();
@@ -58,10 +56,25 @@ public class CardDisplay : NetworkBehaviour
         ChangeBGColorToPlayer();
     }
 
+    private void AssignCardRanks()
+    {
+        topRank = CardSelection.Instance.GetTopRank(cardNum);
+        topRankText.text = topRank.ToString();
+
+        rightRank = CardSelection.Instance.GetRightRank(cardNum);
+        rightRankText.text = rightRank.ToString();
+
+        bottomRank = CardSelection.Instance.GetBottomRank(cardNum);
+        bottomRankText.text = bottomRank.ToString();
+
+        leftRank = CardSelection.Instance.GetLeftRank(cardNum);
+        leftRankText.text = leftRank.ToString();
+    }
+
     // Changes background color, used when assigning card to players
     public void ChangeBGColorToPlayer()
     {
-        if (IsLocalPlayer)
+        if (!IsLocalPlayer)
         {
             monsterArtworkBackground.color = player1Color;
         }
@@ -74,7 +87,7 @@ public class CardDisplay : NetworkBehaviour
     // Changes background color, used when enlarging
     public void ChangeBGColorOnHover()
     {
-        if (IsLocalPlayer)
+        if (!IsLocalPlayer)
         {
             monsterArtworkBackground.color = player1HoverColor;
         }
@@ -118,34 +131,34 @@ public class CardDisplay : NetworkBehaviour
     {
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * 1.5f, gameObject.transform.localScale.y * 1.5f, 1f);
         enlarged = true;
-        ChangeCardLayer(gameObject.GetComponent<PickCard>());
+        ChangeCardLayer();
     }
 
     private void Decrease()
     {
-        gameObject.transform.localScale = gameObject.GetComponent<PickCard>().baseScale;
+        gameObject.transform.localScale = baseScale;
         enlarged = false;
-        ChangeCardLayer(gameObject.GetComponent<PickCard>());
+        ChangeCardLayer();
     }
 
     // Changes layer when card is hovered over so it appears higher than other cards
-    private void ChangeCardLayer(PickCard pickCard)
+    private void ChangeCardLayer()
     {
         if (enlarged)
         {
             string layerName = "SelectedCard";
 
-            pickCard.ChangeCardLayers(layerName);
+            ChangeCardLayers(layerName);
 
-            pickCard.ChangeBGColorOnHover();
+            ChangeBGColorOnHover();
         }
         else
         {
             string layerName = "Card";
 
-            pickCard.ChangeCardLayers(layerName);
+            ChangeCardLayers(layerName);
 
-            pickCard.ChangeBGColorToPlayer();
+            ChangeBGColorToPlayer();
         }
     }
 
