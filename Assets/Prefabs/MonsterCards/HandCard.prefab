@@ -601,8 +601,10 @@ MonoBehaviour:
   card: {fileID: 0}
   cardNum: 0
   enlarged: 0
-  cardName: {fileID: 3961729353815969968}
-  level: {fileID: 4850114394459500809}
+  cardNameText: {fileID: 3961729353815969968}
+  cardName: 
+  levelText: {fileID: 4850114394459500809}
+  level: 0
   topRankText: {fileID: 1363379620776178359}
   topRank: 0
   rightRankText: {fileID: 1170321139568817827}

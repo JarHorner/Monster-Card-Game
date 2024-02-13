@@ -12,8 +12,10 @@ public class PickCard : NetworkBehaviour
     public bool selected = false;
     private bool enlarged = false;
 
-    public TMP_Text cardName;
-    public TMP_Text level;
+    public TMP_Text cardNameText;
+    public string cardName;
+    public TMP_Text levelText;
+    public int level;
 
     public TMP_Text topRankText;
     public int topRank;
@@ -28,7 +30,8 @@ public class PickCard : NetworkBehaviour
     public int leftRank;
 
     public SpriteRenderer monsterArtworkBackground;
-    public SpriteRenderer monsterArtwork;
+    public SpriteRenderer monsterArtworkSpriteRenderer;
+    public Sprite monsterArtworkSprite;
     public SpriteRenderer element;
     public SpriteRenderer selectedBorder;
 
@@ -46,10 +49,12 @@ public class PickCard : NetworkBehaviour
         bottomRankText.text = bottomRank.ToString();
         leftRankText.text = leftRank.ToString();
 
-        cardName.text = card.cardName;
-        level.text = card.level.ToString();
+        cardNameText.text = card.cardName;
+        cardName = card.cardName;
+        levelText.text = card.level.ToString();
+        level = card.level;
 
-        monsterArtwork.sprite = card.artwork;
+        monsterArtworkSpriteRenderer.sprite = card.artwork;
         element.sprite = card.element;
     }
 
@@ -166,8 +171,8 @@ public class PickCard : NetworkBehaviour
     // Changes layers, used for enlarging the card when cursor is over it
     public void ChangeCardLayers(string newLayer)
     {
-        cardName.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
-        level.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
+        cardNameText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
+        levelText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
 
         topRankText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
         rightRankText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
@@ -175,7 +180,7 @@ public class PickCard : NetworkBehaviour
         leftRankText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
 
         monsterArtworkBackground.sortingLayerName = newLayer;
-        monsterArtwork.sortingLayerName = newLayer;
+        monsterArtworkSpriteRenderer.sortingLayerName = newLayer;
         element.sortingLayerName = newLayer;
         selectedBorder.sortingLayerName = newLayer;
     }

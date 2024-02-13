@@ -13,8 +13,10 @@ public class CardDisplay : NetworkBehaviour
 
     public bool enlarged = false;
 
-    public TMP_Text cardName;
-    public TMP_Text level;
+    public TMP_Text cardNameText;
+    public string cardName;
+    public TMP_Text levelText;
+    public int level;
 
     public TMP_Text topRankText;
     public int topRank;
@@ -44,32 +46,33 @@ public class CardDisplay : NetworkBehaviour
     // Assigns the scriptable objects values to the gameobject, and prints the information
     void Start()
     {
-        AssignCardRanks();
+        // AssignCardRanks();
 
-        cardName.text = card.cardName;
-        level.text = card.level.ToString();
-
-        monsterArtwork.sprite = card.artwork;
-        element.sprite = card.element;
+        AssignCardValues();
 
 
         ChangeBGColorToPlayer();
     }
 
-    private void AssignCardRanks()
+    private void AssignCardValues()
     {
+        cardName = CardSelection.Instance.GetName(cardNum);
+        cardNameText.text = cardName.ToString();
+        level = CardSelection.Instance.GetLevel(cardNum);
+        levelText.text = level.ToString();
+
         topRank = CardSelection.Instance.GetTopRank(cardNum);
         topRankText.text = topRank.ToString();
-
         rightRank = CardSelection.Instance.GetRightRank(cardNum);
         rightRankText.text = rightRank.ToString();
-
         bottomRank = CardSelection.Instance.GetBottomRank(cardNum);
         bottomRankText.text = bottomRank.ToString();
-
         leftRank = CardSelection.Instance.GetLeftRank(cardNum);
         leftRankText.text = leftRank.ToString();
+
+        monsterArtwork.sprite = CardSelection.Instance.GetMonsterSprite(cardNum);
     }
+
 
     // Changes background color, used when assigning card to players
     public void ChangeBGColorToPlayer()
@@ -100,8 +103,8 @@ public class CardDisplay : NetworkBehaviour
     // Changes layers, used for enlarging the card when cursor is over it
     public void ChangeCardLayers(string newLayer)
     {
-        cardName.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
-        level.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
+        cardNameText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
+        levelText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
 
         topRankText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
         rightRankText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;

@@ -5,8 +5,9 @@ using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
-public struct CardData : IEquatable<CardData>, INetworkSerializeByMemcpy
+public class CardData
 {
+    public int cardId;
     public FixedString64Bytes cardName;
     public int level;
 
@@ -16,27 +17,34 @@ public struct CardData : IEquatable<CardData>, INetworkSerializeByMemcpy
     public int leftRank;
 
     //public SpriteRenderer monsterArtworkBackground;
-    //public SpriteRenderer monsterArtwork;
+    public Sprite monsterArtwork;
     //public SpriteRenderer element;
     //public SpriteRenderer selectedBorder;
 
     public bool Equals(CardData other)
     {
-        return cardName == other.cardName &&
+        return cardId == other.cardId &&
+            cardName == other.cardName &&
             level == other.level &&
         topRank == other.topRank &&
             rightRank == other.rightRank &&
             bottomRank == other.bottomRank &&
-            leftRank == other.leftRank;
+            leftRank == other.leftRank &&
+            monsterArtwork == other.monsterArtwork;
     }
 
-    public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+    public void FilloutCardDisplay(CardDisplay cardDisplay)
     {
-        serializer.SerializeValue(ref cardName);
-        serializer.SerializeValue(ref level);
-        serializer.SerializeValue(ref topRank);
-        serializer.SerializeValue(ref rightRank);
-        serializer.SerializeValue(ref bottomRank);
-        serializer.SerializeValue(ref leftRank);
+
+        cardDisplay.cardNameText.text = cardName.ToString();
+        cardDisplay.levelText.text = level.ToString();
+        cardDisplay.topRankText.text = topRank.ToString();
+        cardDisplay.rightRankText.text = rightRank.ToString();
+        cardDisplay.bottomRankText.text = bottomRank.ToString();
+        cardDisplay.leftRankText.text = leftRank.ToString();
+
+        cardDisplay.monsterArtwork.sprite = monsterArtwork;
+
     }
+
 }

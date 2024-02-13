@@ -16,6 +16,9 @@ public class CardSelectionUI : MonoBehaviour
         });
         ConnectButton.onClick.AddListener(() => {
             GameMultiplayer.playMultiplayer = true;
+
+            CardSelection.Instance.SaveSelectedCardIDPlayerPrefs();
+
             Loader.Load(Loader.Scene.LobbyScene);
         });
         addCardButton.onClick.AddListener(() => {

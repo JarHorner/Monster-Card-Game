@@ -245,10 +245,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleCardsToSpawn:
-  - {fileID: 8129800694268818839, guid: 31032478b006aa14c98bcf1d1a554334, type: 3}
-  - {fileID: 5644683469391381917, guid: c02860bbb9e945544b7ef9c827ed6f01, type: 3}
-  - {fileID: 8139400038977065933, guid: 09dd9b9502e62a44db70531ac83280cd, type: 3}
-  - {fileID: 9157098571149762564, guid: 6d510073cbaf54a45b7e0e48222c5eaf, type: 3}
+  - {fileID: 6817389270371237406, guid: 026a0804dd615cc4a9b6136f6a02a6f4, type: 3}
+  - {fileID: 3075061245481752520, guid: eee0fab7a296c7b4e803cf949676db16, type: 3}
+  - {fileID: 7047667345383639538, guid: 92ea733ad5ec79743aa2a39feaed5ab7, type: 3}
+  - {fileID: 1082578388525254959, guid: bf783c18ac4490b4a81a39ece668316e, type: 3}
   spawnedCards: []
   cardLocations:
   - {x: -7, y: 0, z: 0}
@@ -442,6 +442,13 @@ MonoBehaviour:
   selectedCard: {fileID: 0}
   cardSelected: 0
   pickedCards: []
+  names: []
+  levels: 
+  topRanks: 
+  rightRanks: 
+  bottomRanks: 
+  leftRanks: 
+  monsterSprites: []
 --- !u!1 &253773914
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class Player : NetworkBehaviour
     [SerializeField] private List<Vector3> spawnPositionList;
     [SerializeField] private PlayerVisual playerVisual;
     [SerializeField] private TMP_Text playerName;
+    [SerializeField] private List<CardDisplay> playerCardDisplays;
 
     public override void OnNetworkSpawn()
     {
@@ -36,6 +37,14 @@ public class Player : NetworkBehaviour
         PlayerData playerData = GameMultiplayer.Instance.GetPlayerDataFromClientId(OwnerClientId);
         playerVisual.SetPlayerColor(GameMultiplayer.Instance.GetPlayerColor(playerData.portraitColorId));
         playerName.text = playerData.playerName.ToString();
+
+        //List<CardData> playerCards = CardSelection.Instance.GetPickedCards();
+        //List<int> cardIDs =  CardSelection.Instance.LoadSelectedCardIDPlayerPrefs()
+
+        //for (int i = 0; i < playerCardDisplays.Count; i++)
+        //{
+        //    playerCardDisplays[i].FilloutCardDisplay(playerCards[i]);
+        //}
     }
 
     private void Update()
