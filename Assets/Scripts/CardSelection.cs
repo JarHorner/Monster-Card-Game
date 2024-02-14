@@ -10,12 +10,12 @@ public class CardSelection : MonoBehaviour
 
     public static CardSelection Instance;
 
-    [SerializeField]private GameObject selectedCard;
+    [SerializeField] private GameObject selectedCard;
     public bool cardSelected = false;
 
     private bool maxCardsSelected = false;
 
-    //[SerializeField] private List<CardData> pickedCards;
+    [SerializeField] private List<PlayerCardSO> pickedPlayerCardSO;
     [SerializeField] private List<GameObject> pickedCards;
 
     [SerializeField] private List<string> names;
@@ -40,11 +40,10 @@ public class CardSelection : MonoBehaviour
         if (selectedCard != null && !maxCardsSelected)
         {
             GameObject addedCard = selectedCard;
-            Debug.Log(addedCard.name);
-            //CardData pickedCard = CreateNewCardData(addedCard.GetComponent<PickCard>());
             pickedCards.Add(selectedCard);
 
             AddValuesToCardLists(addedCard);
+            AddValuesToPlayerCardLists(addedCard);
 
             CardGenerator.Instance.SpawnNewSetOfCards();
 
@@ -65,6 +64,23 @@ public class CardSelection : MonoBehaviour
         leftRanks.Add(addedCard.GetComponent<PickCard>().leftRank);
 
         monsterSprites.Add(addedCard.GetComponent<PickCard>().monsterArtworkSprite);
+    }
+
+    private void AddValuesToPlayerCardLists(GameObject addedCard)
+    {
+        PlayerCardSO playerCardSO = new PlayerCardSO
+        {
+            artwork = addedCard.GetComponent<PickCard>().monsterArtworkSprite,
+            element = null,
+            cardName = addedCard.GetComponent<PickCard>().cardName,
+            level = addedCard.GetComponent<PickCard>().level,
+            topRank = addedCard.GetComponent<PickCard>().topRank,
+            rightRank = addedCard.GetComponent<PickCard>().rightRank,
+            bottomRank = addedCard.GetComponent<PickCard>().bottomRank,
+            leftRank = addedCard.GetComponent<PickCard>().leftRank,
+        };
+
+        pickedPlayerCardSO.Add(playerCardSO);
     }
 
     private CardData CreateNewCardData(PickCard pickCard)
