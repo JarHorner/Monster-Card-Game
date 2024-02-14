@@ -20,7 +20,7 @@ public class TurnTimerUI : MonoBehaviour
     {
         GameManager.Instance.OnStateChanged += GameManager_OnStateChanged;
 
-        //Hide();
+        Hide();
     }
 
     private void GameManager_OnStateChanged(object sender, System.EventArgs e)

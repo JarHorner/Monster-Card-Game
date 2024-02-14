@@ -126,6 +126,16 @@ public class CardSelection : MonoBehaviour
         return pickedCards;
     }
 
+    public int GetPickedCardsAmount()
+    {
+        return pickedCards.Count;
+    }
+
+    public bool GetMaxCardsSelected()
+    {
+        return maxCardsSelected;
+    }
+
     public string GetName(int cardNum)
     {
         return names[cardNum];
