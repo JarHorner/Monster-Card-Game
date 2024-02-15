@@ -6,7 +6,8 @@ using UnityEngine;
 public class SelectedResultUI : MonoBehaviour
 {
 
-    [SerializeField] private TMP_Text resultText;
+    [SerializeField] private TMP_Text selectText;
+    [SerializeField] private TMP_Text connectText;
 
     void Start()
     {
@@ -14,12 +15,22 @@ public class SelectedResultUI : MonoBehaviour
         Hide();
     }
 
-    public void DisplayMessage(bool maxCardsAdded)
+    public void DisplayConnectMessage(bool maxCardsAdded)
     {
         if (!maxCardsAdded)
-            resultText.text = "Card added!";
+            connectText.text = "You need 5 cards!";
+
+        Show();
+
+        StartCoroutine(UpdateMessageOnTimer());
+    }
+
+    public void DisplaySelectMessage(bool maxCardsAdded)
+    {
+        if (!maxCardsAdded)
+            selectText.text = "Card added!";
         else
-            resultText.text = "Already have 5 cards!";
+            selectText.text = "Already have 5 cards!";
 
         Show();
 
@@ -30,6 +41,9 @@ public class SelectedResultUI : MonoBehaviour
     {
 
         yield return new WaitForSeconds(1f);
+
+        selectText.text = "";
+        connectText.text = "";
         Hide();
     }
 

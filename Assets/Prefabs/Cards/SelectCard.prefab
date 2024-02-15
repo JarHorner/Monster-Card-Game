@@ -598,27 +598,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad5185187ef9eff449649ca3e7b84e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
-  selected: 0
+  cardStatsSO: {fileID: 0}
+  playerCardSO: {fileID: 0}
   cardNameText: {fileID: 6231192194413728452}
-  cardName: 
   levelText: {fileID: 2879526442195586901}
-  level: 0
   topRankText: {fileID: 7946397918384609726}
-  topRank: 0
   rightRankText: {fileID: 695619118992835625}
-  rightRank: 0
   bottomRankText: {fileID: 3609103852034163392}
-  bottomRank: 0
   leftRankText: {fileID: 1448082520881484279}
-  leftRank: 0
-  monsterArtworkBackground: {fileID: 5598155410384063717}
-  monsterArtworkSpriteRenderer: {fileID: 2099516642757881038}
-  monsterArtworkSprite: {fileID: 0}
-  element: {fileID: 4830583782135844972}
+  monsterSprite: {fileID: 0}
+  elementSprite: {fileID: 0}
+  backgroundSpriteRenderer: {fileID: 5598155410384063717}
+  monsterSpriteRenderer: {fileID: 2099516642757881038}
+  elementSpriteRenderer: {fileID: 4830583782135844972}
   selectedBorder: {fileID: 197888460900372610}
-  playerColor: {r: 0.36078432, g: 0.5411765, b: 0.8980392, a: 1}
-  playerHoverColor: {r: 0.17254902, g: 0.42352942, b: 0.9254902, a: 1}
+  backgroundColor: {r: 0.36078432, g: 0.5411765, b: 0.8980392, a: 1}
+  hoverColor: {r: 0.24249431, g: 0.3733027, b: 0.6320754, a: 1}
   baseScale: {x: 0.35, y: 0.35, z: 1}
 --- !u!61 &4312446914984962407
 BoxCollider2D:
@@ -1464,7 +1459,7 @@ GameObject:
   - component: {fileID: 8614046720014627249}
   - component: {fileID: 5598155410384063717}
   m_Layer: 0
-  m_Name: ArtworkBackground
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,13 +10,12 @@ public class CardSelection : MonoBehaviour
 
     public static CardSelection Instance;
 
-    [SerializeField] private GameObject selectedCard;
+    [SerializeField] private PlayerCardSO selectedCard;
     public bool cardSelected = false;
 
     private bool maxCardsSelected = false;
 
-    [SerializeField] private List<PlayerCardSO> pickedPlayerCardSO;
-    [SerializeField] private List<GameObject> pickedCards;
+    [SerializeField] private List<PlayerCardSO> pickedPlayerCardSOList;
 
     [SerializeField] private List<string> names;
     [SerializeField] private List<int> levels;
@@ -31,102 +30,44 @@ public class CardSelection : MonoBehaviour
         Instance = this;
 
         DontDestroyOnLoad(gameObject);
-
-        pickedCards = new List<GameObject>();
     }
 
     public void AddCard()
     {
         if (selectedCard != null && !maxCardsSelected)
         {
-            GameObject addedCard = selectedCard;
-            pickedCards.Add(selectedCard);
+            PlayerCardSO addedPlayerCardSO = selectedCard;
 
-            AddValuesToCardLists(addedCard);
-            AddValuesToPlayerCardLists(addedCard);
+            pickedPlayerCardSOList.Add(addedPlayerCardSO);
 
             CardGenerator.Instance.SpawnNewSetOfCards();
 
-            if (pickedCards.Count == MAX_CARD_AMT)
+            if (pickedPlayerCardSOList.Count == MAX_CARD_AMT)
             {
                 maxCardsSelected = true;
             }
         }
     }
 
-    private void AddValuesToCardLists(GameObject addedCard)
-    {
-        names.Add(addedCard.GetComponent<PickCard>().cardName);
-        levels.Add(addedCard.GetComponent<PickCard>().level);
-        topRanks.Add(addedCard.GetComponent<PickCard>().topRank);
-        rightRanks.Add(addedCard.GetComponent<PickCard>().rightRank);
-        bottomRanks.Add(addedCard.GetComponent<PickCard>().bottomRank);
-        leftRanks.Add(addedCard.GetComponent<PickCard>().leftRank);
+    //private void AddValuesToPlayerCardLists(GameObject addedCard)
+    //{
+    //    PlayerCardSO playerCardSO = new PlayerCardSO
+    //    {
+    //        artwork = addedCard.GetComponent<PickCard>().monsterArtworkSprite,
+    //        element = null,
+    //        cardName = addedCard.GetComponent<PickCard>().cardName,
+    //        level = addedCard.GetComponent<PickCard>().level,
+    //        topRank = addedCard.GetComponent<PickCard>().GetTopRank(),
+    //        rightRank = addedCard.GetComponent<PickCard>().GetRightRank(),
+    //        bottomRank = addedCard.GetComponent<PickCard>().GetBottomRank(),
+    //        leftRank = addedCard.GetComponent<PickCard>().GetLeftRank(),
+    //    };
 
-        monsterSprites.Add(addedCard.GetComponent<PickCard>().monsterArtworkSprite);
-    }
+    //    pickedPlayerCardSO.Add(playerCardSO);
+    //}
 
-    private void AddValuesToPlayerCardLists(GameObject addedCard)
-    {
-        PlayerCardSO playerCardSO = new PlayerCardSO
-        {
-            artwork = addedCard.GetComponent<PickCard>().monsterArtworkSprite,
-            element = null,
-            cardName = addedCard.GetComponent<PickCard>().cardName,
-            level = addedCard.GetComponent<PickCard>().level,
-            topRank = addedCard.GetComponent<PickCard>().topRank,
-            rightRank = addedCard.GetComponent<PickCard>().rightRank,
-            bottomRank = addedCard.GetComponent<PickCard>().bottomRank,
-            leftRank = addedCard.GetComponent<PickCard>().leftRank,
-        };
 
-        pickedPlayerCardSO.Add(playerCardSO);
-    }
-
-    private CardData CreateNewCardData(PickCard pickCard)
-    {
-        CardData cardData = new CardData
-        {
-            cardId = pickedCards.Count,
-            cardName = pickCard.name,
-            level = pickCard.level,
-            topRank = pickCard.topRank,
-            rightRank = pickCard.rightRank,
-            bottomRank = pickCard.bottomRank,
-            leftRank = pickCard.leftRank,
-        };
-
-        return cardData;
-    }
-
-    public void SaveSelectedCardIDPlayerPrefs()
-    {
-        List<int> cardIDs = new List<int>();
-        for (int i = 0; i < pickedCards.Count; i++)
-        {
-            cardIDs.Add(i);
-        }
-
-        // Convert the list of integers to a comma-separated string
-        string cardIDsString = string.Join(",", cardIDs);
-
-        // Save the string in PlayerPrefs
-        PlayerPrefs.SetString("SelectedCardIDs", cardIDsString);
-        PlayerPrefs.Save();
-    }
-
-    public List<int> LoadSelectedCardIDPlayerPrefs()
-    {
-        // Retrieve the string from PlayerPrefs
-        string cardIDsString = PlayerPrefs.GetString("SelectedCardIDs", "");
-
-        // Convert the comma-separated string back to a list of integers
-        List<int> cardIDs = new List<int>(Array.ConvertAll(cardIDsString.Split(','), int.Parse));
-
-        return cardIDs;
-    }
-
-    public void SetSelectedCard(GameObject card)
+    public void SetSelectedCard(PlayerCardSO card)
     {
         Debug.Log("sets selected card");
         selectedCard = card;
@@ -137,14 +78,14 @@ public class CardSelection : MonoBehaviour
         selectedCard = null;
     }
 
-    public List<GameObject> GetPickedCards()
+    public List<PlayerCardSO> GetPickedCards()
     {
-        return pickedCards;
+        return pickedPlayerCardSOList;
     }
 
     public int GetPickedCardsAmount()
     {
-        return pickedCards.Count;
+        return pickedPlayerCardSOList.Count;
     }
 
     public bool GetMaxCardsSelected()

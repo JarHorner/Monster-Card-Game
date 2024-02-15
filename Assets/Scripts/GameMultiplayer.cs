@@ -18,7 +18,6 @@ public class GameMultiplayer : NetworkBehaviour
     public event EventHandler OnTryingToJoinGame;
     public event EventHandler OnFailedToJoinGame;
     public event EventHandler OnPlayerDataNetworkListChanged;
-    public event EventHandler OnCardDataNetworkListChanged;
 
     //[SerializeField] private KitchenObjectListSO kitchenObjectListSO;
     [SerializeField] private List<Color> portraitColorList;
@@ -46,11 +45,6 @@ public class GameMultiplayer : NetworkBehaviour
             StartHost();
             Loader.LoadNetwork(Loader.Scene.GameScene);
         }
-    }
-
-    private void cardDataNetworkList_OnListChanged(NetworkListEvent<CardData> changeEvent)
-    {
-        OnCardDataNetworkListChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void playerDataNetworkList_OnListChanged(NetworkListEvent<PlayerData> changeEvent)

@@ -8,7 +8,7 @@ using Unity.Netcode;
 
 public class CardDisplay : NetworkBehaviour
 {
-    public CardSO card;
+    public CardStatsSO card;
     public int cardNum;
 
     public bool enlarged = false;

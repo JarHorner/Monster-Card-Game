@@ -7,55 +7,69 @@ using UnityEngine;
 
 public class PickCard : NetworkBehaviour
 {
-    public CardSO card;
+    public CardStatsSO cardStatsSO;
+    public PlayerCardSO playerCardSO;
 
-    public bool selected = false;
+    private bool selected = false;
     private bool enlarged = false;
 
-    public TMP_Text cardNameText;
-    public string cardName;
-    public TMP_Text levelText;
-    public int level;
+    [SerializeField] private TMP_Text cardNameText;
+    [SerializeField] private TMP_Text levelText;
+    [SerializeField] private TMP_Text topRankText;
+    [SerializeField] private TMP_Text rightRankText;
+    [SerializeField] private TMP_Text bottomRankText;
+    [SerializeField] private TMP_Text leftRankText;
 
-    public TMP_Text topRankText;
-    public int topRank;
+    private int topRank;
+    private int rightRank;
+    private int bottomRank;
+    private int leftRank;
 
-    public TMP_Text rightRankText;
-    public int rightRank;
+    // used when changing layer for hovering
+    [SerializeField] private SpriteRenderer backgroundSpriteRenderer;
+    [SerializeField] private SpriteRenderer monsterSpriteRenderer;
+    [SerializeField] private SpriteRenderer elementSpriteRenderer;
+    [SerializeField] private SpriteRenderer selectedBorder;
 
-    public TMP_Text bottomRankText;
-    public int bottomRank;
+    [SerializeField] private Color backgroundColor;
+    [SerializeField] private Color hoverColor;
 
-    public TMP_Text leftRankText;
-    public int leftRank;
-
-    public SpriteRenderer monsterArtworkBackground;
-    public SpriteRenderer monsterArtworkSpriteRenderer;
-    public Sprite monsterArtworkSprite;
-    public SpriteRenderer element;
-    public SpriteRenderer selectedBorder;
-
-    public Color playerColor;
-    public Color playerHoverColor;
-
-    public Vector3 baseScale;
+    [SerializeField] private Vector3 baseScale;
 
     private void Awake()
     {
         AssignRanks();
 
+        SetupState();
+    }
+
+    private void SetupState()
+    {
         topRankText.text = topRank.ToString();
         rightRankText.text = rightRank.ToString();
         bottomRankText.text = bottomRank.ToString();
         leftRankText.text = leftRank.ToString();
 
-        cardNameText.text = card.cardName;
-        cardName = card.cardName;
-        levelText.text = card.level.ToString();
-        level = card.level;
+        levelText.text = cardStatsSO.level.ToString();
 
-        monsterArtworkSpriteRenderer.sprite = card.artwork;
-        element.sprite = card.element;
+        CreatePlayerCardSO();
+    }
+
+    private void CreatePlayerCardSO()
+    {
+        PlayerCardSO spawnedPlayerCardSO = new PlayerCardSO
+        {
+            artwork = monsterSpriteRenderer.sprite,
+            element = elementSpriteRenderer.sprite,
+            cardName = cardNameText.text,
+            level = cardStatsSO.level,
+            topRank = topRank,
+            rightRank = rightRank,
+            bottomRank = bottomRank,
+            leftRank = leftRank,
+        };
+
+        playerCardSO = spawnedPlayerCardSO;
     }
 
     private void OnMouseDown()
@@ -83,7 +97,7 @@ public class PickCard : NetworkBehaviour
     {
         selectedBorder.enabled = true;
         selected = true;
-        CardSelection.Instance.SetSelectedCard(this.gameObject);
+        CardSelection.Instance.SetSelectedCard(playerCardSO);
     }
 
     //"unselects" card by removing border.
@@ -107,7 +121,7 @@ public class PickCard : NetworkBehaviour
 
         do
         {
-            int[] ranks = ShuffleArray(card.rangeOfRanks);
+            int[] ranks = ShuffleArray(cardStatsSO.rangeOfRanks);
 
             // Take the first 4 values from the shuffled array
             Array.Copy(ranks, assignedRanks, 4);
@@ -123,7 +137,7 @@ public class PickCard : NetworkBehaviour
                 return;
             }
         }
-        while (Array.Exists(assignedRanks, v => v == 0) || totalOfRanks < card.minRank || totalOfRanks > card.maxRank);
+        while (Array.Exists(assignedRanks, v => v == 0) || totalOfRanks < cardStatsSO.minRank || totalOfRanks > cardStatsSO.maxRank);
 
         topRank = assignedRanks[0];
         rightRank = assignedRanks[1];
@@ -160,12 +174,12 @@ public class PickCard : NetworkBehaviour
     // Changes background color, used when assigning card to players
     public void ChangeBGColorToPlayer()
     {
-        monsterArtworkBackground.color = playerColor;
+        backgroundSpriteRenderer.color = backgroundColor;
     }
     // Changes background color, used when enlarging
     public void ChangeBGColorOnHover()
     {
-        monsterArtworkBackground.color = playerHoverColor;
+        backgroundSpriteRenderer.color = hoverColor;
     }
 
     // Changes layers, used for enlarging the card when cursor is over it
@@ -179,9 +193,9 @@ public class PickCard : NetworkBehaviour
         bottomRankText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
         leftRankText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
 
-        monsterArtworkBackground.sortingLayerName = newLayer;
-        monsterArtworkSpriteRenderer.sortingLayerName = newLayer;
-        element.sortingLayerName = newLayer;
+        backgroundSpriteRenderer.sortingLayerName = newLayer;
+        monsterSpriteRenderer.sortingLayerName = newLayer;
+        elementSpriteRenderer.sortingLayerName = newLayer;
         selectedBorder.sortingLayerName = newLayer;
     }
 
@@ -232,4 +246,41 @@ public class PickCard : NetworkBehaviour
             ChangeBGColorToPlayer();
         }
     }
+
+    public PlayerCardSO GetPlayerCardSO()
+    {
+        return playerCardSO;
+    }
+
+    public int GetTopRank()
+    {
+        return topRank;
+    }
+
+    public int GetRightRank()
+    {
+        return rightRank;
+    }
+
+    public int GetBottomRank()
+    {
+        return bottomRank;
+    }
+
+    public int GetLeftRank()
+    {
+        return leftRank;
+    }
+
+
+    public Vector3 GetBaseScale()
+    {
+        return baseScale;
+    }
+
+    public SpriteRenderer GetSelectedBorder()
+    {
+        return selectedBorder;
+    }
 }
+

@@ -74,15 +74,15 @@ public class InputHandler : MonoBehaviour
     // "selects" card by adding border and changing sorting layer/order for greater visiblility.
     private void SelectCard(PickCard pickCard)
     {
-        pickCard.selectedBorder.enabled = true;
+        pickCard.GetSelectedBorder().enabled = true;
         selectedCard = true;
-        CardSelection.Instance.SetSelectedCard(pickCard.gameObject);
+        CardSelection.Instance.SetSelectedCard(pickCard.GetPlayerCardSO());
     }
 
     // "unselects" card by removing border.
     private void UnselectCard(PickCard pickCard)
     {
-        pickCard.selectedBorder.enabled = false;
+        pickCard.GetSelectedBorder().enabled = false;
         selectedCard = false;
         cardSelected = null;
         CardSelection.Instance.RemoveSelectedCard();

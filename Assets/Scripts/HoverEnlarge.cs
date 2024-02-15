@@ -31,7 +31,7 @@ public class HoverEnlarge : MonoBehaviour
 
     private void Decrease()
     {
-        gameObject.transform.localScale = gameObject.GetComponent<PickCard>().baseScale;
+        gameObject.transform.localScale = gameObject.GetComponent<PickCard>().GetBaseScale();
         enlarged = false;
         ChangeCardLayer(gameObject.GetComponent<PickCard>());
     }

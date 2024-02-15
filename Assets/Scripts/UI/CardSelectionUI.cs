@@ -18,14 +18,20 @@ public class CardSelectionUI : MonoBehaviour
             Loader.Load(Loader.Scene.MainMenuScene);
         });
         ConnectButton.onClick.AddListener(() => {
-            GameMultiplayer.playMultiplayer = true;
+            if (!CardSelection.Instance.GetMaxCardsSelected())
+            {
+                selectedResultUI.DisplayConnectMessage(CardSelection.Instance.GetMaxCardsSelected());
+            }
+            else
+            {
+                GameMultiplayer.playMultiplayer = true;
 
-            CardSelection.Instance.SaveSelectedCardIDPlayerPrefs();
-
-            Loader.Load(Loader.Scene.LobbyScene);
+                Loader.Load(Loader.Scene.LobbyScene);
+            }
+           
         });
         addCardButton.onClick.AddListener(() => {
-            selectedResultUI.DisplayMessage(CardSelection.Instance.GetMaxCardsSelected());
+            selectedResultUI.DisplaySelectMessage(CardSelection.Instance.GetMaxCardsSelected());
 
             CardSelection.Instance.AddCard();
 

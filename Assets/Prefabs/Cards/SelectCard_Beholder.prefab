@@ -17,6 +17,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 43a4986ab40987143b3184af7c0994cb, type: 2}
     - target: {fileID: 1462591027794472855, guid: 14f7615519cb0c449aac10c33472ed8f, type: 3}
+      propertyPath: cardStatsSO
+      value: 
+      objectReference: {fileID: 11400000, guid: de6e99fe321fd5c4d819b27554bba63c, type: 2}
+    - target: {fileID: 1462591027794472855, guid: 14f7615519cb0c449aac10c33472ed8f, type: 3}
+      propertyPath: monsterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cebd0b0d9bf7b454fa49e744906da94f, type: 3}
+    - target: {fileID: 1462591027794472855, guid: 14f7615519cb0c449aac10c33472ed8f, type: 3}
       propertyPath: monsterArtworkSprite
       value: 
       objectReference: {fileID: 21300000, guid: cebd0b0d9bf7b454fa49e744906da94f, type: 3}
@@ -60,9 +68,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2099516642757881038, guid: 14f7615519cb0c449aac10c33472ed8f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cebd0b0d9bf7b454fa49e744906da94f, type: 3}
+    - target: {fileID: 2099516642757881038, guid: 14f7615519cb0c449aac10c33472ed8f, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5690980323840767200, guid: 14f7615519cb0c449aac10c33472ed8f, type: 3}
       propertyPath: m_Name
       value: SelectCard_Beholder
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231192194413728452, guid: 14f7615519cb0c449aac10c33472ed8f, type: 3}
+      propertyPath: m_text
+      value: Beholder
       objectReference: {fileID: 0}
     - target: {fileID: 8008384818488208938, guid: 14f7615519cb0c449aac10c33472ed8f, type: 3}
       propertyPath: m_LocalScale.x
