@@ -49,23 +49,6 @@ public class CardSelection : MonoBehaviour
         }
     }
 
-    //private void AddValuesToPlayerCardLists(GameObject addedCard)
-    //{
-    //    PlayerCardSO playerCardSO = new PlayerCardSO
-    //    {
-    //        artwork = addedCard.GetComponent<PickCard>().monsterArtworkSprite,
-    //        element = null,
-    //        cardName = addedCard.GetComponent<PickCard>().cardName,
-    //        level = addedCard.GetComponent<PickCard>().level,
-    //        topRank = addedCard.GetComponent<PickCard>().GetTopRank(),
-    //        rightRank = addedCard.GetComponent<PickCard>().GetRightRank(),
-    //        bottomRank = addedCard.GetComponent<PickCard>().GetBottomRank(),
-    //        leftRank = addedCard.GetComponent<PickCard>().GetLeftRank(),
-    //    };
-
-    //    pickedPlayerCardSO.Add(playerCardSO);
-    //}
-
 
     public void SetSelectedCard(PlayerCardSO card)
     {
@@ -82,6 +65,12 @@ public class CardSelection : MonoBehaviour
     {
         return pickedPlayerCardSOList;
     }
+
+    public PlayerCardSO GetPlayerCardSO(int cardNum)
+    {
+        return pickedPlayerCardSOList[cardNum];
+    }
+
 
     public int GetPickedCardsAmount()
     {

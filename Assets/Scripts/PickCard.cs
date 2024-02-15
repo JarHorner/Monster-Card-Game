@@ -57,19 +57,9 @@ public class PickCard : NetworkBehaviour
 
     private void CreatePlayerCardSO()
     {
-        PlayerCardSO spawnedPlayerCardSO = new PlayerCardSO
-        {
-            artwork = monsterSpriteRenderer.sprite,
-            element = elementSpriteRenderer.sprite,
-            cardName = cardNameText.text,
-            level = cardStatsSO.level,
-            topRank = topRank,
-            rightRank = rightRank,
-            bottomRank = bottomRank,
-            leftRank = leftRank,
-        };
 
-        playerCardSO = spawnedPlayerCardSO;
+        playerCardSO = ScriptableObject.CreateInstance<PlayerCardSO>();
+        playerCardSO.Init(cardNameText.text, cardStatsSO.level, topRank, rightRank, bottomRank, leftRank, monsterSpriteRenderer.sprite, elementSpriteRenderer.sprite);
     }
 
     private void OnMouseDown()
@@ -251,27 +241,6 @@ public class PickCard : NetworkBehaviour
     {
         return playerCardSO;
     }
-
-    public int GetTopRank()
-    {
-        return topRank;
-    }
-
-    public int GetRightRank()
-    {
-        return rightRank;
-    }
-
-    public int GetBottomRank()
-    {
-        return bottomRank;
-    }
-
-    public int GetLeftRank()
-    {
-        return leftRank;
-    }
-
 
     public Vector3 GetBaseScale()
     {

@@ -8,32 +8,27 @@ using Unity.Netcode;
 
 public class CardDisplay : NetworkBehaviour
 {
-    public CardStatsSO card;
+    public PlayerCardSO playerCardSO;
     public int cardNum;
 
     public bool enlarged = false;
+    private bool selected = false;
 
     public TMP_Text cardNameText;
-    public string cardName;
     public TMP_Text levelText;
-    public int level;
 
     public TMP_Text topRankText;
-    public int topRank;
 
     public TMP_Text rightRankText;
-    public int rightRank;
 
     public TMP_Text bottomRankText;
-    public int bottomRank;
 
     public TMP_Text leftRankText;
-    public int leftRank;
 
 
-    public SpriteRenderer monsterArtworkBackground;
-    public SpriteRenderer monsterArtwork;
-    public SpriteRenderer element;
+    public SpriteRenderer backgroundSpriteRenderer;
+    public SpriteRenderer monsterSpriteRenderer;
+    public SpriteRenderer elementSpriteRenderer;
     public SpriteRenderer selectedBorder;
 
     public Color player1Color;
@@ -46,31 +41,60 @@ public class CardDisplay : NetworkBehaviour
     // Assigns the scriptable objects values to the gameobject, and prints the information
     void Start()
     {
-        // AssignCardRanks();
+        playerCardSO = CardSelection.Instance.GetPlayerCardSO(cardNum);
 
         AssignCardValues();
-
 
         ChangeBGColorToPlayer();
     }
 
     private void AssignCardValues()
     {
-        cardName = CardSelection.Instance.GetName(cardNum);
-        cardNameText.text = cardName.ToString();
-        level = CardSelection.Instance.GetLevel(cardNum);
-        levelText.text = level.ToString();
+        cardNameText.text = playerCardSO.cardName;
+        levelText.text = playerCardSO.level.ToString();
 
-        topRank = CardSelection.Instance.GetTopRank(cardNum);
-        topRankText.text = topRank.ToString();
-        rightRank = CardSelection.Instance.GetRightRank(cardNum);
-        rightRankText.text = rightRank.ToString();
-        bottomRank = CardSelection.Instance.GetBottomRank(cardNum);
-        bottomRankText.text = bottomRank.ToString();
-        leftRank = CardSelection.Instance.GetLeftRank(cardNum);
-        leftRankText.text = leftRank.ToString();
+        topRankText.text = playerCardSO.topRank.ToString();
+        rightRankText.text = playerCardSO.rightRank.ToString();
+        bottomRankText.text = playerCardSO.bottomRank.ToString();
+        leftRankText.text = playerCardSO.leftRank.ToString();
 
-        monsterArtwork.sprite = CardSelection.Instance.GetMonsterSprite(cardNum);
+        monsterSpriteRenderer.sprite = playerCardSO.monsterSprite;
+        elementSpriteRenderer.sprite = playerCardSO.elementSprite;
+    }
+
+    private void OnMouseDown()
+    {
+        ClearSelectedCards();
+
+        if (!selected)
+            SelectCard();
+        else
+            UnselectCard();
+    }
+
+    private void ClearSelectedCards()
+    {
+        List<CardDisplay> spawnedCardsList = Player.LocalInstance.GetPlayerCardDisplays();
+
+        foreach (CardDisplay spawnedCard in spawnedCardsList)
+        {
+            spawnedCard.UnselectCard();
+        }
+    }
+
+    //"selects" card by adding border and changing sorting layer/order for greater visiblility.
+    private void SelectCard()
+    {
+        selectedBorder.enabled = true;
+        selected = true;
+    }
+
+    //"unselects" card by removing border.
+    public void UnselectCard()
+    {
+
+        selectedBorder.enabled = false;
+        selected = false;
     }
 
 
@@ -79,11 +103,11 @@ public class CardDisplay : NetworkBehaviour
     {
         if (!IsLocalPlayer)
         {
-            monsterArtworkBackground.color = player1Color;
+            backgroundSpriteRenderer.color = player1Color;
         }
         else
         {
-            monsterArtworkBackground.color = player2Color;
+            backgroundSpriteRenderer.color = player2Color;
         }
     }
 
@@ -92,11 +116,11 @@ public class CardDisplay : NetworkBehaviour
     {
         if (!IsLocalPlayer)
         {
-            monsterArtworkBackground.color = player1HoverColor;
+            backgroundSpriteRenderer.color = player1HoverColor;
         }
         else
         {
-            monsterArtworkBackground.color = player2HoverColor;
+            backgroundSpriteRenderer.color = player2HoverColor;
         }
     }
 
@@ -111,9 +135,9 @@ public class CardDisplay : NetworkBehaviour
         bottomRankText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
         leftRankText.gameObject.GetComponent<MeshRenderer>().sortingLayerName = newLayer;
 
-        monsterArtworkBackground.sortingLayerName = newLayer;
-        monsterArtwork.sortingLayerName = newLayer;
-        element.sortingLayerName = newLayer;
+        backgroundSpriteRenderer.sortingLayerName = newLayer;
+        monsterSpriteRenderer.sortingLayerName = newLayer;
+        elementSpriteRenderer.sortingLayerName = newLayer;
         selectedBorder.sortingLayerName = newLayer; 
     }
 

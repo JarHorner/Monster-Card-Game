@@ -598,24 +598,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363a87e62efae74408d831e2cb6a27ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
+  playerCardSO: {fileID: 0}
   cardNum: 0
   enlarged: 0
   cardNameText: {fileID: 3961729353815969968}
-  cardName: 
   levelText: {fileID: 4850114394459500809}
-  level: 0
   topRankText: {fileID: 1363379620776178359}
-  topRank: 0
   rightRankText: {fileID: 1170321139568817827}
-  rightRank: 0
   bottomRankText: {fileID: 6934342303754295596}
-  bottomRank: 0
   leftRankText: {fileID: 2833227393912783996}
-  leftRank: 0
-  monsterArtworkBackground: {fileID: 6432527963432962287}
-  monsterArtwork: {fileID: 1419443291905134834}
-  element: {fileID: 8545806021952755660}
+  backgroundSpriteRenderer: {fileID: 6432527963432962287}
+  monsterSpriteRenderer: {fileID: 1419443291905134834}
+  elementSpriteRenderer: {fileID: 8545806021952755660}
   selectedBorder: {fileID: 1460422651408323601}
   player1Color: {r: 0.3607843, g: 0.5405295, b: 0.8980392, a: 1}
   player1HoverColor: {r: 0.1715319, g: 0.4243631, b: 0.9245283, a: 1}
@@ -782,7 +776,7 @@ GameObject:
   - component: {fileID: 6186447162572287649}
   - component: {fileID: 6432527963432962287}
   m_Layer: 0
-  m_Name: ArtworkBackground
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
