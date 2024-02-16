@@ -8,7 +8,7 @@ using Unity.Netcode;
 
 public class CardDisplay : NetworkBehaviour
 {
-    public PlayerCardSO playerCardSO;
+   // public PlayerCardSO playerCardSO;
     public int cardNum;
 
     public bool enlarged = false;
@@ -39,16 +39,30 @@ public class CardDisplay : NetworkBehaviour
     public Vector3 baseScale;
 
     // Assigns the scriptable objects values to the gameobject, and prints the information
-    void Start()
+    public override void OnNetworkSpawn()
     {
-        playerCardSO = CardSelection.Instance.GetPlayerCardSO(cardNum);
+        //playerCardSO = CardSelection.Instance.GetPlayerCardSO(cardNum);
 
-        AssignCardValues();
+        //AssignCardValues();
 
         ChangeBGColorToPlayer();
     }
 
-    private void AssignCardValues()
+    //private void AssignCardValues()
+    //{
+    //    cardNameText.text = playerCardSO.cardName;
+    //    levelText.text = playerCardSO.level.ToString();
+
+    //    topRankText.text = playerCardSO.topRank.ToString();
+    //    rightRankText.text = playerCardSO.rightRank.ToString();
+    //    bottomRankText.text = playerCardSO.bottomRank.ToString();
+    //    leftRankText.text = playerCardSO.leftRank.ToString();
+
+    //    monsterSpriteRenderer.sprite = playerCardSO.monsterSprite;
+    //    elementSpriteRenderer.sprite = playerCardSO.elementSprite;
+    //}
+
+    public void SetupCard(PlayerCardSO playerCardSO)
     {
         cardNameText.text = playerCardSO.cardName;
         levelText.text = playerCardSO.level.ToString();
@@ -101,7 +115,7 @@ public class CardDisplay : NetworkBehaviour
     // Changes background color, used when assigning card to players
     public void ChangeBGColorToPlayer()
     {
-        if (!IsLocalPlayer)
+        if (IsLocalPlayer)
         {
             backgroundSpriteRenderer.color = player1Color;
         }
@@ -114,7 +128,7 @@ public class CardDisplay : NetworkBehaviour
     // Changes background color, used when enlarging
     public void ChangeBGColorOnHover()
     {
-        if (!IsLocalPlayer)
+        if (IsLocalPlayer)
         {
             backgroundSpriteRenderer.color = player1HoverColor;
         }
