@@ -19,7 +19,6 @@ public class GameMultiplayer : NetworkBehaviour
     public event EventHandler OnFailedToJoinGame;
     public event EventHandler OnPlayerDataNetworkListChanged;
 
-    [SerializeField] private PlayerCardObjectListSO playerCardObjectListSO;
     [SerializeField] private List<Color> portraitColorList;
 
     private NetworkList<PlayerData> playerDataNetworkList;

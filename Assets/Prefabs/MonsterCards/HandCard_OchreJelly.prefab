@@ -8,10 +8,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1831310858740983585, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 951099334
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170321139568817827, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_text
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1307167269717633616, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
       propertyPath: card
       value: 
       objectReference: {fileID: 11400000, guid: 900a468c74ce1c84393a4e10bbaf0c7e, type: 2}
+    - target: {fileID: 1363379620776178359, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_text
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1419443291905134834, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
       propertyPath: m_Size.x
       value: 5.09
@@ -27,6 +39,10 @@ PrefabInstance:
     - target: {fileID: 1419443291905134834, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833227393912783996, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_text
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3140512091509117589, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
       propertyPath: m_LocalScale.x
@@ -81,6 +97,10 @@ PrefabInstance:
       value: HandCard_OchreJelly
       objectReference: {fileID: 0}
     - target: {fileID: 4850114394459500809, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+      propertyPath: m_text
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6934342303754295596, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
       propertyPath: m_text
       value: 5
       objectReference: {fileID: 0}

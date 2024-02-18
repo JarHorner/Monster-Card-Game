@@ -12,13 +12,11 @@ public class HoverChangeColor : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        Debug.Log("Enter");
         gameObject.GetComponent<SpriteRenderer>().color = hoverColor;
     }
 
     private void OnMouseExit()
     {
-        Debug.Log("Out");
         gameObject.GetComponent<SpriteRenderer>().color = regularColor;
     }
 

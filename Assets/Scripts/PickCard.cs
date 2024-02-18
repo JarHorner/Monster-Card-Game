@@ -181,13 +181,11 @@ public class PickCard : NetworkBehaviour
 
     private void OnMouseEnter()
     {
-        Debug.Log("Enter");
         Enlarge();
     }
 
     private void OnMouseExit()
     {
-        Debug.Log("Out");
         Decrease();
     }
 

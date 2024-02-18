@@ -533,7 +533,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1184437183
   m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -600,6 +600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCardSO: {fileID: 0}
   cardNum: 0
+  ownerClientId: 0
   enlarged: 0
   cardNameText: {fileID: 3961729353815969968}
   levelText: {fileID: 4850114394459500809}

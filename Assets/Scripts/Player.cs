@@ -46,7 +46,7 @@ public class Player : NetworkBehaviour
         GameObject newCard = Instantiate(cardPrefab);
 
         CardDisplay newCardDisplay = newCard.GetComponent<CardDisplay>();
-        newCardDisplay.SetupCard(CardSelection.Instance.GetPickedCards()[cardIndex]);
+       // newCardDisplay.SetupCard(CardSelection.Instance.GetPickedCards()[cardIndex]);
 
         // Setting position
         Vector3 playerLocation = gameObject.transform.position;
@@ -59,7 +59,7 @@ public class Player : NetworkBehaviour
     }
 
 
-    private void Start()
+        private void Start()
     {
         PlayerData playerData = GameMultiplayer.Instance.GetPlayerDataFromClientId(OwnerClientId);
         playerVisual.SetPlayerColor(GameMultiplayer.Instance.GetPlayerColor(playerData.portraitColorId));

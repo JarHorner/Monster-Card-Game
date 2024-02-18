@@ -8,7 +8,6 @@ using Unity.Netcode;
 
 public class CardDisplay : NetworkBehaviour
 {
-    public PlayerCardSO playerCardSO;
     public int cardNum;
 
     public ulong ownerClientId;
@@ -67,26 +66,21 @@ public class CardDisplay : NetworkBehaviour
     //    elementSpriteRenderer.sprite = playerCardSO.elementSprite;
     //}
 
-    public void SetupCard(PlayerCardSO playerCardSO)
-    {
-        playerCardSO = this.playerCardSO;
-        SetupCardServerRpc();
-    }
+    //public void SetupCard(PlayerCardSO newPlayerCardSO)
+    //{
+    //    playerCardSO = newPlayerCardSO;
 
-    [ServerRpc(RequireOwnership = false)]
-    private void SetupCardServerRpc()
-    {
-        cardNameText.text = playerCardSO.cardName;
-        levelText.text = playerCardSO.level.ToString();
+    //    cardNameText.text = playerCardSO.cardName;
+    //    levelText.text = playerCardSO.level.ToString();
 
-        topRankText.text = playerCardSO.topRank.ToString();
-        rightRankText.text = playerCardSO.rightRank.ToString();
-        bottomRankText.text = playerCardSO.bottomRank.ToString();
-        leftRankText.text = playerCardSO.leftRank.ToString();
+    //    topRankText.text = playerCardSO.topRank.ToString();
+    //    rightRankText.text = playerCardSO.rightRank.ToString();
+    //    bottomRankText.text = playerCardSO.bottomRank.ToString();
+    //    leftRankText.text = playerCardSO.leftRank.ToString();
 
-        monsterSpriteRenderer.sprite = playerCardSO.monsterSprite;
-        elementSpriteRenderer.sprite = playerCardSO.elementSprite;
-    }
+    //    monsterSpriteRenderer.sprite = playerCardSO.monsterSprite;
+    //    elementSpriteRenderer.sprite = playerCardSO.elementSprite;
+    //}
 
     private void OnMouseDown()
     {
@@ -172,13 +166,11 @@ public class CardDisplay : NetworkBehaviour
 
     private void OnMouseEnter()
     {
-        Debug.Log("Enter");
         Enlarge();
     }
 
     private void OnMouseExit()
     {
-        Debug.Log("Out");
         Decrease();
     }
 
