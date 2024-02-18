@@ -1059,7 +1059,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf93e3f1a7b82141bf0059e3b9eb5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 4530876716268103752, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
   playerPrefab: {fileID: 4854741025731421507, guid: d9d6205231d079645a8c9839dec3e629, type: 3}
 --- !u!114 &110855244
 MonoBehaviour:
@@ -3017,6 +3016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18e82e98744d7d48844a3478bde22a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardSelected: {fileID: 0}
 --- !u!114 &895176293
 MonoBehaviour:
   m_ObjectHideFlags: 0

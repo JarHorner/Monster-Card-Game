@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba92ff26fc682248baa5fff02b99d9e, type: 3}
   m_Name: HumanFighter
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4300159555301157734, guid: 92ea733ad5ec79743aa2a39feaed5ab7, type: 3}
+  prefab: {fileID: 5242109805049054787, guid: ced6d00477758a940894c77dc2afcaed, type: 3}
   cardName: 
   level: 0
   topRank: 0

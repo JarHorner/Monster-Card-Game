@@ -42,9 +42,6 @@ public class CardDisplay : NetworkBehaviour
     // Assigns the scriptable objects values to the gameobject, and prints the information
     public override void OnNetworkSpawn()
     {
-        //playerCardSO = CardSelection.Instance.GetPlayerCardSO(cardNum);
-
-        //AssignCardValues();
         ownerClientId = NetworkManager.Singleton.LocalClientId;
 
         Debug.Log("Owner of this card: " + ownerClientId);
@@ -52,47 +49,14 @@ public class CardDisplay : NetworkBehaviour
         ChangeBGColorToPlayer();
     }
 
-    //private void AssignCardValues()
-    //{
-    //    cardNameText.text = playerCardSO.cardName;
-    //    levelText.text = playerCardSO.level.ToString();
-
-    //    topRankText.text = playerCardSO.topRank.ToString();
-    //    rightRankText.text = playerCardSO.rightRank.ToString();
-    //    bottomRankText.text = playerCardSO.bottomRank.ToString();
-    //    leftRankText.text = playerCardSO.leftRank.ToString();
-
-    //    monsterSpriteRenderer.sprite = playerCardSO.monsterSprite;
-    //    elementSpriteRenderer.sprite = playerCardSO.elementSprite;
-    //}
-
-    //public void SetupCard(PlayerCardSO newPlayerCardSO)
-    //{
-    //    playerCardSO = newPlayerCardSO;
-
-    //    cardNameText.text = playerCardSO.cardName;
-    //    levelText.text = playerCardSO.level.ToString();
-
-    //    topRankText.text = playerCardSO.topRank.ToString();
-    //    rightRankText.text = playerCardSO.rightRank.ToString();
-    //    bottomRankText.text = playerCardSO.bottomRank.ToString();
-    //    leftRankText.text = playerCardSO.leftRank.ToString();
-
-    //    monsterSpriteRenderer.sprite = playerCardSO.monsterSprite;
-    //    elementSpriteRenderer.sprite = playerCardSO.elementSprite;
-    //}
-
     private void OnMouseDown()
     {
-        if (IsClient)
-        {
-            ClearSelectedCards();
+        ClearSelectedCards();
 
-            if (!selected)
-                SelectCard();
-            else
-                UnselectCard();
-        }
+        if (!selected)
+            SelectCard();
+        else
+            UnselectCard();
     }
 
     private void ClearSelectedCards()
@@ -108,8 +72,14 @@ public class CardDisplay : NetworkBehaviour
     //"selects" card by adding border and changing sorting layer/order for greater visiblility.
     private void SelectCard()
     {
-        selectedBorder.enabled = true;
-        selected = true;
+        Debug.Log("Properly selecting card");
+        if (NetworkManager.Singleton.LocalClientId == ownerClientId)
+        {
+            Debug.Log("Card has same ID!");
+            selectedBorder.enabled = true;
+            selected = true;
+        }
+    
     }
 
     //"unselects" card by removing border.
@@ -208,6 +178,19 @@ public class CardDisplay : NetworkBehaviour
 
             ChangeBGColorToPlayer();
         }
+    }
+
+    public void SetPlayerCardObjectParent(Player cardParent, int index)
+    {
+        cardParent.AddPlayerCardToPlayerCardDisplaysList(this);
+
+        Vector3 playerLocation = cardParent.gameObject.transform.position;
+        gameObject.transform.position = new Vector3(playerLocation.x + cardParent.GetcardLocationsList()[index].x, playerLocation.y + cardParent.GetcardLocationsList()[index].y, playerLocation.z + cardParent.GetcardLocationsList()[index].z);
+    }
+
+    public SpriteRenderer GetSelectedBorder()
+    {
+        return selectedBorder;
     }
 
 }

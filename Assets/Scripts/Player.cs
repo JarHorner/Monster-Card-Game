@@ -37,48 +37,9 @@ public class Player : NetworkBehaviour
 
         NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback;
 
-        //SpawnPlayerCardObjectServerRpc();
         for (int i = 0; i < cardLocations.Count; i++)
         {
-            int randomCard = UnityEngine.Random.Range(0, cardPrefabs.Count);
-
-            GameObject newCard = Instantiate(cardPrefabs[randomCard]);
-
-            CardDisplay newCardDisplay = newCard.GetComponent<CardDisplay>();
-            // newCardDisplay.SetupCard(CardSelection.Instance.GetPickedCards()[cardIndex]);
-
-            // Setting position
-            Vector3 playerLocation = gameObject.transform.position;
-            newCard.transform.position = new Vector3(playerLocation.x + cardLocations[i].x, playerLocation.y + cardLocations[i].y, playerLocation.z + cardLocations[i].z);
-
-            playerCardDisplays.Add(newCardDisplay);
-
-            NetworkObject newCardNetworkObject = newCard.GetComponent<NetworkObject>();
-            newCardNetworkObject.Spawn(true);
-        }
-
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    private void SpawnPlayerCardObjectServerRpc()
-    {
-        for (int i = 0; i < cardLocations.Count; i++)
-        {
-            int randomCard = UnityEngine.Random.Range(0, cardPrefabs.Count);
-
-            GameObject newCard = Instantiate(cardPrefabs[randomCard]);
-
-            CardDisplay newCardDisplay = newCard.GetComponent<CardDisplay>();
-            // newCardDisplay.SetupCard(CardSelection.Instance.GetPickedCards()[cardIndex]);
-
-            // Setting position
-            Vector3 playerLocation = gameObject.transform.position;
-            newCard.transform.position = new Vector3(playerLocation.x + cardLocations[i].x, playerLocation.y + cardLocations[i].y, playerLocation.z + cardLocations[i].z);
-
-            playerCardDisplays.Add(newCardDisplay);
-
-            NetworkObject newCardNetworkObject = newCard.GetComponent<NetworkObject>();
-            newCardNetworkObject.Spawn(true);
+            GameMultiplayer.Instance.SpawnRandomPlayerCardObject(this, i);
         }
 
     }
@@ -112,5 +73,15 @@ public class Player : NetworkBehaviour
     public List<CardDisplay> GetPlayerCardDisplays()
     {
         return playerCardDisplays;
+    }
+
+    public List<Vector3> GetcardLocationsList()
+    {
+        return cardLocations;
+    }
+
+    public void AddPlayerCardToPlayerCardDisplaysList(CardDisplay cardDisplay)
+    {
+        playerCardDisplays.Add(cardDisplay);
     }
 }

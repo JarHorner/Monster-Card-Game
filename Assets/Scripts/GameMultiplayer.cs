@@ -148,44 +148,64 @@ public class GameMultiplayer : NetworkBehaviour
         OnFailedToJoinGame?.Invoke(this, EventArgs.Empty);
     }
 
-    //public void SpawnPlayerCardObject(PlayerCardSO cardObjectSO, GameObject objectParent)
-    //{
-    //    SpawnPlayerCardObjectServerRpc(GetKitchenObjectSOIndex(kitchenObjectSO), kitchenObjectParent.GetNetworkObject());
-    //}
+    public void SpawnPlayerCardObject(PlayerCardSO cardObjectSO, Player playerCardObjectParent)
+    {
+        SpawnPlayerCardObjectServerRpc(GetCardObjectSOIndex(cardObjectSO), playerCardObjectParent.GetNetworkObject());
+    }
 
-    //[ServerRpc(RequireOwnership = false)]
-    //private void SpawnPlayerCardObjectServerRpc(int cardObjectSOIndex, NetworkObjectReference cardObjectParentNetworkObjectReference)
-    //{
-    //    KitchenObjectSO kitchenObjectSO = GetKitchenObjectSOFromIndex(kitchenObjectSOIndex);
+    [ServerRpc(RequireOwnership = false)]
+    private void SpawnPlayerCardObjectServerRpc(int cardObjectSOIndex, NetworkObjectReference playerCardObjectParentNetworkObjectReference)
+    {
+        PlayerCardSO playerCardObjectSO = GetPlayerCardObjectSOFromIndex(cardObjectSOIndex);
 
-    //    kitchenObjectParentNetworkObjectReference.TryGet(out NetworkObject kitchenObjectParentNetworkObject);
-    //    IKitchenObjectParent kitchenObjectParent = kitchenObjectParentNetworkObject.GetComponent<IKitchenObjectParent>();
+        playerCardObjectParentNetworkObjectReference.TryGet(out NetworkObject playerCardObjectParentNetworkObject);
+        Player playerCardObjectParent = playerCardObjectParentNetworkObject.GetComponent<Player>();
 
-    //    if (kitchenObjectParent.HasKitchenObject())
-    //    {
-    //        Parent already spawned object
-    //        return;
-    //    }
+        Transform playerCardObjectTransform = Instantiate(playerCardObjectSO.prefab);
 
-    //    Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab);
+        NetworkObject playerCardObjectNetworkObject = playerCardObjectTransform.GetComponent<NetworkObject>();
+        playerCardObjectNetworkObject.Spawn(true);
 
-    //    NetworkObject kitchenObjectNetworkObject = kitchenObjectTransform.GetComponent<NetworkObject>();
-    //    kitchenObjectNetworkObject.Spawn(true);
+        CardDisplay playerCardObject = playerCardObjectTransform.GetComponent<CardDisplay>();
 
-    //    KitchenObject kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
+        //playerCardObject.SetPlayerCardObjectParent(playerCardObjectParent);
 
-    //    kitchenObject.SetKitchenObjectParent(kitchenObjectParent);
-    //}
+    }
+    public void SpawnRandomPlayerCardObject(Player playerCardObjectParent, int index)
+    {
+        SpawnRandomPlayerCardObjectServerRpc(index, playerCardObjectParent.GetNetworkObject());
+    }
 
-    //public int GetCardObjectSOIndex(CardObjectSO cardObjectSO)
-    //{
-    //    return kitchenObjectListSO.kitchenObjectSOList.IndexOf(kitchenObjectSO);
-    //}
+    [ServerRpc(RequireOwnership = false)]
+    private void SpawnRandomPlayerCardObjectServerRpc(int index, NetworkObjectReference playerCardObjectParentNetworkObjectReference)
+    {
+        int randomCard = UnityEngine.Random.Range(0, playerCardObjectListSO.playerCardObjectSOList.Count);
 
-    //public KitchenObjectSO GetKitchenObjectSOFromIndex(int kitchenObjectSOIndex)
-    //{
-    //    return kitchenObjectListSO.kitchenObjectSOList[kitchenObjectSOIndex];
-    //}
+        PlayerCardSO playerCardObjectSO = GetPlayerCardObjectSOFromIndex(randomCard);
+
+        playerCardObjectParentNetworkObjectReference.TryGet(out NetworkObject playerCardObjectParentNetworkObject);
+        Player playerCardObjectParent = playerCardObjectParentNetworkObject.GetComponent<Player>();
+
+        Transform playerCardObjectTransform = Instantiate(playerCardObjectSO.prefab);
+
+        NetworkObject playerCardObjectNetworkObject = playerCardObjectTransform.GetComponent<NetworkObject>();
+        playerCardObjectNetworkObject.Spawn(true);
+
+        CardDisplay playerCardObject = playerCardObjectTransform.GetComponent<CardDisplay>();
+
+        playerCardObject.SetPlayerCardObjectParent(playerCardObjectParent, index);
+
+    }
+
+    public int GetCardObjectSOIndex(PlayerCardSO cardObjectSO)
+    {
+        return playerCardObjectListSO.playerCardObjectSOList.IndexOf(cardObjectSO);
+    }
+
+    public PlayerCardSO GetPlayerCardObjectSOFromIndex(int playerCardObjectSOIndex)
+    {
+        return playerCardObjectListSO.playerCardObjectSOList[playerCardObjectSOIndex];
+    }
 
     //public void DestoryKitchenObject(KitchenObject kitchenObject)
     //{
