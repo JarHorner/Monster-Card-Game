@@ -31,11 +31,15 @@ public class CardSelectionUI : MonoBehaviour
            
         });
         addCardButton.onClick.AddListener(() => {
-            selectedResultUI.DisplaySelectMessage(CardSelection.Instance.GetMaxCardsSelected());
+            if (CardSelection.Instance.IsSelectedCardPopulated())
+            {
+                selectedResultUI.DisplaySelectMessage(CardSelection.Instance.GetMaxCardsSelected());
 
-            CardSelection.Instance.AddCard();
+                CardSelection.Instance.AddCard();
 
-            cardAmountText.text = "Cards: " + CardSelection.Instance.GetPickedCardsAmount();
+                cardAmountText.text = "Cards: " + CardSelection.Instance.GetPickedCardsAmount();
+            }
+
         });
     }
 

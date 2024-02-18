@@ -36,33 +36,34 @@ public class Player : NetworkBehaviour
 
         for (int i = 0; i < cardLocations.Count; i++)
         {
-            GameObject newCard = Instantiate(cardPrefab);
-            CardDisplay newCardDisplay = newCard.GetComponent<CardDisplay>();
-
-            newCardDisplay.SetupCard(CardSelection.Instance.GetPickedCards()[i]);
-
-            newCard.GetComponent<NetworkObject>().SpawnAsPlayerObject(NetworkManager.Singleton.LocalClientId, true);
-
-            // Setting position
-            Vector3 playerLocation = gameObject.transform.position;
-            newCard.transform.position = new Vector3(playerLocation.x + cardLocations[i].x, playerLocation.y + cardLocations[i].y, playerLocation.z + cardLocations[i].z);
-
-            playerCardDisplays.Add(newCardDisplay);
+            SpawnPlayerCardObjectServerRpc(i);
         }
-
-        //foreach(CardDisplay card in playerCardDisplays)
-        //{
-        //    GameObject newCard = Instantiate(card.gameObject);
-        //    newCard.GetComponent<NetworkObject>().SpawnAsPlayerObject(NetworkManager.Singleton.LocalClientId, true);
-        //    newCard.transform.position = card.transform.position;
-        //}
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SpawnPlayerCardObjectServerRpc(int cardIndex)
+    {
+        GameObject newCard = Instantiate(cardPrefab);
+
+        CardDisplay newCardDisplay = newCard.GetComponent<CardDisplay>();
+        newCardDisplay.SetupCard(CardSelection.Instance.GetPickedCards()[cardIndex]);
+
+        // Setting position
+        Vector3 playerLocation = gameObject.transform.position;
+        newCard.transform.position = new Vector3(playerLocation.x + cardLocations[cardIndex].x, playerLocation.y + cardLocations[cardIndex].y, playerLocation.z + cardLocations[cardIndex].z);
+
+        playerCardDisplays.Add(newCardDisplay);
+
+        NetworkObject newCardNetworkObject = newCard.GetComponent<NetworkObject>();
+        newCardNetworkObject.Spawn(true);
+    }
+
 
     private void Start()
     {
         PlayerData playerData = GameMultiplayer.Instance.GetPlayerDataFromClientId(OwnerClientId);
         playerVisual.SetPlayerColor(GameMultiplayer.Instance.GetPlayerColor(playerData.portraitColorId));
-        playerName.text = PlayerPrefs.GetString("PlayerNameMultiplayer");
+        playerName.text = playerData.playerName.ToString();
     }
 
     private void Update()

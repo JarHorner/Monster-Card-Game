@@ -35,6 +35,14 @@ public class CardGenerator : MonoBehaviour
         }
     }
 
+    public void ClearSelectedCards()
+    {
+        foreach (GameObject spawnedCard in spawnedCards)
+        {
+            spawnedCard.GetComponent<PickCard>().UnselectCard();
+        }
+    }
+
     public void SpawnNewSetOfCards()
     {
         DestroySpawnedCards();

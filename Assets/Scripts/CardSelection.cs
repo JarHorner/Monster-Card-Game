@@ -11,7 +11,6 @@ public class CardSelection : MonoBehaviour
     public static CardSelection Instance;
 
     [SerializeField] private PlayerCardSO selectedCard;
-    public bool cardSelected = false;
 
     private bool maxCardsSelected = false;
 
@@ -46,6 +45,8 @@ public class CardSelection : MonoBehaviour
             {
                 maxCardsSelected = true;
             }
+
+            RemoveSelectedCard();
         }
     }
 
@@ -59,6 +60,11 @@ public class CardSelection : MonoBehaviour
     public void RemoveSelectedCard()
     {
         selectedCard = null;
+    }
+
+    public bool IsSelectedCardPopulated()
+    {
+        return selectedCard != null;
     }
 
     public List<PlayerCardSO> GetPickedCards()
@@ -81,38 +87,4 @@ public class CardSelection : MonoBehaviour
     {
         return maxCardsSelected;
     }
-
-    public string GetName(int cardNum)
-    {
-        return names[cardNum];
-    }
-    public int GetLevel(int cardNum)
-    {
-        return levels[cardNum];
-    }
-    public int GetTopRank(int cardNum)
-    {
-        return topRanks[cardNum];
-    }
-    public int GetRightRank(int cardNum)
-    {
-        return rightRanks[cardNum];
-    }
-    public int GetBottomRank(int cardNum)
-    {
-        return bottomRanks[cardNum];
-    }
-    public int GetLeftRank(int cardNum)
-    {
-        return leftRanks[cardNum];
-    }
-    public Sprite GetMonsterSprite(int cardNum)
-    {
-        return monsterSprites[cardNum];
-    }
-
-
-
-
-
 }

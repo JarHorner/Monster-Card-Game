@@ -8,8 +8,10 @@ using Unity.Netcode;
 
 public class CardDisplay : NetworkBehaviour
 {
-   // public PlayerCardSO playerCardSO;
+    public PlayerCardSO playerCardSO;
     public int cardNum;
+
+    public ulong ownerClientId;
 
     public bool enlarged = false;
     private bool selected = false;
@@ -44,6 +46,9 @@ public class CardDisplay : NetworkBehaviour
         //playerCardSO = CardSelection.Instance.GetPlayerCardSO(cardNum);
 
         //AssignCardValues();
+        ownerClientId = NetworkManager.Singleton.LocalClientId;
+
+        Debug.Log("Owner of this card: " + ownerClientId);
 
         ChangeBGColorToPlayer();
     }
@@ -64,6 +69,13 @@ public class CardDisplay : NetworkBehaviour
 
     public void SetupCard(PlayerCardSO playerCardSO)
     {
+        playerCardSO = this.playerCardSO;
+        SetupCardServerRpc();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SetupCardServerRpc()
+    {
         cardNameText.text = playerCardSO.cardName;
         levelText.text = playerCardSO.level.ToString();
 
@@ -78,12 +90,15 @@ public class CardDisplay : NetworkBehaviour
 
     private void OnMouseDown()
     {
-        ClearSelectedCards();
+        if (IsClient)
+        {
+            ClearSelectedCards();
 
-        if (!selected)
-            SelectCard();
-        else
-            UnselectCard();
+            if (!selected)
+                SelectCard();
+            else
+                UnselectCard();
+        }
     }
 
     private void ClearSelectedCards()
@@ -115,7 +130,7 @@ public class CardDisplay : NetworkBehaviour
     // Changes background color, used when assigning card to players
     public void ChangeBGColorToPlayer()
     {
-        if (IsLocalPlayer)
+        if (IsClient)
         {
             backgroundSpriteRenderer.color = player1Color;
         }
@@ -128,7 +143,7 @@ public class CardDisplay : NetworkBehaviour
     // Changes background color, used when enlarging
     public void ChangeBGColorOnHover()
     {
-        if (IsLocalPlayer)
+        if (IsClient)
         {
             backgroundSpriteRenderer.color = player1HoverColor;
         }
@@ -152,7 +167,7 @@ public class CardDisplay : NetworkBehaviour
         backgroundSpriteRenderer.sortingLayerName = newLayer;
         monsterSpriteRenderer.sortingLayerName = newLayer;
         elementSpriteRenderer.sortingLayerName = newLayer;
-        selectedBorder.sortingLayerName = newLayer; 
+        selectedBorder.sortingLayerName = newLayer;
     }
 
     private void OnMouseEnter()

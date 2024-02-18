@@ -64,22 +64,12 @@ public class PickCard : NetworkBehaviour
 
     private void OnMouseDown()
     {
-        ClearSelectedCards();
+        CardGenerator.Instance.ClearSelectedCards();
 
         if (!selected)
             SelectCard();
         else
             UnselectCard();
-    }
-
-    private void ClearSelectedCards()
-    {
-        List<GameObject> spawnedCardsList = CardGenerator.Instance.GetSpawnedCardsList();
-        
-        foreach (GameObject spawnedCard in spawnedCardsList)
-        {
-            spawnedCard.GetComponent<PickCard>().UnselectCard();
-        }
     }
 
     //"selects" card by adding border and changing sorting layer/order for greater visiblility.

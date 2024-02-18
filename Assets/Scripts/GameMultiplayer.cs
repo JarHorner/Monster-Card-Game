@@ -19,7 +19,7 @@ public class GameMultiplayer : NetworkBehaviour
     public event EventHandler OnFailedToJoinGame;
     public event EventHandler OnPlayerDataNetworkListChanged;
 
-    //[SerializeField] private KitchenObjectListSO kitchenObjectListSO;
+    [SerializeField] private PlayerCardObjectListSO playerCardObjectListSO;
     [SerializeField] private List<Color> portraitColorList;
 
     private NetworkList<PlayerData> playerDataNetworkList;
@@ -148,13 +148,13 @@ public class GameMultiplayer : NetworkBehaviour
         OnFailedToJoinGame?.Invoke(this, EventArgs.Empty);
     }
 
-    //public void SpawnCardObject(CardObjectSO cardObjectSO, IKitchenObjectParent kitchenObjectParent)
+    //public void SpawnPlayerCardObject(PlayerCardSO cardObjectSO, GameObject objectParent)
     //{
-    //    SpawnKitchenObjectServerRpc(GetKitchenObjectSOIndex(kitchenObjectSO), kitchenObjectParent.GetNetworkObject());
+    //    SpawnPlayerCardObjectServerRpc(GetKitchenObjectSOIndex(kitchenObjectSO), kitchenObjectParent.GetNetworkObject());
     //}
 
     //[ServerRpc(RequireOwnership = false)]
-    //private void SpawnKitchenObjectServerRpc(int kitchenObjectSOIndex, NetworkObjectReference kitchenObjectParentNetworkObjectReference)
+    //private void SpawnPlayerCardObjectServerRpc(int cardObjectSOIndex, NetworkObjectReference cardObjectParentNetworkObjectReference)
     //{
     //    KitchenObjectSO kitchenObjectSO = GetKitchenObjectSOFromIndex(kitchenObjectSOIndex);
 
@@ -163,7 +163,7 @@ public class GameMultiplayer : NetworkBehaviour
 
     //    if (kitchenObjectParent.HasKitchenObject())
     //    {
-    //        // Parent already spawned object
+    //        Parent already spawned object
     //        return;
     //    }
 
