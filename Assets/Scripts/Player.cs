@@ -8,12 +8,11 @@ using UnityEngine.InputSystem;
 
 public class Player : NetworkBehaviour
 {
-
     public static event EventHandler OnAnyPlayerSpawned;
 
     public static Player LocalInstance { get; private set; }
 
-    [SerializeField] private GameObject cardPrefab;
+    [SerializeField] private List<GameObject> cardPrefabs;
 
     [SerializeField] private List<Vector3> spawnPositionList;
     [SerializeField] private PlayerVisual playerVisual;
@@ -28,46 +27,59 @@ public class Player : NetworkBehaviour
             LocalInstance = this;
         }
 
+        PlayerData playerData = GameMultiplayer.Instance.GetPlayerDataFromClientId(OwnerClientId);
+        playerVisual.SetPlayerColor(GameMultiplayer.Instance.GetPlayerColor(playerData.portraitColorId));
+        playerName.text = playerData.playerName.ToString();
+
         transform.position = spawnPositionList[GameMultiplayer.Instance.GetPlayerDataIndexFromClientId(OwnerClientId)];
 
         OnAnyPlayerSpawned?.Invoke(this, EventArgs.Empty);
 
         NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback;
 
+        //SpawnPlayerCardObjectServerRpc();
         for (int i = 0; i < cardLocations.Count; i++)
         {
-            SpawnPlayerCardObjectServerRpc(i);
+            int randomCard = UnityEngine.Random.Range(0, cardPrefabs.Count);
+
+            GameObject newCard = Instantiate(cardPrefabs[randomCard]);
+
+            CardDisplay newCardDisplay = newCard.GetComponent<CardDisplay>();
+            // newCardDisplay.SetupCard(CardSelection.Instance.GetPickedCards()[cardIndex]);
+
+            // Setting position
+            Vector3 playerLocation = gameObject.transform.position;
+            newCard.transform.position = new Vector3(playerLocation.x + cardLocations[i].x, playerLocation.y + cardLocations[i].y, playerLocation.z + cardLocations[i].z);
+
+            playerCardDisplays.Add(newCardDisplay);
+
+            NetworkObject newCardNetworkObject = newCard.GetComponent<NetworkObject>();
+            newCardNetworkObject.Spawn(true);
         }
+
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void SpawnPlayerCardObjectServerRpc(int cardIndex)
+    private void SpawnPlayerCardObjectServerRpc()
     {
-        GameObject newCard = Instantiate(cardPrefab);
+        for (int i = 0; i < cardLocations.Count; i++)
+        {
+            int randomCard = UnityEngine.Random.Range(0, cardPrefabs.Count);
 
-        CardDisplay newCardDisplay = newCard.GetComponent<CardDisplay>();
-       // newCardDisplay.SetupCard(CardSelection.Instance.GetPickedCards()[cardIndex]);
+            GameObject newCard = Instantiate(cardPrefabs[randomCard]);
 
-        // Setting position
-        Vector3 playerLocation = gameObject.transform.position;
-        newCard.transform.position = new Vector3(playerLocation.x + cardLocations[cardIndex].x, playerLocation.y + cardLocations[cardIndex].y, playerLocation.z + cardLocations[cardIndex].z);
+            CardDisplay newCardDisplay = newCard.GetComponent<CardDisplay>();
+            // newCardDisplay.SetupCard(CardSelection.Instance.GetPickedCards()[cardIndex]);
 
-        playerCardDisplays.Add(newCardDisplay);
+            // Setting position
+            Vector3 playerLocation = gameObject.transform.position;
+            newCard.transform.position = new Vector3(playerLocation.x + cardLocations[i].x, playerLocation.y + cardLocations[i].y, playerLocation.z + cardLocations[i].z);
 
-        NetworkObject newCardNetworkObject = newCard.GetComponent<NetworkObject>();
-        newCardNetworkObject.Spawn(true);
-    }
+            playerCardDisplays.Add(newCardDisplay);
 
-
-        private void Start()
-    {
-        PlayerData playerData = GameMultiplayer.Instance.GetPlayerDataFromClientId(OwnerClientId);
-        playerVisual.SetPlayerColor(GameMultiplayer.Instance.GetPlayerColor(playerData.portraitColorId));
-        playerName.text = playerData.playerName.ToString();
-    }
-
-    private void Update()
-    {
+            NetworkObject newCardNetworkObject = newCard.GetComponent<NetworkObject>();
+            newCardNetworkObject.Spawn(true);
+        }
 
     }
 
@@ -78,7 +90,6 @@ public class Player : NetworkBehaviour
             Debug.Log("Click registers");
         }
     }
-
 
     private void NetworkManager_OnClientDisconnectCallback(ulong clientId)
     {

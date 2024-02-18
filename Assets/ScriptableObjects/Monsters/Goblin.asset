@@ -9,13 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2bda7151b6221d4fb370f8acbedb84e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ba92ff26fc682248baa5fff02b99d9e, type: 3}
   m_Name: Goblin
   m_EditorClassIdentifier: 
-  artwork: {fileID: 21300000, guid: 1375143ffcb8dac4f90c0705f91e870f, type: 3}
-  element: {fileID: 0}
-  cardName: Goblin
-  rangeOfRanks: 010000000200000003000000040000000500000006000000
-  minRank: 10
-  maxRank: 13
-  level: 1
+  prefab: {fileID: 8437685232243826847, guid: 1853ea36810f57147b7ba1f9b5e57f69, type: 3}
+  cardName: 
+  level: 0
+  topRank: 0
+  rightRank: 0
+  bottomRank: 0
+  leftRank: 0
+  monsterSprite: {fileID: 0}
+  elementSprite: {fileID: 0}

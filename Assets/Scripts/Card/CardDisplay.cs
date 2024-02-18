@@ -124,7 +124,7 @@ public class CardDisplay : NetworkBehaviour
     // Changes background color, used when assigning card to players
     public void ChangeBGColorToPlayer()
     {
-        if (IsClient)
+        if (ownerClientId == 0)
         {
             backgroundSpriteRenderer.color = player1Color;
         }
@@ -137,7 +137,7 @@ public class CardDisplay : NetworkBehaviour
     // Changes background color, used when enlarging
     public void ChangeBGColorOnHover()
     {
-        if (IsClient)
+        if (ownerClientId == 0)
         {
             backgroundSpriteRenderer.color = player1HoverColor;
         }

@@ -75,8 +75,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -564875971
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8948637474277635937
@@ -336,7 +336,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b8f080cb4e4d04a939f37a18e57138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 4530876716268103752, guid: 691e400d5e76d324eae21b46649ca59c, type: 3}
+  cardPrefabs:
+  - {fileID: 8962956826016214500, guid: 1f52995457449164497723b4d8ad1ac7, type: 3}
+  - {fileID: 6948228792774302274, guid: 1853ea36810f57147b7ba1f9b5e57f69, type: 3}
+  - {fileID: 6758223388538141854, guid: ced6d00477758a940894c77dc2afcaed, type: 3}
+  - {fileID: 1810396035030501625, guid: 22668d474248c6a4aa2d1743ef95ef83, type: 3}
   spawnPositionList:
   - {x: 7, y: -1, z: 0}
   - {x: -5, y: -1, z: 0}

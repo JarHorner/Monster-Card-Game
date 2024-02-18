@@ -72,6 +72,7 @@ public class GameManager : NetworkBehaviour
         {
             Transform playerTransform = Instantiate(playerPrefab);
             playerTransform.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
+
         }
     }
 

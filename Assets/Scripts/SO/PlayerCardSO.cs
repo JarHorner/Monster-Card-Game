@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Card", menuName = "Player Card")]
 public class PlayerCardSO : ScriptableObject
 {
+    public Transform prefab;
+
     public string cardName;
     public int level;
 

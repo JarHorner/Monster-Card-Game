@@ -9,13 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2bda7151b6221d4fb370f8acbedb84e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ba92ff26fc682248baa5fff02b99d9e, type: 3}
   m_Name: OchreJelly
   m_EditorClassIdentifier: 
-  artwork: {fileID: 21300000, guid: 819e1cf08e0c2c0418faef05126edf12, type: 3}
-  element: {fileID: 0}
-  cardName: Ochre Jelly
-  rangeOfRanks: 01000000020000000300000004000000050000000600000007000000
-  minRank: 20
-  maxRank: 22
-  level: 5
+  prefab: {fileID: 894649382656487972, guid: 22668d474248c6a4aa2d1743ef95ef83, type: 3}
+  cardName: 
+  level: 0
+  topRank: 0
+  rightRank: 0
+  bottomRank: 0
+  leftRank: 0
+  monsterSprite: {fileID: 0}
+  elementSprite: {fileID: 0}

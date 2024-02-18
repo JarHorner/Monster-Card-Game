@@ -13,6 +13,8 @@ public class MainMenuUI : MonoBehaviour
     {
         playButton.onClick.AddListener(() => {
             //Loader.Load(Loader.Scene.CardSelectionScene);
+            GameMultiplayer.playMultiplayer = true;
+
             Loader.Load(Loader.Scene.LobbyScene);
         });
         quitButton.onClick.AddListener(() => {
