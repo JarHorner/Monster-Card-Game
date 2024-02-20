@@ -16,9 +16,41 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 1375143ffcb8dac4f90c0705f91e870f, type: 3}
+    - target: {fileID: 2730433836865322764, guid: 2748948982ac0d44fb0cf71edda36e04, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 2730433836865322764, guid: 2748948982ac0d44fb0cf71edda36e04, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2730433836865322764, guid: 2748948982ac0d44fb0cf71edda36e04, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 3046282871925858056, guid: 2748948982ac0d44fb0cf71edda36e04, type: 3}
       propertyPath: m_Name
       value: CardGoblin
+      objectReference: {fileID: 0}
+    - target: {fileID: 3740057772156958344, guid: 2748948982ac0d44fb0cf71edda36e04, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3740057772156958344, guid: 2748948982ac0d44fb0cf71edda36e04, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1662736208, guid: b7097d6ab347b634da88c8454d56114e, type: 3}
+    - target: {fileID: 3740057772156958344, guid: 2748948982ac0d44fb0cf71edda36e04, type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3740057772156958344, guid: 2748948982ac0d44fb0cf71edda36e04, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3740057772156958344, guid: 2748948982ac0d44fb0cf71edda36e04, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9082618320338156234, guid: 2748948982ac0d44fb0cf71edda36e04, type: 3}
       propertyPath: m_LocalPosition.x
