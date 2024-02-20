@@ -23,13 +23,13 @@ public class DropZone : MonoBehaviour
     public bool IsPositionFilled(GameObject go)
     {
         int positionIndex = postions.IndexOf(go);
-        return postionsFilled[positionIndex-1];
+        return postionsFilled[positionIndex];
     }
 
     public void FillPosition(GameObject go)
     {
         int positionIndex = postions.IndexOf(go);
-        postionsFilled[positionIndex-1] = true;
+        postionsFilled[positionIndex] = true;
     }
 
 

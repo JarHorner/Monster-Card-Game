@@ -1,19 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class DrawCards : MonoBehaviour
+public class DrawCards : NetworkBehaviour
 {
-    [SerializeField] private List<GameObject> cards;
-    [SerializeField] private GameObject playerArea;
+    public PlayerManager playerManager;
+
     public void OnClick()
     {
-        for(int i = 0; i < 5; i++)
-        {
-            int randomCardIndex = Random.Range(0, cards.Count);
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        playerManager = networkIdentity.GetComponent<PlayerManager>();
 
-            GameObject card = Instantiate(cards[randomCardIndex], new Vector2(0,0), Quaternion.identity);
-            card.transform.SetParent(playerArea.transform, false);
-        }
+        playerManager.CmdDealCards();
     }
 }

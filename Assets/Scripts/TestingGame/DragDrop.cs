@@ -19,8 +19,30 @@ public class DragDrop : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        isOverDropzone = true;
         dropZonePosition = collision.gameObject;
+
+        if (!DropZone.Instance.IsPositionFilled(dropZonePosition))
+        {
+            isOverDropzone = true;
+        }
+        else
+        {
+            dropZonePosition = null;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        dropZonePosition = collision.gameObject;
+
+        if (!DropZone.Instance.IsPositionFilled(dropZonePosition))
+        {
+            isOverDropzone = true;
+        }
+        else
+        {
+            dropZonePosition = null;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -41,13 +63,10 @@ public class DragDrop : MonoBehaviour
     {
         isDragging = false;
 
-        if (isOverDropzone)
+        if (isOverDropzone && DropZone.Instance.GetPostions().Contains(dropZonePosition) && !DropZone.Instance.IsPositionFilled(dropZonePosition))
         {
-            if (DropZone.Instance.GetPostions().Contains(dropZonePosition) && !DropZone.Instance.IsPositionFilled(dropZonePosition))
-            {
-                transform.SetParent(dropZonePosition.transform, false);
-                DropZone.Instance.FillPosition(dropZonePosition);
-            }
+            transform.SetParent(dropZonePosition.transform, false);
+            DropZone.Instance.FillPosition(dropZonePosition);
         }
         else
         {

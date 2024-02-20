@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 508424313672121117, guid: b4f0d6c0d277a464091b5586ab80cdd4, type: 3}
       propertyPath: m_Name
-      value: EnemyArea Variant
+      value: EnemyArea
       objectReference: {fileID: 0}
     - target: {fileID: 3368476356470631466, guid: b4f0d6c0d277a464091b5586ab80cdd4, type: 3}
       propertyPath: m_Color.b
@@ -23,6 +23,10 @@ PrefabInstance:
     - target: {fileID: 3368476356470631466, guid: b4f0d6c0d277a464091b5586ab80cdd4, type: 3}
       propertyPath: m_Color.r
       value: 0.8784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005335196163543296, guid: b4f0d6c0d277a464091b5586ab80cdd4, type: 3}
+      propertyPath: _assetId
+      value: 2015402849
       objectReference: {fileID: 0}
     - target: {fileID: 8510952031886081366, guid: b4f0d6c0d277a464091b5586ab80cdd4, type: 3}
       propertyPath: m_Pivot.x
