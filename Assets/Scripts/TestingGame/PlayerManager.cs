@@ -34,14 +34,11 @@ public class PlayerManager : NetworkBehaviour
     [Command]
     public void CmdDealCards()
     {
-
         for (int i = 0; i < 5; i++)
         {
             int randomCardIndex = Random.Range(0, possibleCards.Count);
 
-            GameObject cardPrefab = isLocalPlayer ? possibleCards[randomCardIndex] : cardBack;
-
-            GameObject newCard = Instantiate(cardPrefab, new Vector2(0, 0), Quaternion.identity);
+            GameObject newCard = Instantiate(possibleCards[randomCardIndex], new Vector2(0, 0), Quaternion.identity);
             NetworkServer.Spawn(newCard, connectionToClient);
 
             RpcDealCard(newCard);
@@ -55,13 +52,13 @@ public class PlayerManager : NetworkBehaviour
         {
             card.transform.SetParent(playerArea.transform, false);
 
-            //card.GetComponent<CardFlipper>().ChangeBackgroundOwnerCardColor();
+            card.GetComponent<CardFlipper>().ChangeBackgroundOwnerCardColor();
         }
         else
         {
             card.transform.SetParent(enemyArea.transform, false);
 
-            //card.GetComponent<CardFlipper>().Flip();
+            card.GetComponent<CardFlipper>().Flip();
         }
 
     }
