@@ -12,7 +12,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerArea
       objectReference: {fileID: 0}
+    - target: {fileID: 1035969071871378769, guid: b4f0d6c0d277a464091b5586ab80cdd4, type: 3}
+      propertyPath: _assetId
+      value: 3954467450
+      objectReference: {fileID: 0}
+    - target: {fileID: 1256542607300685795, guid: b4f0d6c0d277a464091b5586ab80cdd4, type: 3}
+      propertyPath: _assetId
+      value: 3954467450
+      objectReference: {fileID: 0}
+    - target: {fileID: 2778075101002149311, guid: b4f0d6c0d277a464091b5586ab80cdd4, type: 3}
+      propertyPath: _assetId
+      value: 3954467450
+      objectReference: {fileID: 0}
     - target: {fileID: 7005335196163543296, guid: b4f0d6c0d277a464091b5586ab80cdd4, type: 3}
+      propertyPath: _assetId
+      value: 3954467450
+      objectReference: {fileID: 0}
+    - target: {fileID: 7906021409163347581, guid: b4f0d6c0d277a464091b5586ab80cdd4, type: 3}
+      propertyPath: _assetId
+      value: 3954467450
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988699466933472939, guid: b4f0d6c0d277a464091b5586ab80cdd4, type: 3}
       propertyPath: _assetId
       value: 3954467450
       objectReference: {fileID: 0}
@@ -46,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8510952031886081366, guid: b4f0d6c0d277a464091b5586ab80cdd4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 980
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 8510952031886081366, guid: b4f0d6c0d277a464091b5586ab80cdd4, type: 3}
       propertyPath: m_LocalPosition.x

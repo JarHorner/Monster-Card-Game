@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEngine.UI;
 
 public class PlayerManager : NetworkBehaviour
 {
     [SerializeField] private List<GameObject> possibleCards;
+    [SerializeField] private GameObject cardBack;
     [SerializeField] private GameObject playerArea;
     [SerializeField] private GameObject enemyArea;
     [SerializeField] private List<GameObject> positions;
@@ -32,14 +34,17 @@ public class PlayerManager : NetworkBehaviour
     [Command]
     public void CmdDealCards()
     {
+
         for (int i = 0; i < 5; i++)
         {
             int randomCardIndex = Random.Range(0, possibleCards.Count);
 
-            GameObject card = Instantiate(possibleCards[randomCardIndex], new Vector2(0, 0), Quaternion.identity);
-            NetworkServer.Spawn(card, connectionToClient);
+            GameObject cardPrefab = isLocalPlayer ? possibleCards[randomCardIndex] : cardBack;
 
-            RpcDealCard(card);
+            GameObject newCard = Instantiate(cardPrefab, new Vector2(0, 0), Quaternion.identity);
+            NetworkServer.Spawn(newCard, connectionToClient);
+
+            RpcDealCard(newCard);
         }
     }
 
@@ -49,10 +54,14 @@ public class PlayerManager : NetworkBehaviour
         if (isOwned)
         {
             card.transform.SetParent(playerArea.transform, false);
+
+            //card.GetComponent<CardFlipper>().ChangeBackgroundOwnerCardColor();
         }
         else
         {
             card.transform.SetParent(enemyArea.transform, false);
+
+            //card.GetComponent<CardFlipper>().Flip();
         }
 
     }
@@ -72,6 +81,8 @@ public class PlayerManager : NetworkBehaviour
     private void RpcPlayCard(GameObject card, GameObject dropZonePosition)
     {
         card.transform.SetParent(dropZonePosition.transform, false);
-        
+
+        if (!isOwned)
+            card.GetComponent<CardFlipper>().Flip();
     }
 }
