@@ -44,7 +44,7 @@ public class TurnTimer : MonoBehaviour
         turnTimerText.text = timerNum.ToString("F0");
     }
 
-    private void Show()
+    public void Show()
     {
         gameObject.SetActive(true);
     }

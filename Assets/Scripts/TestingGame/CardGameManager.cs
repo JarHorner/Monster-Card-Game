@@ -6,19 +6,19 @@ using System;
 
 public class CardGameManager : NetworkBehaviour
 {
-    public static CardGameManager Instance { get; private set; }
-
-    public event EventHandler OnStateChanged;
-
     public enum State
     {
         WaitingToStart,
         CountdownToStart,
-        Turn, 
-        Battle, 
-        Ending, 
+        Turn,
+        Battle,
+        Ending,
         GameOver,
     }
+
+    public static CardGameManager Instance { get; private set; }
+
+    public event EventHandler OnStateChanged;
 
     [SyncVar] private State _syncedState;
     public State state
@@ -88,6 +88,7 @@ public class CardGameManager : NetworkBehaviour
 
     public bool IsPlayerTurn()
     {
+        Debug.Log(state == State.Turn);
         return state == State.Turn;
     }
 

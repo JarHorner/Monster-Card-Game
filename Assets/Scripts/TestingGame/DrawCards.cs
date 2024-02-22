@@ -5,7 +5,6 @@ using Mirror;
 
 public class DrawCards : NetworkBehaviour
 {
-
     public void OnClick()
     {
         if (!PlayerManager.LocalInstance.HasPickedUpCards())
@@ -13,22 +12,7 @@ public class DrawCards : NetworkBehaviour
             CardGameManager.Instance.SetStateCountdownToStartActive();
 
             PlayerManager.LocalInstance.CmdDealCards();
-
-            CmdDestoryDrawCardButton();
         }
-    }
-
-    [Command]
-    public void CmdDestoryDrawCardButton()
-    {
-        TargetDestoryDrawCardButton();
-    }
-
-    [TargetRpc]
-    void TargetDestoryDrawCardButton()
-    {
-        Debug.Log("Destory Draw Card Button");
-        Destroy(gameObject);
     }
 
 }
