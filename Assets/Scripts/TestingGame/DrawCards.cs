@@ -5,14 +5,30 @@ using Mirror;
 
 public class DrawCards : NetworkBehaviour
 {
-    public PlayerManager playerManager;
 
     public void OnClick()
     {
-        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
-        playerManager = networkIdentity.GetComponent<PlayerManager>();
+        if (!PlayerManager.LocalInstance.HasPickedUpCards())
+        {
+            CardGameManager.Instance.SetStateCountdownToStartActive();
 
+            PlayerManager.LocalInstance.CmdDealCards();
 
-        playerManager.CmdDealCards();
+            CmdDestoryDrawCardButton();
+        }
     }
+
+    [Command]
+    public void CmdDestoryDrawCardButton()
+    {
+        TargetDestoryDrawCardButton();
+    }
+
+    [TargetRpc]
+    void TargetDestoryDrawCardButton()
+    {
+        Debug.Log("Destory Draw Card Button");
+        Destroy(gameObject);
+    }
+
 }

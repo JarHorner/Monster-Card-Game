@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DropZone : MonoBehaviour
 {
-
     public static DropZone Instance;
 
     [SerializeField] private List<GameObject> postions;

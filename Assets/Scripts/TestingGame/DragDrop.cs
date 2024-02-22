@@ -6,7 +6,6 @@ using Mirror;
 public class DragDrop : NetworkBehaviour
 {
     private GameObject Canvas;
-    public PlayerManager playerManager;
 
     [SerializeField] private bool isDragging = false;
     private bool isDraggable = true;
@@ -22,20 +21,6 @@ public class DragDrop : NetworkBehaviour
         if (!isOwned)
         {
             isDraggable = false;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        dropZonePosition = collision.gameObject;
-
-        if (!DropZone.Instance.IsPositionFilled(dropZonePosition))
-        {
-            isOverDropzone = true;
-        }
-        else
-        {
-            dropZonePosition = null;
         }
     }
 
@@ -81,9 +66,7 @@ public class DragDrop : NetworkBehaviour
             DropZone.Instance.FillPosition(dropZonePosition);
             isDraggable = false;
 
-            NetworkIdentity networkIdentity = NetworkClient.connection.identity;
-            playerManager = networkIdentity.GetComponent<PlayerManager>();
-            playerManager.PlayCard(gameObject, dropZonePosition);
+            PlayerManager.LocalInstance.PlayCard(gameObject, dropZonePosition);
             
         }
         else

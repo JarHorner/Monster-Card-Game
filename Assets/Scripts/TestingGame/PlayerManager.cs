@@ -6,15 +6,24 @@ using UnityEngine.UI;
 
 public class PlayerManager : NetworkBehaviour
 {
+    public static PlayerManager LocalInstance;
+
     [SerializeField] private List<GameObject> possibleCards;
-    [SerializeField] private GameObject cardBack;
     [SerializeField] private GameObject playerArea;
     [SerializeField] private GameObject enemyArea;
+
     [SerializeField] private List<GameObject> positions;
+
+    [SerializeField] private Transform gridPanel;
+
+    private bool pickedUpCards = false;
 
     public override void OnStartClient()
     {
         base.OnStartClient();
+
+        if (isOwned)
+            LocalInstance = this;
 
         playerArea = GameObject.Find("PlayerArea");
         enemyArea = GameObject.Find("EnemyArea");
@@ -34,6 +43,8 @@ public class PlayerManager : NetworkBehaviour
     [Command]
     public void CmdDealCards()
     {
+        pickedUpCards = true;
+
         for (int i = 0; i < 5; i++)
         {
             int randomCardIndex = Random.Range(0, possibleCards.Count);
@@ -51,12 +62,14 @@ public class PlayerManager : NetworkBehaviour
         if (isOwned)
         {
             card.transform.SetParent(playerArea.transform, false);
+            card.tag = "Owner";
 
             card.GetComponent<CardFlipper>().ChangeBackgroundOwnerCardColor();
         }
         else
         {
             card.transform.SetParent(enemyArea.transform, false);
+            card.tag = "Enemy";
 
             card.GetComponent<CardFlipper>().Flip();
         }
@@ -81,5 +94,48 @@ public class PlayerManager : NetworkBehaviour
 
         if (!isOwned)
             card.GetComponent<CardFlipper>().Flip();
+    }
+
+    [Command]
+    public void CmdTargetSelfCard(GameObject card)
+    {
+        TargetSelfCard(card);
+    }
+
+    [Command]
+    public void CmdTargetOtherCard(GameObject targetCard)
+    {
+        NetworkIdentity enemyIdentity = targetCard.GetComponent<NetworkIdentity>();
+        TargetOtherCard(enemyIdentity.connectionToClient);
+    }
+
+    [TargetRpc]
+    void TargetSelfCard(GameObject card)
+    {
+        Debug.Log("Targeted by self");
+        card.GetComponent<Animator>().SetTrigger("Pulse");
+    }
+
+    [TargetRpc]
+    void TargetOtherCard(NetworkConnection target)
+    {
+        Debug.Log("Targeted by other");
+    }
+
+    [Command]
+    public void CmdCountdownTurnTimer(GameObject turnTimer, int turnTimerNum)
+    {
+        RpcCountdownTurnTimer(turnTimer, turnTimerNum);
+    }
+
+    [ClientRpc]
+    private void RpcCountdownTurnTimer(GameObject turnTimer, int turnTimerNum)
+    {
+        turnTimer.GetComponent<TurnTimer>().SetTurnTimerText(turnTimerNum);
+    }
+
+    public bool HasPickedUpCards()
+    {
+        return pickedUpCards;
     }
 }

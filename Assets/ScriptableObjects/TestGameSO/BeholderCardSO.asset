@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceffdc81d5cd80448aecbc6ce04d39cd, type: 3}
+  m_Name: BeholderCardSO
+  m_EditorClassIdentifier: 
+  cardName: Beholder
+  level: 0
+  topRank: 0
+  rightRank: 0
+  bottomRank: 0
+  leftRank: 0
+  backgroundSprite: {fileID: 1662736208, guid: b7097d6ab347b634da88c8454d56114e, type: 3}
+  monsterSprite: {fileID: 21300000, guid: cebd0b0d9bf7b454fa49e744906da94f, type: 3}
+  elementSprite: {fileID: 0}

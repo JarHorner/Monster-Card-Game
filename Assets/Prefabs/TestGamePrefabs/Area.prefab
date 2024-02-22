@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8510952031886081366}
   - component: {fileID: 5028169998912991119}
   - component: {fileID: 3368476356470631466}
-  - component: {fileID: 5596689046709805412}
   - component: {fileID: 7005335196163543296}
   - component: {fileID: -3693362292894766161}
+  - component: {fileID: 885721711166675776}
   m_Layer: 7
   m_Name: Area
   m_TagString: Untagged
@@ -78,30 +78,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5596689046709805412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 508424313672121117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 140, y: 190}
-  m_Spacing: {x: 0, y: 5}
-  m_Constraint: 1
-  m_ConstraintCount: 1
 --- !u!114 &7005335196163543296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,3 +130,27 @@ MonoBehaviour:
   compressRotation: 0
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &885721711166675776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508424313672121117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 140, y: 190}
+  m_Spacing: {x: 0, y: 5}
+  m_Constraint: 1
+  m_ConstraintCount: 1
