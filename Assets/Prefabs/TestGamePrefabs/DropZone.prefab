@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1012690476038365715}
   m_Layer: 7
   m_Name: Position (6)
-  m_TagString: Untagged
+  m_TagString: BoardPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -325,7 +325,7 @@ GameObject:
   - component: {fileID: 7587158526092579939}
   m_Layer: 7
   m_Name: Position (5)
-  m_TagString: Untagged
+  m_TagString: BoardPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -525,7 +525,7 @@ GameObject:
   - component: {fileID: 8877774087346702129}
   m_Layer: 7
   m_Name: Position (7)
-  m_TagString: Untagged
+  m_TagString: BoardPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -725,7 +725,7 @@ GameObject:
   - component: {fileID: 1680807098593707324}
   m_Layer: 7
   m_Name: Position (4)
-  m_TagString: Untagged
+  m_TagString: BoardPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -925,7 +925,7 @@ GameObject:
   - component: {fileID: 5672131458238069729}
   m_Layer: 7
   m_Name: Position (1)
-  m_TagString: Untagged
+  m_TagString: BoardPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1125,7 +1125,7 @@ GameObject:
   - component: {fileID: 6474903213824471522}
   m_Layer: 7
   m_Name: Position (3)
-  m_TagString: Untagged
+  m_TagString: BoardPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1325,7 +1325,7 @@ GameObject:
   - component: {fileID: 3706650639834453802}
   m_Layer: 7
   m_Name: Position
-  m_TagString: Untagged
+  m_TagString: BoardPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1525,7 +1525,7 @@ GameObject:
   - component: {fileID: 6913123386140838468}
   m_Layer: 7
   m_Name: Position (8)
-  m_TagString: Untagged
+  m_TagString: BoardPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1725,7 +1725,7 @@ GameObject:
   - component: {fileID: 4362111242690742507}
   m_Layer: 7
   m_Name: Position (2)
-  m_TagString: Untagged
+  m_TagString: BoardPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

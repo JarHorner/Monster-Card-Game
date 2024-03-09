@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TurnTimerUI : MonoBehaviour
+public class OtherTurnTimerUI : MonoBehaviour
 {
 
     [SerializeField] private TextMeshProUGUI timerText;

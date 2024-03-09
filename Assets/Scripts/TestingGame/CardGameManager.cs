@@ -10,7 +10,9 @@ public class CardGameManager : NetworkBehaviour
     {
         WaitingToStart,
         CountdownToStart,
-        Turn,
+        EndTurn,
+        Player1Turn,
+        Player2Turn,
         Battle,
         Ending,
         GameOver,
@@ -19,6 +21,8 @@ public class CardGameManager : NetworkBehaviour
     public static CardGameManager Instance { get; private set; }
 
     public event EventHandler OnStateChanged;
+
+    private int lastPlayersTurn; //can be 1 or 2
 
     [SyncVar] private State _syncedState;
     public State state
@@ -35,10 +39,11 @@ public class CardGameManager : NetworkBehaviour
         }
     }
 
-    [SyncVar] private float countdownToStartTimer = 0f;
+    [SyncVar] private float countdownToStartTimer = 3f;
     [SyncVar] private float playerTurnTimer = 0f;
 
     private float playerTurnTimerMax = 90f;
+    private float countdownToStartTimerMax = 3f;
 
     private void Awake()
     {
@@ -67,19 +72,39 @@ public class CardGameManager : NetworkBehaviour
                 if (countdownToStartTimer <= 0f)
                 {
                     playerTurnTimer = playerTurnTimerMax;
-                    state = State.Turn;
+                    state = State.EndTurn;
                 }
                 break;
-            case State.Turn:
+            case State.Player1Turn:
                 playerTurnTimer -= Time.deltaTime;
                 if (playerTurnTimer < 0f)
                 {
+                    lastPlayersTurn = 1;
                     state = State.Battle;
                 }
                 break;
+            case State.Player2Turn:
+                playerTurnTimer -= Time.deltaTime;
+                if (playerTurnTimer < 0f)
+                {
+                    lastPlayersTurn = 2;
+                    state = State.Battle;
+                }
+                break;
+            case State.Battle:
+                // Battle
+                state = State.Ending;
+                break;
             case State.Ending:
                 playerTurnTimer = playerTurnTimerMax;
-                state = State.Turn;
+                if (lastPlayersTurn == 1)
+                {
+                    state = State.Player2Turn;
+                }
+                else
+                {
+                    state = State.Player1Turn;
+                }
                 break;
             case State.GameOver:
                 break;
@@ -88,8 +113,12 @@ public class CardGameManager : NetworkBehaviour
 
     public bool IsPlayerTurn()
     {
-        Debug.Log(state == State.Turn);
-        return state == State.Turn;
+        return state == State.Player1Turn || state == State.Player2Turn;
+    }
+
+    public bool IsCountdownToStart()
+    {
+        return state == State.CountdownToStart;
     }
 
     public void SetStateCountdownToStartActive()

@@ -13,9 +13,10 @@ public class CardNetworkManager : NetworkManager
         players.Add(newPlayer);
 
 
-        if (NetworkServer.connections.Count == 2)
+       if (NetworkServer.connections.Count == 2)
         {
             Debug.Log("Two Players");
+            CardGameManager.Instance.SetStateCountdownToStartActive();
 
             //foreach (var conn in NetworkServer.connections)
             //{

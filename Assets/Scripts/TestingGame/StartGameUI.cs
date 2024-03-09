@@ -27,5 +27,7 @@ public class StartGameUI : MonoBehaviour
         Debug.Log("Ready!");
 
         gameObject.SetActive(false);
+
+        PlayerManager.LocalInstance.CmdDealCards();
     }
 }

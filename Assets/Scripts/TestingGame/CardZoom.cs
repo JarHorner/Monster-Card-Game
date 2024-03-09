@@ -18,9 +18,19 @@ public class CardZoom : NetworkBehaviour
 
     public void OnHoverEnter()
     {
-        if (gameObject.tag == "Enemy") return;
+        if (gameObject.tag == "Enemy" || gameObject.GetComponent<DragDrop>().IsDragging()) return;
 
-        zoomCard = Instantiate(zoomCardPrefab, new Vector2(gameObject.transform.position.x - 250, gameObject.transform.position.y), Quaternion.identity);
+
+        string parentTag = this.transform.parent.tag;
+
+        if (parentTag == "PlayerArea")
+        {
+            InstatiateCardBeside();
+        }
+        else if (parentTag == "BoardPosition")
+        {
+            InstatiateCardOnTop();
+        }
 
         GetCardDetails();
 
@@ -35,6 +45,16 @@ public class CardZoom : NetworkBehaviour
     public void OnHoverExit()
     {
         Destroy(zoomCard);
+    }
+
+    private void InstatiateCardBeside()
+    {
+        zoomCard = Instantiate(zoomCardPrefab, new Vector2(gameObject.transform.position.x - 250, gameObject.transform.position.y), Quaternion.identity);
+    }
+
+    private void InstatiateCardOnTop()
+    {
+        zoomCard = Instantiate(zoomCardPrefab, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
     }
 
     private void GetCardDetails()

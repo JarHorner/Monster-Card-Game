@@ -86,5 +86,10 @@ public class DragDrop : NetworkBehaviour
         }
     }
 
+    public bool IsDragging()
+    {
+        return isDragging;
+    }
+
 
 }

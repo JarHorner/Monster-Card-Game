@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class TurnTimer : MonoBehaviour
+public class TurnTimerUI : MonoBehaviour
 {
 
     [SerializeField] TMP_Text turnTimerText;
@@ -30,12 +30,12 @@ public class TurnTimer : MonoBehaviour
 
     private void Update()
     {
-        int countdownNumber = Mathf.CeilToInt(CardGameManager.Instance.GetPlayerTurnTimer());
-        turnTimerText.text = countdownNumber.ToString("F0");
+        int timerNumber = Mathf.CeilToInt(CardGameManager.Instance.GetPlayerTurnTimer());
+        turnTimerText.text = timerNumber.ToString("F0");
 
-        if (previousTimerNumber != countdownNumber)
+        if (previousTimerNumber != timerNumber)
         {
-            previousTimerNumber = countdownNumber;
+            previousTimerNumber = timerNumber;
         }
     }
 

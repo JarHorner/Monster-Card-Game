@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Owner
   - Enemy
+  - BoardPosition
+  - PlayerArea
+  - EnemyArea
   layers:
   - Default
   - TransparentFX

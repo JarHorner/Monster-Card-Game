@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyArea
       objectReference: {fileID: 0}
+    - target: {fileID: 508424313672121117, guid: b4f0d6c0d277a464091b5586ab80cdd4, type: 3}
+      propertyPath: m_TagString
+      value: EnemyArea
+      objectReference: {fileID: 0}
     - target: {fileID: 1035969071871378769, guid: b4f0d6c0d277a464091b5586ab80cdd4, type: 3}
       propertyPath: _assetId
       value: 2015402849

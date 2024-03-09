@@ -132,7 +132,7 @@ public class PlayerManager : NetworkBehaviour
     [ClientRpc]
     private void RpcCountdownTurnTimer(GameObject turnTimer, int turnTimerNum)
     {
-        turnTimer.GetComponent<TurnTimer>().SetTurnTimerText(turnTimerNum);
+        turnTimer.GetComponent<TurnTimerUI>().SetTurnTimerText(turnTimerNum);
     }
 
     public bool HasPickedUpCards()
