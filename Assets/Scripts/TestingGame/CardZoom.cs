@@ -20,17 +20,7 @@ public class CardZoom : NetworkBehaviour
     {
         if (gameObject.tag == "Enemy" || gameObject.GetComponent<DragDrop>().IsDragging()) return;
 
-
-        string parentTag = this.transform.parent.tag;
-
-        if (parentTag == "PlayerArea")
-        {
-            InstatiateCardBeside();
-        }
-        else if (parentTag == "BoardPosition")
-        {
-            InstatiateCardOnTop();
-        }
+        zoomCard = Instantiate(zoomCardPrefab, new Vector2(gameObject.transform.position.x - 250, gameObject.transform.position.y), Quaternion.identity);
 
         GetCardDetails();
 
@@ -38,7 +28,7 @@ public class CardZoom : NetworkBehaviour
         zoomCard.transform.SetParent(Canvas.transform, true);
 
         RectTransform rect = zoomCard.GetComponent<RectTransform>();
-        rect.localScale = new Vector2(1.75f, 1.75f);
+        rect.localScale = new Vector2(1.6f, 1.6f);
 
     }
 
@@ -47,21 +37,11 @@ public class CardZoom : NetworkBehaviour
         Destroy(zoomCard);
     }
 
-    private void InstatiateCardBeside()
-    {
-        zoomCard = Instantiate(zoomCardPrefab, new Vector2(gameObject.transform.position.x - 250, gameObject.transform.position.y), Quaternion.identity);
-    }
-
-    private void InstatiateCardOnTop()
-    {
-        zoomCard = Instantiate(zoomCardPrefab, new Vector2(gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
-    }
-
     private void GetCardDetails()
     {
         CardSO cardSO = gameObject.GetComponent<Card>().GetCardSO();
 
-        zoomCard.GetComponent<ZoomedCard>().PopulateZoomedCard(cardSO.cardName, cardSO.topRank, cardSO.leftRank, cardSO.rightRank, cardSO.bottomRank, 
+        zoomCard.GetComponent<ZoomedCard>().PopulateZoomedCard(cardSO.cardName, cardSO.topRank, cardSO.leftRank, cardSO.rightRank, cardSO.bottomRank,
             cardSO.backgroundSprite, cardSO.monsterSprite, cardSO.elementSprite);
     }
 

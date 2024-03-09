@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Beholder
   m_EditorClassIdentifier: 
   prefab: {fileID: 7572643324219889465, guid: 1f52995457449164497723b4d8ad1ac7, type: 3}
-  cardName: 
+  cardName: Beholder
   level: 0
   topRank: 0
   rightRank: 0
   bottomRank: 0
   leftRank: 0
-  monsterSprite: {fileID: 0}
+  monsterSprite: {fileID: 21300000, guid: cebd0b0d9bf7b454fa49e744906da94f, type: 3}
   elementSprite: {fileID: 0}

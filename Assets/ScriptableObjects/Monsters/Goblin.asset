@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Goblin
   m_EditorClassIdentifier: 
   prefab: {fileID: 8437685232243826847, guid: 1853ea36810f57147b7ba1f9b5e57f69, type: 3}
-  cardName: 
+  cardName: Goblin
   level: 0
   topRank: 0
   rightRank: 0
   bottomRank: 0
   leftRank: 0
-  monsterSprite: {fileID: 0}
+  monsterSprite: {fileID: 21300000, guid: 1375143ffcb8dac4f90c0705f91e870f, type: 3}
   elementSprite: {fileID: 0}

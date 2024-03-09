@@ -488,6 +488,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardSO: {fileID: 0}
+  cardNameText: {fileID: 8891753026320983538}
+  topRankText: {fileID: 8033642035011069567}
+  leftRankText: {fileID: 4866400419980783872}
+  rightRankText: {fileID: 6355807523190210035}
+  bottomRankText: {fileID: 897002743658560598}
+  levelText: {fileID: 8584330153167831413}
+  backgroundImage: {fileID: 904176204056914551}
+  MonsterImage: {fileID: 234946366317024514}
+  elementImage: {fileID: 7163194782588119430}
 --- !u!114 &4017090557959162066
 MonoBehaviour:
   m_ObjectHideFlags: 0

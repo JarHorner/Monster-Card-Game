@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 234946366317024514, guid: 2748948982ac0d44fb0cf71edda36e04, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1375143ffcb8dac4f90c0705f91e870f, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 1026021481288170163, guid: 2748948982ac0d44fb0cf71edda36e04, type: 3}
       propertyPath: cardSO
       value: 
