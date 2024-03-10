@@ -30,12 +30,15 @@ public class TurnTimerUI : MonoBehaviour
 
     private void Update()
     {
-        int timerNumber = Mathf.CeilToInt(CardGameManager.Instance.GetPlayerTurnTimer());
-        turnTimerText.text = timerNumber.ToString("F0");
-
-        if (previousTimerNumber != timerNumber)
+        if (CardGameManager.Instance.state == CardGameManager.State.Player1Turn || CardGameManager.Instance.state == CardGameManager.State.Player2Turn)
         {
-            previousTimerNumber = timerNumber;
+            int timerNumber = Mathf.CeilToInt(CardGameManager.Instance.GetPlayerTurnTimer());
+            turnTimerText.text = timerNumber.ToString("F0");
+
+            if (previousTimerNumber != timerNumber)
+            {
+                previousTimerNumber = timerNumber;
+            }
         }
     }
 

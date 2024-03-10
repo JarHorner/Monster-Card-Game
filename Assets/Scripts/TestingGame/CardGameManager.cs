@@ -72,7 +72,7 @@ public class CardGameManager : NetworkBehaviour
                 if (countdownToStartTimer <= 0f)
                 {
                     playerTurnTimer = playerTurnTimerMax;
-                    state = State.EndTurn;
+                    state = State.Player1Turn;
                 }
                 break;
             case State.Player1Turn:
@@ -129,5 +129,10 @@ public class CardGameManager : NetworkBehaviour
     public float GetPlayerTurnTimer()
     {
         return playerTurnTimer;
+    }
+
+    public float GetCountdownToStartTimer()
+    {
+        return countdownToStartTimer;
     }
 }

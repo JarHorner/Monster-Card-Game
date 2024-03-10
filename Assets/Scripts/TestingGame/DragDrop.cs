@@ -18,7 +18,7 @@ public class DragDrop : NetworkBehaviour
     {
         Canvas = GameObject.Find("Main Canvas");
 
-        if (!isOwned)
+        if (!isOwned && !CardGameManager.Instance.IsPlayerTurn())
         {
             isDraggable = false;
         }

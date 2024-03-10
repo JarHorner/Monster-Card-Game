@@ -10,11 +10,12 @@ public class CardFlipper : MonoBehaviour
     [SerializeField] private Sprite enemyCardSprite;
     [SerializeField] private Sprite cardBackSprite;
 
-    public void Flip()
+    public void Flip(bool flipToBack)
     {
+        Debug.Log("Flipping");
         Sprite currentSprite = backgroundImage.sprite;
 
-        if (currentSprite == null)
+        if (flipToBack)
         {
             backgroundImage.sprite = cardBackSprite;
 

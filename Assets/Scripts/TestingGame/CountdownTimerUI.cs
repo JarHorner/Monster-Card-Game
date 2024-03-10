@@ -29,12 +29,15 @@ public class CountdownTimerUI : MonoBehaviour
 
     private void Update()
     {
-        int countdownNumber = Mathf.CeilToInt(CardGameManager.Instance.GetPlayerTurnTimer());
-        countdownTimerText.text = countdownNumber.ToString("F0");
-
-        if (previousTimerNumber != countdownNumber)
+        if (CardGameManager.Instance.state == CardGameManager.State.CountdownToStart)
         {
-            previousTimerNumber = countdownNumber;
+            int countdownNumber = Mathf.CeilToInt(CardGameManager.Instance.GetCountdownToStartTimer());
+            countdownTimerText.text = countdownNumber.ToString("F0");
+
+            if (previousTimerNumber != countdownNumber)
+            {
+                previousTimerNumber = countdownNumber;
+            }
         }
     }
 

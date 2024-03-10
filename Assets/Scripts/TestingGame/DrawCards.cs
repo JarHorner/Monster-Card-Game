@@ -9,8 +9,6 @@ public class DrawCards : NetworkBehaviour
     {
         if (!PlayerManager.LocalInstance.HasPickedUpCards())
         {
-            CardGameManager.Instance.SetStateCountdownToStartActive();
-
             PlayerManager.LocalInstance.CmdDealCards();
         }
     }

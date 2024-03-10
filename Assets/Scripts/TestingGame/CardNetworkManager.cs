@@ -6,17 +6,16 @@ using Mirror;
 public class CardNetworkManager : NetworkManager
 {
     [SerializeField] private List<GameObject> players;
+        
     public override void OnServerAddPlayer(NetworkConnectionToClient connection)
     {
         GameObject newPlayer = Instantiate(playerPrefab);
         NetworkServer.AddPlayerForConnection(connection, newPlayer);
         players.Add(newPlayer);
 
-
-       if (NetworkServer.connections.Count == 2)
+        if (NetworkServer.connections.Count == 2)
         {
             Debug.Log("Two Players");
-            CardGameManager.Instance.SetStateCountdownToStartActive();
 
             //foreach (var conn in NetworkServer.connections)
             //{

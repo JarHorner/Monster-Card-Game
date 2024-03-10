@@ -52,10 +52,10 @@ MonoBehaviour:
   possibleCards:
   - {fileID: 7381202477458643134, guid: 3d70b3e311c553d40a704ff268e3d765, type: 3}
   - {fileID: 7813959633660223973, guid: 52631fb9b73ba0140a4729fe004d7861, type: 3}
-  cardBack: {fileID: 1739030888917554113, guid: a2cff33a1d85bc849afd5d7008ee3461, type: 3}
   playerArea: {fileID: 0}
   enemyArea: {fileID: 0}
   positions: []
+  gridPanel: {fileID: 0}
 --- !u!114 &4730872734036764240
 MonoBehaviour:
   m_ObjectHideFlags: 0

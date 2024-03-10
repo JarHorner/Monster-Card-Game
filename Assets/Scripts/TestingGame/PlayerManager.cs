@@ -72,7 +72,7 @@ public class PlayerManager : NetworkBehaviour
             card.transform.SetParent(enemyArea.transform, false);
             card.tag = "Enemy";
 
-            card.GetComponent<CardFlipper>().Flip();
+            card.GetComponent<CardFlipper>().Flip(true);
         }
 
     }
@@ -94,7 +94,7 @@ public class PlayerManager : NetworkBehaviour
         card.transform.SetParent(dropZonePosition.transform, false);
 
         if (!isOwned)
-            card.GetComponent<CardFlipper>().Flip();
+            card.GetComponent<CardFlipper>().Flip(false);
     }
 
     [Command]
@@ -139,4 +139,6 @@ public class PlayerManager : NetworkBehaviour
     {
         return pickedUpCards;
     }
+
+
 }
