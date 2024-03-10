@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8891753026320983538, guid: 2748948982ac0d44fb0cf71edda36e04, type: 3}
       propertyPath: m_text
-      value: Beholder
+      value: Name
       objectReference: {fileID: 0}
     - target: {fileID: 9082618320338156234, guid: 2748948982ac0d44fb0cf71edda36e04, type: 3}
       propertyPath: m_SizeDelta.x
