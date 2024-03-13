@@ -29,7 +29,14 @@ public class CardNetworkManager : NetworkManager
 
         if (NetworkServer.connections.Count == 2)
         {
+            int id = 1;
             Debug.Log("Two Players");
+            foreach(GameObject player in players)
+            {
+                PlayerManager playerManager = player.GetComponent<PlayerManager>();
+                CardGameManager.Instance.RpcAssignPlayerId(playerManager, id);
+                id++;
+            }
         }
     }
 

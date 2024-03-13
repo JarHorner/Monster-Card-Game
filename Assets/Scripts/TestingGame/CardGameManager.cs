@@ -143,6 +143,14 @@ public class CardGameManager : NetworkBehaviour
         }
     }
 
+    [ClientRpc]
+    public void RpcAssignPlayerId(PlayerManager playerManager, int playerId)
+    {
+        playerManager.SetPlayerId(playerId);
+        // Do something on the client with the assigned player ID if needed
+        Debug.Log("Player " + playerId + " joined the game.");
+    }
+
     public bool IsPlayerTurn()
     {
         return state == State.Player1Turn || state == State.Player2Turn;
