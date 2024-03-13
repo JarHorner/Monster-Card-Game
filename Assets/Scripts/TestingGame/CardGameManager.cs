@@ -43,7 +43,7 @@ public class CardGameManager : NetworkBehaviour
     [SyncVar] private float countdownToStartTimer = 0f;
     [SyncVar] private float playerTurnTimer = 0f;
 
-    private float playerTurnTimerMax = 60f;
+    private float playerTurnTimerMax = 10f;
     private float countdownToStartTimerMax = 3f;
 
     private void Awake()
@@ -104,15 +104,42 @@ public class CardGameManager : NetworkBehaviour
                 playerTurnTimer = playerTurnTimerMax;
                 if (lastPlayersTurn == 1)
                 {
+                    Debug.Log("IT IS PLAYER 2 TURN!");
                     state = State.Player2Turn;
                 }
                 else
                 {
+                    Debug.Log("IT IS PLAYER 1 TURN!");
                     state = State.Player1Turn;
                 }
                 break;
             case State.GameOver:
                 break;
+        }
+    }
+
+    public bool IsPlayersTurn(int playerNumber)
+    {
+        Debug.Log(playerNumber + " is trying to drag on " + state + " state");
+
+        if (state == State.Player1Turn)
+        {
+            if (playerNumber == 1)
+                return true;
+            else
+                return false;
+        }
+        else if (state == State.Player2Turn)
+        {
+            if (playerNumber == 2)
+                return true;
+            else
+                return false;
+        }
+        else
+        {
+            Debug.LogError("IsPlayersTurn should not get here. This means a players number is being assigned incorrectly.");
+            return false;
         }
     }
 

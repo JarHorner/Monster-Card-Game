@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class PlayerManager : NetworkBehaviour
 {
     public static PlayerManager LocalInstance;
-    private NetworkIdentity networkIdentity;
 
+    [SerializeField] private int playerId;
     public int playerOrder;
 
     [SerializeField] private List<GameObject> possibleCards;
@@ -26,7 +26,14 @@ public class PlayerManager : NetworkBehaviour
         base.OnStartClient();
 
         if (isOwned)
+        {
             LocalInstance = this;
+            int connectionId = connectionToServer.connectionId;
+            playerId = GameObject.Find("NetworkManager").GetComponent<CardNetworkManager>().GetPlayerId(connectionId);
+
+            Debug.Log("My Player ID: " + playerId);
+
+        }
 
         playerArea = GameObject.Find("PlayerArea");
         enemyArea = GameObject.Find("EnemyArea");
@@ -36,12 +43,9 @@ public class PlayerManager : NetworkBehaviour
         {
             positions.Add(dropZone.transform.GetChild(i).gameObject);
         }
-        networkIdentity = GetComponent<NetworkIdentity>();
 
-        CardNetworkManager networkManager = GameObject.Find("NetworkManager").GetComponent<CardNetworkManager>();
-        playerOrder = networkManager.GetPlayerIndex(networkIdentity.connectionToServer);
-        
     }
+
 
     public override void OnStartServer()
     {
@@ -146,6 +150,16 @@ public class PlayerManager : NetworkBehaviour
     public bool HasPickedUpCards()
     {
         return pickedUpCards;
+    }
+
+    public int GetPlayerId()
+    {
+        return playerId;
+    }
+
+    public void SetPlayerId(int number)
+    {
+        playerId = number;
     }
 
 
