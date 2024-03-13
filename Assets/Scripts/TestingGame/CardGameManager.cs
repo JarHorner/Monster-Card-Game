@@ -9,6 +9,7 @@ public class CardGameManager : NetworkBehaviour
     public enum State
     {
         WaitingToStart,
+        ReadyToStart,
         CountdownToStart,
         EndTurn,
         Player1Turn,
@@ -39,10 +40,10 @@ public class CardGameManager : NetworkBehaviour
         }
     }
 
-    [SyncVar] private float countdownToStartTimer = 3f;
+    [SyncVar] private float countdownToStartTimer = 0f;
     [SyncVar] private float playerTurnTimer = 0f;
 
-    private float playerTurnTimerMax = 90f;
+    private float playerTurnTimerMax = 60f;
     private float countdownToStartTimerMax = 3f;
 
     private void Awake()
@@ -66,6 +67,10 @@ public class CardGameManager : NetworkBehaviour
         switch (state)
         {
             case State.WaitingToStart:
+                break;
+            case State.ReadyToStart:
+                countdownToStartTimer = countdownToStartTimerMax;
+                state = State.CountdownToStart;
                 break;
             case State.CountdownToStart:
                 countdownToStartTimer -= Time.deltaTime;
@@ -121,9 +126,9 @@ public class CardGameManager : NetworkBehaviour
         return state == State.CountdownToStart;
     }
 
-    public void SetStateCountdownToStartActive()
+    public void AllPlayersReady()
     {
-        state = State.CountdownToStart;
+        state = State.ReadyToStart;
     }
 
     public float GetPlayerTurnTimer()

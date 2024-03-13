@@ -75,6 +75,6 @@ public class StartGameUI : NetworkBehaviour
 
         // Add logic to start the game on all clients here
 
-        CardGameManager.Instance.SetStateCountdownToStartActive();
+        CardGameManager.Instance.AllPlayersReady();
     }
 }

@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class PlayerManager : NetworkBehaviour
 {
     public static PlayerManager LocalInstance;
+    private NetworkIdentity networkIdentity;
+
+    public int playerOrder;
 
     [SerializeField] private List<GameObject> possibleCards;
     [SerializeField] private GameObject playerArea;
@@ -33,6 +36,11 @@ public class PlayerManager : NetworkBehaviour
         {
             positions.Add(dropZone.transform.GetChild(i).gameObject);
         }
+        networkIdentity = GetComponent<NetworkIdentity>();
+
+        CardNetworkManager networkManager = GameObject.Find("NetworkManager").GetComponent<CardNetworkManager>();
+        playerOrder = networkManager.GetPlayerIndex(networkIdentity.connectionToServer);
+        
     }
 
     public override void OnStartServer()

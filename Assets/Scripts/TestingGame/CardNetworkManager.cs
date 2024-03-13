@@ -6,30 +6,38 @@ using Mirror;
 public class CardNetworkManager : NetworkManager
 {
     [SerializeField] private List<GameObject> players;
-        
+
+    private int playerIndex = 0;
+    private Dictionary<int, int> connectionIdToPlayerIndex = new Dictionary<int, int>();
+
     public override void OnServerAddPlayer(NetworkConnectionToClient connection)
     {
         GameObject newPlayer = Instantiate(playerPrefab);
         NetworkServer.AddPlayerForConnection(connection, newPlayer);
         players.Add(newPlayer);
 
+
+        // Assign a player index to the new player
+        connectionIdToPlayerIndex[connection.connectionId] = playerIndex++;
+
         if (NetworkServer.connections.Count == 2)
         {
             Debug.Log("Two Players");
 
-            //foreach (var conn in NetworkServer.connections)
-            //{
-            //    if (conn.Value != null && conn.Value.identity != null)
-            //    {
-            //        NetworkIdentity playerIdentity = conn.Value.identity;
+        }
+    }
 
-            //        PlayerManager playerManager = playerIdentity.GetComponent<PlayerManager>();
-
-            //        playerManager.CmdDealCards();
-
-            //        Debug.Log($"Dealing Cards!");
-            //    }
-            //}
+    // Gets the players index for a connection
+    public int GetPlayerIndex(NetworkConnection conn)
+    {
+        if (connectionIdToPlayerIndex.ContainsKey(conn.connectionId))
+        {
+            return connectionIdToPlayerIndex[conn.connectionId];
+        }
+        else
+        {
+            Debug.LogError("Player index not found for connection: " + conn.connectionId);
+            return -1;
         }
     }
 
