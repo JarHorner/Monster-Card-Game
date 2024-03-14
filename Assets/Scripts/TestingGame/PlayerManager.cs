@@ -28,10 +28,6 @@ public class PlayerManager : NetworkBehaviour
         if (isOwned)
         {
             LocalInstance = this;
-            //int connectionId = connectionToServer.connectionId;
-            //playerId = GameObject.Find("NetworkManager").GetComponent<CardNetworkManager>().GetPlayerId(connectionId);
-
-            //Debug.Log("My Player ID: " + playerId);
         }
 
         playerArea = GameObject.Find("PlayerArea");
