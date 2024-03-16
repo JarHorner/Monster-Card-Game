@@ -9,7 +9,7 @@ public class CardGameManager : NetworkBehaviour
     public enum State
     {
         WaitingToStart,
-        ReadyToStart,
+        AllPlayersReady,
         CountdownToStart,
         EndTurn,
         Player1Turn,
@@ -23,9 +23,9 @@ public class CardGameManager : NetworkBehaviour
 
     public event EventHandler OnStateChanged;
 
-    private int lastPlayersTurn; //can be 1 or 2
+    [SyncVar] private int lastPlayersTurn; //can be 1 or 2
 
-    [SyncVar] private State _syncedState;
+    [SyncVar, SerializeField] private State _syncedState;
     public State state
     { 
         get
@@ -68,7 +68,7 @@ public class CardGameManager : NetworkBehaviour
         {
             case State.WaitingToStart:
                 break;
-            case State.ReadyToStart:
+            case State.AllPlayersReady:
                 countdownToStartTimer = countdownToStartTimerMax;
                 state = State.CountdownToStart;
                 break;
@@ -118,20 +118,20 @@ public class CardGameManager : NetworkBehaviour
         }
     }
 
-    public bool IsPlayersTurn(int playerNumber)
+    public bool IsPlayersTurn(int playerId)
     {
-        Debug.Log(playerNumber + " is trying to drag on " + state + " state");
+        Debug.Log(playerId + " is trying to drag on " + state + " state");
 
         if (state == State.Player1Turn)
         {
-            if (playerNumber == 1)
+            if (playerId == 1)
                 return true;
             else
                 return false;
         }
         else if (state == State.Player2Turn)
         {
-            if (playerNumber == 2)
+            if (playerId == 2)
                 return true;
             else
                 return false;
@@ -147,7 +147,7 @@ public class CardGameManager : NetworkBehaviour
     public void RpcAssignPlayerId(PlayerManager playerManager, int playerId)
     {
         playerManager.SetPlayerId(playerId);
-        // Do something on the client with the assigned player ID if needed
+
         Debug.Log("Player " + playerId + " joined the game.");
     }
 
@@ -161,9 +161,17 @@ public class CardGameManager : NetworkBehaviour
         return state == State.CountdownToStart;
     }
 
-    public void AllPlayersReady()
+    public void StartBattle(int playerId)
     {
-        state = State.ReadyToStart;
+        Debug.Log("Starting Battle, " + playerId);
+
+        lastPlayersTurn = playerId;
+        state = State.Battle;
+    }
+
+    public void SetStateAllPlayersReady()
+    {
+        state = State.AllPlayersReady;
     }
 
     public float GetPlayerTurnTimer()

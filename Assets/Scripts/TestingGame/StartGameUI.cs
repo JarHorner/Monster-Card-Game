@@ -49,11 +49,11 @@ public class StartGameUI : NetworkBehaviour
 
         PlayerManager.LocalInstance.CmdDealCards();
 
-        RpcUpdatePlayerReadyCount(playersReady);
+        RpcUpdatePlayerReadyCount();
     }
 
     [ClientRpc]
-    public void RpcUpdatePlayerReadyCount(int count)
+    public void RpcUpdatePlayerReadyCount()
     {
         Debug.Log("Client RPC!");
 
@@ -75,6 +75,6 @@ public class StartGameUI : NetworkBehaviour
 
         // Add logic to start the game on all clients here
 
-        CardGameManager.Instance.AllPlayersReady();
+        CardGameManager.Instance.SetStateAllPlayersReady();
     }
 }

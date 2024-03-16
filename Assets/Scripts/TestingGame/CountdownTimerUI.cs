@@ -29,7 +29,7 @@ public class CountdownTimerUI : MonoBehaviour
 
     private void Update()
     {
-        if (CardGameManager.Instance.state == CardGameManager.State.CountdownToStart)
+        if (CardGameManager.Instance.IsCountdownToStart())
         {
             int countdownNumber = Mathf.CeilToInt(CardGameManager.Instance.GetCountdownToStartTimer());
             countdownTimerText.text = countdownNumber.ToString("F0");

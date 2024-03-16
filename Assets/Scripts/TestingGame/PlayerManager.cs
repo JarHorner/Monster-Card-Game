@@ -86,11 +86,18 @@ public class PlayerManager : NetworkBehaviour
 
     public void PlayCard(GameObject card, GameObject dropZonePosition)
     {
-        cmdPlayCard(card, dropZonePosition);
+        CmdStartBattle(playerId);
+        CmdPlayCard(card, dropZonePosition);
     }
 
     [Command]
-    private void cmdPlayCard(GameObject card, GameObject dropZonePosition)
+    private void CmdStartBattle(int playerId)
+    {
+        CardGameManager.Instance.StartBattle(playerId);
+    }
+
+    [Command]
+    private void CmdPlayCard(GameObject card, GameObject dropZonePosition)
     {
         RpcPlayCard(card, dropZonePosition);
     }
