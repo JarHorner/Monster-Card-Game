@@ -1201,6 +1201,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4830086694528217910, guid: a94923bdbd6f9b441abe53db2e1956d4, type: 3}
+      propertyPath: coordinateSpace
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6765230518449122976, guid: a94923bdbd6f9b441abe53db2e1956d4, type: 3}
       propertyPath: m_Name
       value: TurnTimerUI

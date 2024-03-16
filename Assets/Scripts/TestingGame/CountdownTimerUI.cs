@@ -1,22 +1,25 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class CountdownTimerUI : MonoBehaviour
+public class CountdownTimerUI : NetworkBehaviour
 {
     [SerializeField] TMP_Text countdownTimerText;
     private float previousTimerNumber;
 
     private void Start()
     {
+        Debug.Log("CountdowntimerUI Starting");
         CardGameManager.Instance.OnStateChanged += CardGameManager_OnStateChanged;
 
-        Hide();
+        //Hide();
     }
 
     private void CardGameManager_OnStateChanged(object sender, System.EventArgs e)
     {
+        Debug.Log("is the state Countdown timer " + CardGameManager.Instance.IsCountdownToStart());
         if (CardGameManager.Instance.IsCountdownToStart())
         {
             Show();
@@ -46,13 +49,17 @@ public class CountdownTimerUI : MonoBehaviour
         countdownTimerText.text = timerNum.ToString("F0");
     }
 
+
     public void Show()
     {
+        Debug.Log("Showing");
         gameObject.SetActive(true);
     }
 
-    private void Hide()
+
+    public void Hide()
     {
+        Debug.Log("Showing");
         gameObject.SetActive(false);
     }
 }

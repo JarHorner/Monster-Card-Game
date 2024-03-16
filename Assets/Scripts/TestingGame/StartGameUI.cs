@@ -28,6 +28,7 @@ public class StartGameUI : NetworkBehaviour
         {
             // Call a method to start the game on the server
             RpcStartGame();
+            CardGameManager.Instance.SetStateAllPlayersReady();
         }
     }
 
@@ -72,9 +73,5 @@ public class StartGameUI : NetworkBehaviour
 
         // Reset the player count for the next round or game
         playersReady = 0;
-
-        // Add logic to start the game on all clients here
-
-        CardGameManager.Instance.SetStateAllPlayersReady();
     }
 }

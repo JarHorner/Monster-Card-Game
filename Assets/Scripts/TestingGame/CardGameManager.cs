@@ -23,8 +23,6 @@ public class CardGameManager : NetworkBehaviour
 
     public event EventHandler OnStateChanged;
 
-    [SyncVar] private int lastPlayersTurn; //can be 1 or 2
-
     [SyncVar, SerializeField] private State _syncedState;
     public State state
     { 
@@ -36,9 +34,11 @@ public class CardGameManager : NetworkBehaviour
         {
             State previousStateValue = _syncedState;
             _syncedState = value;
-            State_OnValueChanged(previousStateValue, value);
+            RpcState_OnStateChanged(previousStateValue, value);
         }
     }
+
+    [SyncVar] private int lastPlayersTurn; //can be 1 or 2
 
     [SyncVar] private float countdownToStartTimer = 0f;
     [SyncVar] private float playerTurnTimer = 0f;
@@ -55,7 +55,8 @@ public class CardGameManager : NetworkBehaviour
         state = State.WaitingToStart;
     }
 
-    private void State_OnValueChanged(State previousValue, State newValue)
+    [ClientRpc]
+    private void RpcState_OnStateChanged(State previousValue, State newValue)
     {
         OnStateChanged?.Invoke(this, EventArgs.Empty);
     }

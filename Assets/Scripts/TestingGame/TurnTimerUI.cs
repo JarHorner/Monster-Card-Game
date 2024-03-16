@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Mirror;
 
-public class TurnTimerUI : MonoBehaviour
+public class TurnTimerUI : NetworkBehaviour
 {
 
     [SerializeField] TMP_Text turnTimerText;
@@ -13,7 +14,7 @@ public class TurnTimerUI : MonoBehaviour
     {
         CardGameManager.Instance.OnStateChanged += CardGameManager_OnStateChanged;
 
-        Hide();
+        //Hide();
     }
 
     private void CardGameManager_OnStateChanged(object sender, System.EventArgs e)
@@ -24,8 +25,9 @@ public class TurnTimerUI : MonoBehaviour
         }
         else
         {
-            Hide();
+            //Hide();
         }
+        //Show();
     }
 
     private void Update()
