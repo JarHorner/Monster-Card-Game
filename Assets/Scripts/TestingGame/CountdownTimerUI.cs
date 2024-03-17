@@ -12,22 +12,6 @@ public class CountdownTimerUI : MonoBehaviour
     private void Start()
     {
         Debug.Log("CountdowntimerUI Starting");
-        //CardGameManager.Instance.OnStateChanged += CardGameManager_OnStateChanged;
-
-        Show();
-    }
-
-    private void CardGameManager_OnStateChanged(object sender, System.EventArgs e)
-    {
-        Debug.Log("is the state Countdown timer " + CardGameManager.Instance.IsCountdownToStart());
-        if (CardGameManager.Instance.IsCountdownToStart())
-        {
-            Show();
-        }
-        else
-        {
-            Hide();
-        }
     }
 
     private void Update()
@@ -42,22 +26,14 @@ public class CountdownTimerUI : MonoBehaviour
         
     }
 
-    public void SetCountdownTimerText(int timerNum)
-    {
-        countdownTimerText.text = timerNum.ToString("F0");
-    }
-
-
     public void Show()
     {
-        Debug.Log("Showing");
         gameObject.SetActive(true);
     }
 
 
     public void Hide()
     {
-        Debug.Log("Showing");
         gameObject.SetActive(false);
     }
 }

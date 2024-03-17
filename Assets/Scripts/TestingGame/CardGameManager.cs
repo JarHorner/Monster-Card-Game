@@ -43,8 +43,8 @@ public class CardGameManager : NetworkBehaviour
     [SyncVar] private float countdownToStartTimer = 0f;
     [SyncVar] private float playerTurnTimer = 0f;
 
-    private float playerTurnTimerMax = 10f;
-    private float countdownToStartTimerMax = 3f;
+    private float playerTurnTimerMax = 10f; //60
+    private float countdownToStartTimerMax = 1f; //3
 
     [SerializeField] private GameObject UICanvas;
     [SerializeField] private GameObject CountdownTimerUIObject;
@@ -84,6 +84,9 @@ public class CardGameManager : NetworkBehaviour
                     CardGameUIManager.Instance.RpcDestoryCountdownTimerUI();
 
                     playerTurnTimer = playerTurnTimerMax;
+
+                    CardGameUIManager.Instance.SpawnTurnTimerUI();
+
                     state = State.Player1Turn;
                 }
                 break;

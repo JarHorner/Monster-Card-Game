@@ -16,16 +16,10 @@ public class CardNetworkManager : NetworkManager
         NetworkServer.AddPlayerForConnection(connection, newPlayer);
         players.Add(newPlayer);
 
-
-        //newPlayer.GetComponent<PlayerManager>().SetPlayerNumber(NetworkServer.connections.Count);
-
         // Assign a player ID to the new player
         int playerId = nextPlayerIndex;
         playerIdDictionary[connection.connectionId] = playerId;
         nextPlayerIndex++;
-
-        // Debug.Log(connection.connectionId);
-        // connectionIdToPlayerIndex.Add(connection.connectionId, playerIndex++);
 
         if (NetworkServer.connections.Count == 2)
         {

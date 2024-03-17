@@ -137,18 +137,6 @@ public class PlayerManager : NetworkBehaviour
         Debug.Log("Targeted by other");
     }
 
-    [Command]
-    public void CmdCountdownTurnTimer(GameObject turnTimer, int turnTimerNum)
-    {
-        RpcCountdownTurnTimer(turnTimer, turnTimerNum);
-    }
-
-    [ClientRpc]
-    private void RpcCountdownTurnTimer(GameObject turnTimer, int turnTimerNum)
-    {
-        turnTimer.GetComponent<TurnTimerUI>().SetTurnTimerText(turnTimerNum);
-    }
-
     public bool HasPickedUpCards()
     {
         return pickedUpCards;

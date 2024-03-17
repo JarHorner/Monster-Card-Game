@@ -12,22 +12,7 @@ public class TurnTimerUI : NetworkBehaviour
 
     private void Start()
     {
-        CardGameManager.Instance.OnStateChanged += CardGameManager_OnStateChanged;
-
-        //Hide();
-    }
-
-    private void CardGameManager_OnStateChanged(object sender, System.EventArgs e)
-    {
-        if (CardGameManager.Instance.IsPlayerTurn())
-        {
-            Show();
-        }
-        else
-        {
-            //Hide();
-        }
-        //Show();
+        Debug.Log("TurntimerUI Starting");
     }
 
     private void Update()
@@ -42,11 +27,6 @@ public class TurnTimerUI : NetworkBehaviour
                 previousTimerNumber = timerNumber;
             }
         }
-    }
-
-    public void SetTurnTimerText(int timerNum)
-    {
-        turnTimerText.text = timerNum.ToString("F0");
     }
 
     public void Show()
