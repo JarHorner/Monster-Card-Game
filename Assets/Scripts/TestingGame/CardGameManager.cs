@@ -46,6 +46,9 @@ public class CardGameManager : NetworkBehaviour
     private float playerTurnTimerMax = 10f;
     private float countdownToStartTimerMax = 3f;
 
+    [SerializeField] private GameObject UICanvas;
+    [SerializeField] private GameObject CountdownTimerUIObject;
+
     private void Awake()
     {
         Instance = this;
@@ -71,12 +74,15 @@ public class CardGameManager : NetworkBehaviour
                 break;
             case State.AllPlayersReady:
                 countdownToStartTimer = countdownToStartTimerMax;
+                CardGameUIManager.Instance.SpawnCountdownTimerUI();
                 state = State.CountdownToStart;
                 break;
             case State.CountdownToStart:
                 countdownToStartTimer -= Time.deltaTime;
                 if (countdownToStartTimer <= 0f)
                 {
+                    CardGameUIManager.Instance.RpcDestoryCountdownTimerUI();
+
                     playerTurnTimer = playerTurnTimerMax;
                     state = State.Player1Turn;
                 }

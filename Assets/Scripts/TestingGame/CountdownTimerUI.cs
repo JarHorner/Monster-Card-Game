@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class CountdownTimerUI : NetworkBehaviour
+public class CountdownTimerUI : MonoBehaviour
 {
     [SerializeField] TMP_Text countdownTimerText;
     private float previousTimerNumber;
@@ -12,9 +12,9 @@ public class CountdownTimerUI : NetworkBehaviour
     private void Start()
     {
         Debug.Log("CountdowntimerUI Starting");
-        CardGameManager.Instance.OnStateChanged += CardGameManager_OnStateChanged;
+        //CardGameManager.Instance.OnStateChanged += CardGameManager_OnStateChanged;
 
-        //Hide();
+        Show();
     }
 
     private void CardGameManager_OnStateChanged(object sender, System.EventArgs e)
@@ -32,8 +32,6 @@ public class CountdownTimerUI : NetworkBehaviour
 
     private void Update()
     {
-        if (CardGameManager.Instance.IsCountdownToStart())
-        {
             int countdownNumber = Mathf.CeilToInt(CardGameManager.Instance.GetCountdownToStartTimer());
             countdownTimerText.text = countdownNumber.ToString("F0");
 
@@ -41,7 +39,7 @@ public class CountdownTimerUI : NetworkBehaviour
             {
                 previousTimerNumber = countdownNumber;
             }
-        }
+        
     }
 
     public void SetCountdownTimerText(int timerNum)
