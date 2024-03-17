@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceffdc81d5cd80448aecbc6ce04d39cd, type: 3}
-  m_Name: GoblinCardSO
+  m_Name: HumanFighterCardSO
   m_EditorClassIdentifier: 
-  cardName: Goblin
-  level: 1
-  topRank: 1
-  rightRank: 1
-  bottomRank: 4
-  leftRank: 7
+  cardName: Human Fighter
+  level: 3
+  topRank: 6
+  rightRank: 6
+  bottomRank: 5
+  leftRank: 6
   backgroundSprite: {fileID: 1662736208, guid: b7097d6ab347b634da88c8454d56114e, type: 3}
-  monsterSprite: {fileID: 21300000, guid: 1375143ffcb8dac4f90c0705f91e870f, type: 3}
+  monsterSprite: {fileID: 21300000, guid: 7b3e2468afe2c4f42b62a99a7318ddf9, type: 3}
   elementSprite: {fileID: -1424618987, guid: 51cf6668eda4de8439a1443dec7b5498, type: 3}

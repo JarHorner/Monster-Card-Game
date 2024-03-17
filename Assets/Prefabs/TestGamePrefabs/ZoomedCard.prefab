@@ -868,6 +868,7 @@ MonoBehaviour:
   leftRankText: {fileID: 6586514294885949379}
   rightRankText: {fileID: 5807191527168133749}
   bottomRankText: {fileID: 2759257774374150730}
+  levelText: {fileID: 8184216973201026705}
   backgroundImage: {fileID: 1376126849782841371}
   MonsterImage: {fileID: 992912295356752465}
   elementImage: {fileID: 1300399745440435434}

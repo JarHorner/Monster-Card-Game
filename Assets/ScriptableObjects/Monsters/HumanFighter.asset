@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 5242109805049054787, guid: ced6d00477758a940894c77dc2afcaed, type: 3}
   cardName: Human Fighter
-  level: 5
-  topRank: 0
-  rightRank: 0
-  bottomRank: 0
-  leftRank: 0
+  level: 3
+  topRank: 6
+  rightRank: 6
+  bottomRank: 5
+  leftRank: 6
   monsterSprite: {fileID: 21300000, guid: 7b3e2468afe2c4f42b62a99a7318ddf9, type: 3}
   elementSprite: {fileID: -1424618987, guid: 51cf6668eda4de8439a1443dec7b5498, type: 3}

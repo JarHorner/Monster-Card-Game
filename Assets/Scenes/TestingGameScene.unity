@@ -242,6 +242,8 @@ MonoBehaviour:
   - {fileID: 5239527489794839184, guid: 56e1552375caac04896a958674cab75e, type: 3}
   - {fileID: 7381202477458643134, guid: 3d70b3e311c553d40a704ff268e3d765, type: 3}
   - {fileID: 7813959633660223973, guid: 52631fb9b73ba0140a4729fe004d7861, type: 3}
+  - {fileID: 4580105549560467374, guid: 5d6680871c437104894e0166f94aea8a, type: 3}
+  - {fileID: 1860932056125571411, guid: 94110809d4f4efe4da80f3427f7a4b7d, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -983,6 +985,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background
       objectReference: {fileID: 0}
+    - target: {fileID: 7558889376239366756, guid: 546ba1ecc5f18c24391d1cdf5a1b2b13, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4811321
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558889376239366756, guid: 546ba1ecc5f18c24391d1cdf5a1b2b13, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4811321
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558889376239366756, guid: 546ba1ecc5f18c24391d1cdf5a1b2b13, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4811321
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1166,7 +1180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2329871531174220550, guid: 326332a228575d2459ea22a045ff9527, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2329871531174220550, guid: 326332a228575d2459ea22a045ff9527, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

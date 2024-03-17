@@ -49,9 +49,13 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  playerId: 0
+  playerOrder: 0
   possibleCards:
   - {fileID: 7381202477458643134, guid: 3d70b3e311c553d40a704ff268e3d765, type: 3}
   - {fileID: 7813959633660223973, guid: 52631fb9b73ba0140a4729fe004d7861, type: 3}
+  - {fileID: 4580105549560467374, guid: 5d6680871c437104894e0166f94aea8a, type: 3}
+  - {fileID: 1860932056125571411, guid: 94110809d4f4efe4da80f3427f7a4b7d, type: 3}
   playerArea: {fileID: 0}
   enemyArea: {fileID: 0}
   positions: []

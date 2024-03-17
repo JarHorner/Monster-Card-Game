@@ -41,7 +41,7 @@ public class CardZoom : NetworkBehaviour
     {
         CardSO cardSO = gameObject.GetComponent<Card>().GetCardSO();
 
-        zoomCard.GetComponent<ZoomedCard>().PopulateZoomedCard(cardSO.cardName, cardSO.topRank, cardSO.leftRank, cardSO.rightRank, cardSO.bottomRank,
+        zoomCard.GetComponent<ZoomedCard>().PopulateZoomedCard(cardSO.cardName, cardSO.level, cardSO.topRank, cardSO.leftRank, cardSO.rightRank, cardSO.bottomRank,
             cardSO.backgroundSprite, cardSO.monsterSprite, cardSO.elementSprite);
     }
 
