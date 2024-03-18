@@ -1215,9 +1215,17 @@ PrefabInstance:
       value: 3342543983
       objectReference: {fileID: 0}
     - target: {fileID: 7607285887968941871, guid: 326332a228575d2459ea22a045ff9527, type: 3}
+      propertyPath: cards.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607285887968941871, guid: 326332a228575d2459ea22a045ff9527, type: 3}
       propertyPath: postions.Array.data[8]
       value: 
       objectReference: {fileID: 5870136063952880983}
+    - target: {fileID: 7607285887968941871, guid: 326332a228575d2459ea22a045ff9527, type: 3}
+      propertyPath: positionNumbers.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7668356335075327126, guid: 326332a228575d2459ea22a045ff9527, type: 3}
       propertyPath: sceneId
       value: 3758369584

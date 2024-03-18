@@ -108,6 +108,8 @@ public class CardGameManager : NetworkBehaviour
                 break;
             case State.Battle:
                 // Battle
+                CardsBattle();
+
                 state = State.Ending;
                 break;
             case State.Ending:
@@ -177,6 +179,11 @@ public class CardGameManager : NetworkBehaviour
 
         lastPlayersTurn = playerId;
         state = State.Battle;
+    }
+
+    private void CardsBattle()
+    {
+        DropZone.Instance.BattleCardsAlgorithm();
     }
 
     public void SetStateAllPlayersReady()

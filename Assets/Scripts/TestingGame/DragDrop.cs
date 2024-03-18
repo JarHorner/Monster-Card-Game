@@ -46,7 +46,7 @@ public class DragDrop : NetworkBehaviour
 
     public void StartDrag()
     {
-        if (!isDraggable || CardGameManager.Instance.state == CardGameManager.State.CountdownToStart || !CardGameManager.Instance.IsPlayersTurn(PlayerManager.LocalInstance.GetPlayerId())) return;
+        if (!isDraggable) return; //|| CardGameManager.Instance.state == CardGameManager.State.CountdownToStart || !CardGameManager.Instance.IsPlayersTurn(PlayerManager.LocalInstance.GetPlayerId())) return;
 
         isDragging = true;
 
@@ -61,14 +61,14 @@ public class DragDrop : NetworkBehaviour
 
         isDragging = false;
 
-        if (isOverDropzone && DropZone.Instance.GetPostions().Contains(dropZonePosition) && !DropZone.Instance.IsPositionFilled(dropZonePosition))
+        if (isOverDropzone && DropZone.Instance.PositionExists(dropZonePosition) && !DropZone.Instance.IsPositionFilled(dropZonePosition))
         {
             transform.SetParent(dropZonePosition.transform, false);
-            DropZone.Instance.FillPosition(dropZonePosition);
+            DropZone.Instance.FillPosition(dropZonePosition, gameObject);
             isDraggable = false;
 
             PlayerManager.LocalInstance.PlayCard(gameObject, dropZonePosition);
-            
+     
         }
         else
         {

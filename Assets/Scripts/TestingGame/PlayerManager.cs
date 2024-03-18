@@ -86,8 +86,8 @@ public class PlayerManager : NetworkBehaviour
 
     public void PlayCard(GameObject card, GameObject dropZonePosition)
     {
-        CmdStartBattle(playerId);
         CmdPlayCard(card, dropZonePosition);
+        CmdStartBattle(playerId);
     }
 
     [Command]

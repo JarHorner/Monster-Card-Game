@@ -21,6 +21,11 @@ public class Card : MonoBehaviour
     [SerializeField] private Image MonsterImage;
     [SerializeField] private Image elementImage;
 
+    public int topRank { get; private set; }
+    public int leftRank { get; private set; }
+    public int rightRank { get; private set; }
+    public int bottomRank { get; private set; }
+
     private void Awake()
     {
         cardNameText.text = cardSO.cardName;
