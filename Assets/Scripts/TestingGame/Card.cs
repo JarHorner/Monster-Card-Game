@@ -8,6 +8,8 @@ public class Card : MonoBehaviour
 {
     [SerializeField] private CardSO cardSO;
 
+    [SerializeField] private int playerOwnerId;
+
     [SerializeField] private TMP_Text cardNameText;
 
     [SerializeField] private TMP_Text topRankText;
@@ -40,6 +42,11 @@ public class Card : MonoBehaviour
         backgroundImage.sprite = cardSO.backgroundSprite;
         MonsterImage.sprite = cardSO.monsterSprite;
         elementImage.sprite = cardSO.elementSprite;
+    }
+
+    public void AssignPlayerOwnerID(int playerID)
+    {
+        playerOwnerId = playerID;
     }
 
     public CardSO GetCardSO()

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 738190676126011883}
   - component: {fileID: 2142183020576794944}
   - component: {fileID: 1629069719535433413}
-  - component: {fileID: 7783775966976597895}
-  - component: {fileID: 4487289810584842419}
+  - component: {fileID: 5039478077898025670}
+  - component: {fileID: 6611713929941079167}
   m_Layer: 7
   m_Name: Position
   m_TagString: Untagged
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 1
---- !u!114 &7783775966976597895
+--- !u!114 &5039478077898025670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,7 +166,7 @@ MonoBehaviour:
   serverOnly: 0
   visible: 0
   hasSpawned: 0
---- !u!114 &4487289810584842419
+--- !u!114 &6611713929941079167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

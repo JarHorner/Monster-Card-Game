@@ -64,7 +64,7 @@ public class DragDrop : NetworkBehaviour
         if (isOverDropzone && DropZone.Instance.PositionExists(dropZonePosition) && !DropZone.Instance.IsPositionFilled(dropZonePosition))
         {
             transform.SetParent(dropZonePosition.transform, false);
-            DropZone.Instance.FillPosition(dropZonePosition, gameObject);
+
             isDraggable = false;
 
             PlayerManager.LocalInstance.PlayCard(gameObject, dropZonePosition);

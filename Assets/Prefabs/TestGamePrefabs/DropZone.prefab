@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 42737011745841668}
   - component: {fileID: 2786456987629821860}
   - component: {fileID: 5734705199559366474}
-  - component: {fileID: 4240888840667429038}
-  - component: {fileID: 1012690476038365715}
+  - component: {fileID: 8637380881995169127}
+  - component: {fileID: 4150438903038811404}
   m_Layer: 7
   m_Name: Position7
   m_TagString: BoardPosition
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 1
---- !u!114 &4240888840667429038
+--- !u!114 &8637380881995169127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,7 +166,7 @@ MonoBehaviour:
   serverOnly: 0
   visible: 0
   hasSpawned: 0
---- !u!114 &1012690476038365715
+--- !u!114 &4150438903038811404
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -307,7 +307,8 @@ MonoBehaviour:
   - {fileID: 585375680689872492}
   - {fileID: 3803964242033727597}
   - {fileID: 8509804931707259513}
-  postionsFilled: 000000000000000000
+  cards: []
+  lastCardPlayed: {fileID: 0}
 --- !u!1 &3365147061512867168
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,8 +322,8 @@ GameObject:
   - component: {fileID: 6594277187490307768}
   - component: {fileID: 165949660495273412}
   - component: {fileID: 256471794259886827}
-  - component: {fileID: 141127158178454368}
-  - component: {fileID: 7587158526092579939}
+  - component: {fileID: 3954708535970960973}
+  - component: {fileID: 9027088263864452416}
   m_Layer: 7
   m_Name: Position6
   m_TagString: BoardPosition
@@ -456,7 +457,7 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 1
---- !u!114 &141127158178454368
+--- !u!114 &3954708535970960973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -474,7 +475,7 @@ MonoBehaviour:
   serverOnly: 0
   visible: 0
   hasSpawned: 0
---- !u!114 &7587158526092579939
+--- !u!114 &9027088263864452416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -521,8 +522,8 @@ GameObject:
   - component: {fileID: 2298982894138854707}
   - component: {fileID: 4665926701342740749}
   - component: {fileID: 4595927605282123793}
-  - component: {fileID: 4853093827270772032}
-  - component: {fileID: 8877774087346702129}
+  - component: {fileID: 313372817960099666}
+  - component: {fileID: 8457236134977253274}
   m_Layer: 7
   m_Name: Position8
   m_TagString: BoardPosition
@@ -656,7 +657,7 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 1
---- !u!114 &4853093827270772032
+--- !u!114 &313372817960099666
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -674,7 +675,7 @@ MonoBehaviour:
   serverOnly: 0
   visible: 0
   hasSpawned: 0
---- !u!114 &8877774087346702129
+--- !u!114 &8457236134977253274
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -721,8 +722,8 @@ GameObject:
   - component: {fileID: 2038159144638588071}
   - component: {fileID: 1904207736450090419}
   - component: {fileID: 3912591791175637875}
-  - component: {fileID: 7668356335075327126}
-  - component: {fileID: 1680807098593707324}
+  - component: {fileID: 5069552147445160443}
+  - component: {fileID: 4978421655347671772}
   m_Layer: 7
   m_Name: Position5
   m_TagString: BoardPosition
@@ -856,7 +857,7 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 1
---- !u!114 &7668356335075327126
+--- !u!114 &5069552147445160443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -874,7 +875,7 @@ MonoBehaviour:
   serverOnly: 0
   visible: 0
   hasSpawned: 0
---- !u!114 &1680807098593707324
+--- !u!114 &4978421655347671772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -921,8 +922,8 @@ GameObject:
   - component: {fileID: 7543565136808368251}
   - component: {fileID: 541580038247125387}
   - component: {fileID: 897388099983478861}
-  - component: {fileID: 5345733932847704503}
-  - component: {fileID: 5672131458238069729}
+  - component: {fileID: 3674424348862242277}
+  - component: {fileID: 2705820900202038926}
   m_Layer: 7
   m_Name: Position2
   m_TagString: BoardPosition
@@ -1056,7 +1057,7 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 1
---- !u!114 &5345733932847704503
+--- !u!114 &3674424348862242277
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1074,7 +1075,7 @@ MonoBehaviour:
   serverOnly: 0
   visible: 0
   hasSpawned: 0
---- !u!114 &5672131458238069729
+--- !u!114 &2705820900202038926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1121,10 +1122,10 @@ GameObject:
   - component: {fileID: 3848788108736513706}
   - component: {fileID: 2201982129042323822}
   - component: {fileID: 1396602849251223476}
-  - component: {fileID: 3971006360114646714}
-  - component: {fileID: 6474903213824471522}
+  - component: {fileID: 1911008059400237300}
+  - component: {fileID: 4333761199481444197}
   m_Layer: 7
-  m_Name: Position4)
+  m_Name: Position4
   m_TagString: BoardPosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1256,7 +1257,7 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 1
---- !u!114 &3971006360114646714
+--- !u!114 &1911008059400237300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1274,7 +1275,7 @@ MonoBehaviour:
   serverOnly: 0
   visible: 0
   hasSpawned: 0
---- !u!114 &6474903213824471522
+--- !u!114 &4333761199481444197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1321,8 +1322,8 @@ GameObject:
   - component: {fileID: 7438474039691177054}
   - component: {fileID: 4362499286549200993}
   - component: {fileID: 7099662830741074600}
-  - component: {fileID: 8255609849063177553}
-  - component: {fileID: 3706650639834453802}
+  - component: {fileID: 8333458153839153221}
+  - component: {fileID: 2848758505731121359}
   m_Layer: 7
   m_Name: Position1
   m_TagString: BoardPosition
@@ -1456,7 +1457,7 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 1
---- !u!114 &8255609849063177553
+--- !u!114 &8333458153839153221
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1474,7 +1475,7 @@ MonoBehaviour:
   serverOnly: 0
   visible: 0
   hasSpawned: 0
---- !u!114 &3706650639834453802
+--- !u!114 &2848758505731121359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1521,8 +1522,8 @@ GameObject:
   - component: {fileID: 200301218248595150}
   - component: {fileID: 7103356099266169929}
   - component: {fileID: 1099949387333097059}
-  - component: {fileID: 1528705799727330360}
-  - component: {fileID: 6913123386140838468}
+  - component: {fileID: 7944254601646573725}
+  - component: {fileID: 2707058840002326895}
   m_Layer: 7
   m_Name: Position9
   m_TagString: BoardPosition
@@ -1656,7 +1657,7 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 1
---- !u!114 &1528705799727330360
+--- !u!114 &7944254601646573725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1674,7 +1675,7 @@ MonoBehaviour:
   serverOnly: 0
   visible: 0
   hasSpawned: 0
---- !u!114 &6913123386140838468
+--- !u!114 &2707058840002326895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1721,8 +1722,8 @@ GameObject:
   - component: {fileID: 3910785147383416074}
   - component: {fileID: 4927701815168875492}
   - component: {fileID: 5034559442572350791}
-  - component: {fileID: 6240841378275328519}
-  - component: {fileID: 4362111242690742507}
+  - component: {fileID: 6885092647993815065}
+  - component: {fileID: 6021970742087395336}
   m_Layer: 7
   m_Name: Position3
   m_TagString: BoardPosition
@@ -1856,7 +1857,7 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 1
---- !u!114 &6240841378275328519
+--- !u!114 &6885092647993815065
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1874,7 +1875,7 @@ MonoBehaviour:
   serverOnly: 0
   visible: 0
   hasSpawned: 0
---- !u!114 &4362111242690742507
+--- !u!114 &6021970742087395336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

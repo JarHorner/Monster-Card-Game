@@ -8,7 +8,7 @@ public class PlayerManager : NetworkBehaviour
 {
     public static PlayerManager LocalInstance;
 
-    [SerializeField] private int playerId;
+    [SerializeField] private int playerID;
     public int playerOrder;
 
     [SerializeField] private List<GameObject> possibleCards;
@@ -58,6 +58,7 @@ public class PlayerManager : NetworkBehaviour
             int randomCardIndex = Random.Range(0, possibleCards.Count);
 
             GameObject newCard = Instantiate(possibleCards[randomCardIndex], new Vector2(0, 0), Quaternion.identity);
+            newCard.GetComponent<Card>().AssignPlayerOwnerID(playerID);
             NetworkServer.Spawn(newCard, connectionToClient);
 
             RpcDealCard(newCard);
@@ -87,7 +88,7 @@ public class PlayerManager : NetworkBehaviour
     public void PlayCard(GameObject card, GameObject dropZonePosition)
     {
         CmdPlayCard(card, dropZonePosition);
-        CmdStartBattle(playerId);
+        CmdStartBattle(playerID);
     }
 
     [Command]
@@ -100,6 +101,9 @@ public class PlayerManager : NetworkBehaviour
     private void CmdPlayCard(GameObject card, GameObject dropZonePosition)
     {
         RpcPlayCard(card, dropZonePosition);
+
+        DropZone.Instance.AddCardToBoard(card, dropZonePosition);
+        DropZone.Instance.ChangeLastCardPlayed(card);
     }
 
     [ClientRpc]
@@ -142,14 +146,14 @@ public class PlayerManager : NetworkBehaviour
         return pickedUpCards;
     }
 
-    public int GetPlayerId()
+    public int GetPlayerID()
     {
-        return playerId;
+        return playerID;
     }
 
     public void SetPlayerId(int number)
     {
-        playerId = number;
+        playerID = number;
     }
 
 
