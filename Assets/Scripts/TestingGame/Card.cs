@@ -42,6 +42,16 @@ public class Card : MonoBehaviour
         backgroundImage.sprite = cardSO.backgroundSprite;
         MonsterImage.sprite = cardSO.monsterSprite;
         elementImage.sprite = cardSO.elementSprite;
+
+        AssignRankValues();
+    }
+
+    private void AssignRankValues()
+    {
+        topRank = cardSO.topRank;
+        leftRank = cardSO.leftRank;
+        rightRank = cardSO.rightRank;
+        bottomRank = cardSO.bottomRank;
     }
 
     public void AssignPlayerOwnerID(int playerID)

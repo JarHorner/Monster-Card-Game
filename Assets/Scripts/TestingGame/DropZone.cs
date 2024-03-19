@@ -94,7 +94,7 @@ public class DropZone : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Your card lost right battle!");
+                        Debug.Log("Your card lost left battle!");
                     }
                 }
                 if (cards[TwoPosition] != null)
@@ -110,6 +110,7 @@ public class DropZone : MonoBehaviour
                 }
                 if (cards[FourPosition] != null)
                 {
+                    Debug.Log("Your card: " + card.bottomRank + "   " + "Enemy Card: " + cards[FourPosition].topRank);
                     if (card.bottomRank > cards[FourPosition].topRank)
                     {
                         Debug.Log("Your card won bottom battle!");
