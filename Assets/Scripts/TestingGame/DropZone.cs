@@ -61,296 +61,177 @@ public class DropZone : MonoBehaviour
             case ZeroPosition:
                 if (cards[OnePosition] != null)
                 {
-                    if (card.rightRank > cards[OnePosition].leftRank)
-                    {
-                        Debug.Log("Your card won right battle!");
-                        cards[OnePosition].AssignPlayerOwnerID(PlayerManager.LocalInstance.GetPlayerID());
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost right battle!");
-                    }
+                    BattleRight(card, OnePosition);
                 }
                 if (cards[ThreePosition] != null)
                 {
-                    if (card.bottomRank > cards[ThreePosition].topRank)
-                    {
-                        Debug.Log("Your card won bottom battle!");
-                        cards[ThreePosition].AssignPlayerOwnerID(PlayerManager.LocalInstance.GetPlayerID());
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost bottom battle!");
-                    }
+                    BattleBottom(card, ThreePosition);
                 }
                 break;
 
             case OnePosition:
                 if (cards[ZeroPosition] != null)
                 {
-                    if (card.leftRank > cards[ZeroPosition].rightRank)
-                    {
-                        Debug.Log("Your card won left battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost left battle!");
-                    }
+                    BattleLeft(card, ZeroPosition);
                 }
                 if (cards[TwoPosition] != null)
                 {
-                    if (card.rightRank > cards[TwoPosition].leftRank)
-                    {
-                        Debug.Log("Your card won right battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost right battle!");
-                    }
+                    BattleRight(card, TwoPosition);
                 }
                 if (cards[FourPosition] != null)
                 {
-                    Debug.Log("Your card: " + card.bottomRank + "   " + "Enemy Card: " + cards[FourPosition].topRank);
-                    if (card.bottomRank > cards[FourPosition].topRank)
-                    {
-                        Debug.Log("Your card won bottom battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost bottom battle!");
-                    }
+                    BattleBottom(card, FourPosition);
                 }
                 break;
 
             case TwoPosition:
                 if (cards[OnePosition] != null)
                 {
-                    if (card.leftRank > cards[OnePosition].rightRank)
-                    {
-                        Debug.Log("Your card won left battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost left battle!");
-                    }
+                    BattleLeft(card, OnePosition);
                 }
                 if (cards[FivePosition] != null)
                 {
-                    if (card.bottomRank > cards[FivePosition].topRank)
-                    {
-                        Debug.Log("Your card won bottom battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost bottom battle!");
-                    }
+                    BattleBottom(card, FivePosition);
                 }
                 break;
 
             case ThreePosition:
                 if (cards[ZeroPosition] != null)
                 {
-                    if (card.topRank > cards[ZeroPosition].bottomRank)
-                    {
-                        Debug.Log("Your card won top battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost top battle!");
-                    }
+                    BattleTop(card, ZeroPosition);
                 }
                 if (cards[FourPosition] != null)
                 {
-                    if (card.rightRank > cards[FourPosition].leftRank)
-                    {
-                        Debug.Log("Your card won right battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost right battle!");
-                    }
+                    BattleRight(card, FourPosition);
                 }
                 if (cards[SixPosition] != null)
                 {
-                    if (card.bottomRank > cards[SixPosition].topRank)
-                    {
-                        Debug.Log("Your card won bottom battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost bottom battle!");
-                    }
+                    BattleBottom(card, SixPosition);
                 }
                 break;
 
             case FourPosition:
                 if (cards[OnePosition] != null)
                 {
-                    if (card.topRank > cards[OnePosition].bottomRank)
-                    {
-                        Debug.Log("Your card won top battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost top battle!");
-                    }
+                    BattleTop(card, OnePosition);
                 }
                 if (cards[ThreePosition] != null)
                 {
-                    if (card.leftRank > cards[ThreePosition].rightRank)
-                    {
-                        Debug.Log("Your card won left battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost left battle!");
-                    }
+                    BattleLeft(card, ThreePosition);
                 }
                 if (cards[FivePosition] != null)
                 {
-                    if (card.rightRank > cards[FivePosition].leftRank)
-                    {
-                        Debug.Log("Your card won right battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost right battle!");
-                    }
+                    BattleRight(card, FivePosition);
                 }
                 if (cards[SevenPosition] != null)
                 {
-                    if (card.bottomRank > cards[SevenPosition].topRank)
-                    {
-                        Debug.Log("Your card won bottom battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost bottom battle!");
-                    }
+                    BattleBottom(card, SevenPosition);
                 }
                 break;
 
             case FivePosition:
                 if (cards[TwoPosition] != null)
                 {
-                    if (card.topRank > cards[TwoPosition].bottomRank)
-                    {
-                        Debug.Log("Your card won top battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost top battle!");
-                    }
+                    BattleTop(card, TwoPosition);
                 }
                 if (cards[FourPosition] != null)
                 {
-                    if (card.leftRank > cards[FourPosition].rightRank)
-                    {
-                        Debug.Log("Your card won left battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost left battle!");
-                    }
+                    BattleLeft(card, FourPosition);
                 }
                 if (cards[EightPosition] != null)
                 {
-                    if (card.bottomRank > cards[EightPosition].topRank)
-                    {
-                        Debug.Log("Your card won bottom battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost bottom battle!");
-                    }
+                    BattleBottom(card, EightPosition);
                 }
                 break;
 
             case SixPosition:
-                if (cards[FourPosition] != null)
+                if (cards[ThreePosition] != null)
                 {
-                    if (card.topRank > cards[FourPosition].bottomRank)
-                    {
-                        Debug.Log("Your card won top battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost top battle!");
-                    }
+                    BattleTop(card, ThreePosition);
                 }
                 if (cards[SevenPosition] != null)
                 {
-                    if (card.rightRank > cards[SevenPosition].leftRank)
-                    {
-                        Debug.Log("Your card won right battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost right battle!");
-                    }
+                    BattleRight(card, SevenPosition);
                 }
                 break;
 
             case SevenPosition:
                 if (cards[FourPosition] != null)
                 {
-                    if (card.topRank > cards[FourPosition].bottomRank)
-                    {
-                        Debug.Log("Your card won top battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost top battle!");
-                    }
+                    BattleTop(card, FourPosition);
                 }
                 if (cards[SixPosition] != null)
                 {
-                    if (card.leftRank > cards[SixPosition].rightRank)
-                    {
-                        Debug.Log("Your card won left battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost left battle!");
-                    }
+                    BattleLeft(card, SixPosition);
                 }
                 if (cards[EightPosition] != null)
                 {
-                    if (card.rightRank > cards[EightPosition].leftRank)
-                    {
-                        Debug.Log("Your card won right battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost right battle!");
-                    }
+                    BattleRight(card, EightPosition);
                 }
                 break;
 
             case EightPosition:
                 if (cards[FivePosition] != null)
                 {
-                    if (card.topRank > cards[FivePosition].bottomRank)
-                    {
-                        Debug.Log("Your card won top battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost top battle!");
-                    }
+                    BattleTop(card, FivePosition);
                 }
                 if (cards[SevenPosition] != null)
                 {
-                    if (card.leftRank > cards[SevenPosition].rightRank)
-                    {
-                        Debug.Log("Your card won left battle!");
-                    }
-                    else
-                    {
-                        Debug.Log("Your card lost left battle!");
-                    }
+                    BattleLeft(card, SevenPosition);
                 }
                 break;
+        }
+    }
+
+    private void BattleTop(Card card, int position)
+    {
+        if (card.topRank > cards[position].bottomRank)
+        {
+            Debug.Log("Your card won top battle!");
+            cards[position].AssignPlayerOwnerID(PlayerManager.LocalInstance.GetPlayerID());
+        }
+        else
+        {
+            Debug.Log("Your card lost top battle!");
+        }
+    }
+
+    private void BattleLeft(Card card, int position)
+    {
+        if (card.leftRank > cards[position].rightRank)
+        {
+            Debug.Log("Your card won left battle!");
+            cards[position].AssignPlayerOwnerID(PlayerManager.LocalInstance.GetPlayerID());
+        }
+        else
+        {
+            Debug.Log("Your card lost left battle!");
+        }
+    }
+
+    private void BattleRight(Card card, int position)
+    {
+        if (card.rightRank > cards[position].leftRank)
+        {
+            Debug.Log("Your card won right battle!");
+            cards[position].AssignPlayerOwnerID(PlayerManager.LocalInstance.GetPlayerID());
+        }
+        else
+        {
+            Debug.Log("Your card lost right battle!");
+        }
+    }
+
+    private void BattleBottom(Card card, int position)
+    {
+        if (card.bottomRank > cards[position].topRank)
+        {
+            Debug.Log("Your card won top battle!");
+            cards[position].AssignPlayerOwnerID(PlayerManager.LocalInstance.GetPlayerID());
+        }
+        else
+        {
+            Debug.Log("Your card lost top battle!");
         }
     }
 
