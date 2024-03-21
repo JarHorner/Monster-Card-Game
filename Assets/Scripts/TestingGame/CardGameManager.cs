@@ -43,7 +43,7 @@ public class CardGameManager : NetworkBehaviour
     [SyncVar] private float countdownToStartTimer = 0f;
     [SyncVar] private float playerTurnTimer = 0f;
 
-    private float playerTurnTimerMax = 10f; //60
+    private float playerTurnTimerMax = 60f; //60
     private float countdownToStartTimerMax = 1f; //3
 
     [SerializeField] private GameObject UICanvas;
@@ -107,10 +107,11 @@ public class CardGameManager : NetworkBehaviour
                 }
                 break;
             case State.Battle:
-                // Battle
                 CardsBattle();
-
-                state = State.Ending;
+                if (DropZone.Instance.BattlePlayedOut())
+                {
+                    state = State.Ending;
+                }
                 break;
             case State.Ending:
                 playerTurnTimer = playerTurnTimerMax;

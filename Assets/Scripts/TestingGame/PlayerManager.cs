@@ -58,7 +58,6 @@ public class PlayerManager : NetworkBehaviour
             int randomCardIndex = Random.Range(0, possibleCards.Count);
 
             GameObject newCard = Instantiate(possibleCards[randomCardIndex], new Vector2(0, 0), Quaternion.identity);
-            newCard.GetComponent<Card>().AssignPlayerOwnerID(playerID);
             NetworkServer.Spawn(newCard, connectionToClient);
 
             RpcDealCard(newCard);
@@ -68,6 +67,7 @@ public class PlayerManager : NetworkBehaviour
     [ClientRpc]
     private void RpcDealCard(GameObject card)
     {
+        card.GetComponent<Card>().AssignPlayerOwnerID(playerID);
         if (isOwned)
         {
             card.transform.SetParent(playerArea.transform, false);
@@ -88,20 +88,33 @@ public class PlayerManager : NetworkBehaviour
     public void PlayCard(GameObject card, GameObject dropZonePosition)
     {
         CmdPlayCard(card, dropZonePosition);
-        CmdStartBattle(playerID);
+        CmdStartBattle();
     }
 
     [Command]
-    private void CmdStartBattle(int playerId)
+    private void CmdStartBattle()
     {
-        CardGameManager.Instance.StartBattle(playerId);
+        CardGameManager.Instance.StartBattle(playerID);
+    }
+
+    [Command]
+    public void CmdUpdateLosingCard(GameObject cardGO)
+    {
+        RpcUpdateLosingCard(cardGO);
+    }
+
+    [ClientRpc]
+    public void RpcUpdateLosingCard(GameObject cardGO)
+    {
+        Card card = cardGO.GetComponent<Card>();
+        card.AssignPlayerOwnerID(playerID);
+        //card.GetComponent<CardFlipper>().ChangeBackgroundOwnerCardColor();
     }
 
     [Command]
     private void CmdPlayCard(GameObject card, GameObject dropZonePosition)
     {
         RpcPlayCard(card, dropZonePosition);
-
         DropZone.Instance.AddCardToBoard(card, dropZonePosition);
         DropZone.Instance.ChangeLastCardPlayed(card);
     }

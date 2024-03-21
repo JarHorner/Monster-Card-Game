@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,8 @@ public class DropZone : MonoBehaviour
     [SerializeField] private List<Card> cards;
 
     [SerializeField] private Card lastCardPlayed;
+
+    private bool battlePlayedOut = false;
 
     private void Awake()
     {
@@ -181,6 +184,12 @@ public class DropZone : MonoBehaviour
                 }
                 break;
         }
+        battlePlayedOut = true;
+    }
+
+    public bool BattlePlayedOut()
+    {
+        return battlePlayedOut;
     }
 
     private void BattleTop(Card card, int position)
@@ -188,7 +197,8 @@ public class DropZone : MonoBehaviour
         if (card.topRank > cards[position].bottomRank)
         {
             Debug.Log("Your card won top battle!");
-            cards[position].AssignPlayerOwnerID(PlayerManager.LocalInstance.GetPlayerID());
+            //cards[position].AssignPlayerOwnerID(PlayerManager.LocalInstance.GetPlayerID());
+            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);
         }
         else
         {
@@ -201,7 +211,8 @@ public class DropZone : MonoBehaviour
         if (card.leftRank > cards[position].rightRank)
         {
             Debug.Log("Your card won left battle!");
-            cards[position].AssignPlayerOwnerID(PlayerManager.LocalInstance.GetPlayerID());
+            //cards[position].AssignPlayerOwnerID(PlayerManager.LocalInstance.GetPlayerID());
+            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);
         }
         else
         {
@@ -214,7 +225,8 @@ public class DropZone : MonoBehaviour
         if (card.rightRank > cards[position].leftRank)
         {
             Debug.Log("Your card won right battle!");
-            cards[position].AssignPlayerOwnerID(PlayerManager.LocalInstance.GetPlayerID());
+            //cards[position].AssignPlayerOwnerID(PlayerManager.LocalInstance.GetPlayerID());
+            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);
         }
         else
         {
@@ -227,7 +239,8 @@ public class DropZone : MonoBehaviour
         if (card.bottomRank > cards[position].topRank)
         {
             Debug.Log("Your card won top battle!");
-            cards[position].AssignPlayerOwnerID(PlayerManager.LocalInstance.GetPlayerID());
+            //cards[position].AssignPlayerOwnerID(PlayerManager.LocalInstance.GetPlayerID());
+            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);
         }
         else
         {
