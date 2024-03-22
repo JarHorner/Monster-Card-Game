@@ -35,7 +35,7 @@ public class DropZone : MonoBehaviour
     {
         if (cardsPlayed == 9)
         {
-            CardGameManager.Instance.EndGame();
+            CardGameManager.Instance.SetStateEndGame();
         }
     }
 
@@ -258,5 +258,36 @@ public class DropZone : MonoBehaviour
         }
     }
 
+    public string DetermineWinner()
+    {
+        int playerCardCount = 0;
+        int enemyCardCount = 0;
 
+        foreach(Card card in cards)
+        {
+            CardFlipper cardflipper = card.GetComponent<CardFlipper>();
+            if (cardflipper.DeterminePlayerCard())
+            {
+                playerCardCount += 1;
+            }
+            else
+            {
+                enemyCardCount += 1;
+            }
+        }
+
+
+        if (playerCardCount == enemyCardCount)
+        {
+            return "Tie!" + "\n" + "You Had " + playerCardCount + " Cards" + "\n" + "Enemy Had " + enemyCardCount + " Cards";
+        }
+        else if (playerCardCount > enemyCardCount)
+        {
+            return "You Win!" + "\n" + "You Had " + playerCardCount + " Cards" + "\n" + "Enemy Had " + enemyCardCount + " Cards";
+        }
+        else
+        {
+            return "You Lose!" + "\n" + "You Had " + playerCardCount + " Cards" + "\n" + "Enemy Had " + enemyCardCount + " Cards";
+        }
+    }
 }

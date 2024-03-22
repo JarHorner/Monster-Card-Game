@@ -20,14 +20,14 @@ public class EndGameUI : NetworkBehaviour
 
         PlayAgainButton.onClick.AddListener(PlayAgainOnClick);
         MainMenuButton.onClick.AddListener(MainMenuOnClick);
+
+        if (isServer)
+            winnerText.text = DropZone.Instance.DetermineWinner();
     }
 
     void Update()
     {
-        if (CardGameManager.Instance.state == CardGameManager.State.Ending)
-        {
 
-        }
     }
 
     private void PlayAgainOnClick()

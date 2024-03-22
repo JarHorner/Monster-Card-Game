@@ -68,4 +68,16 @@ public class CardFlipper : MonoBehaviour
             ChangeBackgroundOwnerCardColor();
         }
     }
+
+    public bool DeterminePlayerCard()
+    {
+        if (backgroundImage.sprite == ownerCardSprite)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

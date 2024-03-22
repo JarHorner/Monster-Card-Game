@@ -127,7 +127,7 @@ public class CardGameManager : NetworkBehaviour
                 }
                 break;
             case State.GameOver:
-                CardGameUIManager.Instance.SpawEndGameUI();
+                CardGameUIManager.Instance.SpawnEndGameUI();
 
                 state = State.WaitingToStart;
                 break;
@@ -167,16 +167,6 @@ public class CardGameManager : NetworkBehaviour
         Debug.Log("Player " + playerId + " joined the game.");
     }
 
-    public bool IsPlayerTurn()
-    {
-        return state == State.Player1Turn || state == State.Player2Turn;
-    }
-
-    public bool IsCountdownToStart()
-    {
-        return state == State.CountdownToStart;
-    }
-
     public void StartBattle(int playerId)
     {
         Debug.Log("Starting Battle, " + playerId);
@@ -190,7 +180,17 @@ public class CardGameManager : NetworkBehaviour
         DropZone.Instance.BattleCardsAlgorithm();
     }
 
-    public void EndGame()
+    public bool IsPlayerTurn()
+    {
+        return state == State.Player1Turn || state == State.Player2Turn;
+    }
+
+    public bool IsCountdownToStart()
+    {
+        return state == State.CountdownToStart;
+    }
+
+    public void SetStateEndGame()
     {
         state = State.GameOver;
     }

@@ -47,7 +47,7 @@ public class CardGameUIManager : NetworkBehaviour
         RpcMoveSpawnedObject(spawnedObject, 0f, 550f, 0f);
     }
 
-    public void SpawEndGameUI()
+    public void SpawnEndGameUI()
     {
         GameObject spawnedObject = Instantiate(EndGameUIPrefab);
 
@@ -79,4 +79,6 @@ public class CardGameUIManager : NetworkBehaviour
         if (turnTimerUISpawnedObject)
             NetworkServer.Destroy(turnTimerUISpawnedObject);
     }
+
+
 }
