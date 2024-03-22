@@ -16,6 +16,9 @@ public class CardGameUIManager : NetworkBehaviour
     [SerializeField] private GameObject turnTimerUIPrefab;
     private GameObject turnTimerUISpawnedObject;
 
+    [SerializeField] private GameObject EndGameUIPrefab;
+    private GameObject endGameUISpawnedObject;
+
 
     private void Awake()
     {
@@ -31,7 +34,6 @@ public class CardGameUIManager : NetworkBehaviour
         NetworkServer.Spawn(spawnedObject);
 
         RpcMoveSpawnedObject(spawnedObject, 0f, 200f, 0f);
-
     }
 
     public void SpawnTurnTimerUI()
@@ -43,7 +45,17 @@ public class CardGameUIManager : NetworkBehaviour
         NetworkServer.Spawn(spawnedObject);
 
         RpcMoveSpawnedObject(spawnedObject, 0f, 550f, 0f);
+    }
 
+    public void SpawEndGameUI()
+    {
+        GameObject spawnedObject = Instantiate(EndGameUIPrefab);
+
+        endGameUISpawnedObject = spawnedObject;
+
+        NetworkServer.Spawn(spawnedObject);
+
+        RpcMoveSpawnedObject(spawnedObject, 0f, 0f, 0f);
     }
 
     [ClientRpc]

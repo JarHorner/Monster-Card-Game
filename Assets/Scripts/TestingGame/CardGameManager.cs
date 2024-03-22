@@ -127,6 +127,9 @@ public class CardGameManager : NetworkBehaviour
                 }
                 break;
             case State.GameOver:
+                CardGameUIManager.Instance.SpawEndGameUI();
+
+                state = State.WaitingToStart;
                 break;
         }
     }
@@ -185,6 +188,11 @@ public class CardGameManager : NetworkBehaviour
     private void CardsBattle()
     {
         DropZone.Instance.BattleCardsAlgorithm();
+    }
+
+    public void EndGame()
+    {
+        state = State.GameOver;
     }
 
     public void SetStateAllPlayersReady()

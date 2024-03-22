@@ -46,7 +46,7 @@ public class DragDrop : NetworkBehaviour
 
     public void StartDrag()
     {
-        if (!isDraggable) return; //|| CardGameManager.Instance.state == CardGameManager.State.CountdownToStart || !CardGameManager.Instance.IsPlayersTurn(PlayerManager.LocalInstance.GetPlayerId())) return;
+        if (!isDraggable || CardGameManager.Instance.state == CardGameManager.State.CountdownToStart || !CardGameManager.Instance.IsPlayersTurn(PlayerManager.LocalInstance.GetPlayerID())) return;
 
         isDragging = true;
 

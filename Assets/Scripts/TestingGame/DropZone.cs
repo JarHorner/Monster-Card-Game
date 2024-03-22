@@ -22,12 +22,21 @@ public class DropZone : MonoBehaviour
     [SerializeField] private List<Card> cards;
 
     [SerializeField] private Card lastCardPlayed;
+    private int cardsPlayed = 0;
 
     private bool battlePlayedOut = false;
 
     private void Awake()
     {
         Instance = this;
+    }
+
+    private void Update()
+    {
+        if (cardsPlayed == 9)
+        {
+            CardGameManager.Instance.EndGame();
+        }
     }
 
     public bool PositionExists(GameObject go)
@@ -45,6 +54,7 @@ public class DropZone : MonoBehaviour
     {
         int positionIndex = postions.IndexOf(position);
         cards[positionIndex] = card.GetComponent<Card>();
+        cardsPlayed++;
     }
 
     public void ChangeLastCardPlayed(GameObject card)

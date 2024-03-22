@@ -232,6 +232,7 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 3028830504850720937, guid: dd0b9925008d6dd43b01b048a2c11552, type: 3}
+  - {fileID: 7142179403301740431, guid: 4dd55aebb386f4a41a03c21b2e9f30ef, type: 3}
   - {fileID: 9149509910550653065, guid: cb5b03d3ebf5d434b961049a908e1391, type: 3}
   - {fileID: 6765230518449122976, guid: a94923bdbd6f9b441abe53db2e1956d4, type: 3}
   - {fileID: 6053245585220330258, guid: b42fdef71925f0c4498c6438fad0af04, type: 3}
@@ -1069,6 +1070,10 @@ PrefabInstance:
       propertyPath: UICanvas
       value: 
       objectReference: {fileID: 1350588827}
+    - target: {fileID: 6782840114693561207, guid: a23da0855b268e64b8f7c34af52d185e, type: 3}
+      propertyPath: EndGameUIPrefab
+      value: 
+      objectReference: {fileID: 7142179403301740431, guid: 4dd55aebb386f4a41a03c21b2e9f30ef, type: 3}
     - target: {fileID: 6782840114693561207, guid: a23da0855b268e64b8f7c34af52d185e, type: 3}
       propertyPath: turnTimerUIPrefab
       value: 

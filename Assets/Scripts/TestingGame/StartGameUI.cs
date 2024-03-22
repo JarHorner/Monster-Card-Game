@@ -15,10 +15,8 @@ public class StartGameUI : NetworkBehaviour
 
     private void Start()
     {
-        // Enable the button on the server
         readyButton.interactable = true;
        
-        // Attach the click handler
         readyButton.onClick.AddListener(OnClick);
     }
 
