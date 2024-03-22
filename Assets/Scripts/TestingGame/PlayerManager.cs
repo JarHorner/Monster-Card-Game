@@ -108,7 +108,7 @@ public class PlayerManager : NetworkBehaviour
     {
         Card card = cardGO.GetComponent<Card>();
         card.AssignPlayerOwnerID(playerID);
-        //card.GetComponent<CardFlipper>().ChangeBackgroundOwnerCardColor();
+        card.GetComponent<CardFlipper>().BattleFlip();
     }
 
     [Command]

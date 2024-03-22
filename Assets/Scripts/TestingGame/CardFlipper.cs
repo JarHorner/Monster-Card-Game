@@ -13,7 +13,6 @@ public class CardFlipper : MonoBehaviour
     public void Flip(bool flipToBack)
     {
         Debug.Log("Flipping");
-        Sprite currentSprite = backgroundImage.sprite;
 
         if (flipToBack)
         {
@@ -56,5 +55,17 @@ public class CardFlipper : MonoBehaviour
     public void ChangeBackgroundEnemyCardColor()
     {
         backgroundImage.sprite = enemyCardSprite;
+    }
+
+    public void BattleFlip()
+    {
+        if (backgroundImage.sprite == ownerCardSprite)
+        {
+            ChangeBackgroundEnemyCardColor();
+        }
+        else
+        {
+            ChangeBackgroundOwnerCardColor();
+        }
     }
 }
