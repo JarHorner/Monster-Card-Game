@@ -57,15 +57,15 @@ public class CardFlipper : MonoBehaviour
         backgroundImage.sprite = enemyCardSprite;
     }
 
-    public void BattleFlip()
+    public void BattleFlip(int cardID)
     {
-        if (backgroundImage.sprite == ownerCardSprite)
+        if (cardID == 1)
         {
-            ChangeBackgroundEnemyCardColor();
+            ChangeBackgroundOwnerCardColor();
         }
         else
         {
-            ChangeBackgroundOwnerCardColor();
+            ChangeBackgroundEnemyCardColor();
         }
     }
 

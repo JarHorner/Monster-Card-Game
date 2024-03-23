@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Mirror;
 
-public class Card : MonoBehaviour
+public class Card : NetworkBehaviour
 {
     [SerializeField] private CardSO cardSO;
 
-    [SerializeField] private int playerOwnerId;
+    [SyncVar, SerializeField] private int cardOwnerID;
 
     [SerializeField] private TMP_Text cardNameText;
 
@@ -54,9 +55,14 @@ public class Card : MonoBehaviour
         bottomRank = cardSO.bottomRank;
     }
 
-    public void AssignPlayerOwnerID(int playerID)
+    public void AssignCardOwnerID(int playerID)
     {
-        playerOwnerId = playerID;
+        cardOwnerID = playerID;
+    }
+
+    public int GetCardOwnerID()
+    {
+        return cardOwnerID;
     }
 
     public CardSO GetCardSO()
