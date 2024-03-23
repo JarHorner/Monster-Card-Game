@@ -208,8 +208,8 @@ public class DropZone : NetworkBehaviour
         if (card.topRank > cards[position].bottomRank)
         {
             Debug.Log("Your card won top battle!");
-            cards[position].AssignCardOwnerID(PlayerManager.LocalInstance.GetPlayerID());
-            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject, cards[position].GetCardOwnerID());
+            RpcAssignNewCardOwnerID(cards[position]);
+            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);//, cards[position].GetCardOwnerID());
         }
         else
         {
@@ -222,8 +222,8 @@ public class DropZone : NetworkBehaviour
         if (card.leftRank > cards[position].rightRank)
         {
             Debug.Log("Your card won left battle!");
-            cards[position].AssignCardOwnerID(PlayerManager.LocalInstance.GetPlayerID());
-            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject, cards[position].GetCardOwnerID());
+            RpcAssignNewCardOwnerID(cards[position]);
+            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);//, cards[position].GetCardOwnerID());
         }
         else
         {
@@ -236,8 +236,8 @@ public class DropZone : NetworkBehaviour
         if (card.rightRank > cards[position].leftRank)
         {
             Debug.Log("Your card won right battle!");
-            cards[position].AssignCardOwnerID(PlayerManager.LocalInstance.GetPlayerID());
-            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject, cards[position].GetCardOwnerID());
+            RpcAssignNewCardOwnerID(cards[position]);
+            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);//, cards[position].GetCardOwnerID());
         }
         else
         {
@@ -250,13 +250,19 @@ public class DropZone : NetworkBehaviour
         if (card.bottomRank > cards[position].topRank)
         {
             Debug.Log("Your card won top battle!");
-            cards[position].AssignCardOwnerID(PlayerManager.LocalInstance.GetPlayerID());
-            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject, cards[position].GetCardOwnerID());
+            //RpcAssignNewCardOwnerID(cards[position]);
+            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);//, cards[position].GetCardOwnerID());
         }
         else
         {
             Debug.Log("Your card lost top battle!");
         }
+    }
+
+    [ClientRpc]
+    private void RpcAssignNewCardOwnerID(Card card)
+    {
+        card.AssignCardOwnerID(PlayerManager.LocalInstance.GetPlayerID());
     }
 
     public string DetermineWinner()
