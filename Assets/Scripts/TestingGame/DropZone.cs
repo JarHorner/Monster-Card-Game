@@ -209,7 +209,7 @@ public class DropZone : NetworkBehaviour
         {
             Debug.Log("Your card won top battle!");
             cards[position].UpdateCardOwnerID(PlayerManager.LocalInstance.GetPlayerID());
-            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);//, cards[position].GetCardOwnerID());
+            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);
         }
         else
         {
@@ -223,7 +223,7 @@ public class DropZone : NetworkBehaviour
         {
             Debug.Log("Your card won left battle!");
             cards[position].UpdateCardOwnerID(PlayerManager.LocalInstance.GetPlayerID());
-            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);//, cards[position].GetCardOwnerID());
+            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);
         }
         else
         {
@@ -237,7 +237,7 @@ public class DropZone : NetworkBehaviour
         {
             Debug.Log("Your card won right battle!");
             cards[position].UpdateCardOwnerID(PlayerManager.LocalInstance.GetPlayerID());
-            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);//, cards[position].GetCardOwnerID());
+            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);
         }
         else
         {
@@ -249,9 +249,9 @@ public class DropZone : NetworkBehaviour
     {
         if (card.bottomRank > cards[position].topRank)
         {
-            Debug.Log("Your card won top battle!");
+            Debug.Log("Your card won bottom battle!");
             cards[position].UpdateCardOwnerID(PlayerManager.LocalInstance.GetPlayerID());
-            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);//, cards[position].GetCardOwnerID());
+            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);
         }
         else
         {

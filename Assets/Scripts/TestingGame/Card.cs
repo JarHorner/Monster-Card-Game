@@ -4,12 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Mirror;
+using System;
 
 public class Card : NetworkBehaviour
 {
     [SerializeField] private CardSO cardSO;
 
-    [SerializeField] private int cardOwnerID;
+    [SyncVar(hook = nameof(OnVariableChanged)), SerializeField] private int cardOwnerID;
+
+    private void OnVariableChanged(int oldValue, int newValue)
+    {
+        Debug.Log("Variable changed from " + oldValue + " to " + newValue);
+    }
 
     [SerializeField] private TMP_Text cardNameText;
 
@@ -47,6 +53,19 @@ public class Card : NetworkBehaviour
         AssignRankValues();
     }
 
+    private void Start()
+    {
+        if (isOwned)
+        {
+            Debug.Log("I am the owner of this object.");
+        }
+        else
+        {
+            Debug.Log("I am not the owner of this object.");
+        }
+    }
+
+
     private void AssignRankValues()
     {
         topRank = cardSO.topRank;
@@ -62,8 +81,21 @@ public class Card : NetworkBehaviour
 
     public void UpdateCardOwnerID(int newID)
     {
-        cardOwnerID = newID;
-        RpcSyncCardOwnerID(cardOwnerID);
+        if (isOwned)
+        {
+            CmdSyncCardOwnerID(newID);
+        }
+        else
+        {
+            RpcSyncCardOwnerID(newID);
+        }
+
+    }
+
+    [Command]
+    public void CmdSyncCardOwnerID(int newID)
+    {
+        RpcSyncCardOwnerID(newID);
     }
 
     [ClientRpc]

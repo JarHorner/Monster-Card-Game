@@ -98,13 +98,13 @@ public class PlayerManager : NetworkBehaviour
     }
 
     [Command]
-    public void CmdUpdateLosingCard(GameObject cardGO)//, int cardID)
+    public void CmdUpdateLosingCard(GameObject cardGO)
     {
-        RpcUpdateLosingCard(cardGO);//, cardID);
+        RpcUpdateLosingCard(cardGO);
     }
 
     [ClientRpc]
-    public void RpcUpdateLosingCard(GameObject cardGO)//, int cardID)
+    public void RpcUpdateLosingCard(GameObject cardGO)
     {
         Card card = cardGO.GetComponent<Card>();
         card.GetComponent<CardFlipper>().BattleFlip();
