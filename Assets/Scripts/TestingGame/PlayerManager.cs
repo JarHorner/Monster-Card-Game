@@ -67,7 +67,7 @@ public class PlayerManager : NetworkBehaviour
     [ClientRpc]
     private void RpcDealCard(GameObject card)
     {
-        card.GetComponent<Card>().AssignCardOwnerID(playerID);
+        card.GetComponent<Card>().SetCardCardOwnerID(playerID);
         if (isOwned)
         {
             card.transform.SetParent(playerArea.transform, false);
@@ -107,7 +107,6 @@ public class PlayerManager : NetworkBehaviour
     public void RpcUpdateLosingCard(GameObject cardGO)//, int cardID)
     {
         Card card = cardGO.GetComponent<Card>();
-        card.AssignCardOwnerID(playerID);
         card.GetComponent<CardFlipper>().BattleFlip();
     }
 

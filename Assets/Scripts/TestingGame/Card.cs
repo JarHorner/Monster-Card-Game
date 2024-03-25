@@ -9,7 +9,7 @@ public class Card : NetworkBehaviour
 {
     [SerializeField] private CardSO cardSO;
 
-    [SyncVar, SerializeField] private int cardOwnerID;
+    [SerializeField] private int cardOwnerID;
 
     [SerializeField] private TMP_Text cardNameText;
 
@@ -55,10 +55,23 @@ public class Card : NetworkBehaviour
         bottomRank = cardSO.bottomRank;
     }
 
-    public void AssignCardOwnerID(int playerID)
+    public void SetCardCardOwnerID(int cardID)
     {
-        cardOwnerID = playerID;
+        cardOwnerID = cardID;
     }
+
+    public void UpdateCardOwnerID(int newID)
+    {
+        cardOwnerID = newID;
+        RpcSyncCardOwnerID(cardOwnerID);
+    }
+
+    [ClientRpc]
+    public void RpcSyncCardOwnerID(int newID)
+    {
+        cardOwnerID = newID;
+    }
+
 
     public int GetCardOwnerID()
     {
