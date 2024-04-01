@@ -56,6 +56,7 @@ public class CardGameManager : NetworkBehaviour
     public override void OnStartClient()
     {
         state = State.WaitingToStart;
+
     }
 
     [ClientRpc]
@@ -103,7 +104,7 @@ public class CardGameManager : NetworkBehaviour
                 if (playerTurnTimer < 0f)
                 {
                     lastPlayersTurn = 2;
-                    state = State.Battle;
+                    state = State.Ending;
                 }
                 break;
             case State.Battle:

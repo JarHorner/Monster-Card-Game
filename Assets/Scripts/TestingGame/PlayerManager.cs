@@ -15,8 +15,6 @@ public class PlayerManager : NetworkBehaviour
     [SerializeField] private GameObject playerArea;
     [SerializeField] private GameObject enemyArea;
 
-    [SerializeField] private List<GameObject> positions;
-
     [SerializeField] private Transform gridPanel;
 
     private bool pickedUpCards = false;
@@ -32,12 +30,6 @@ public class PlayerManager : NetworkBehaviour
 
         playerArea = GameObject.Find("PlayerArea");
         enemyArea = GameObject.Find("EnemyArea");
-
-        GameObject dropZone = GameObject.Find("DropZone");
-        for (int i = 0; i < dropZone.transform.childCount; i++)
-        {
-            positions.Add(dropZone.transform.GetChild(i).gameObject);
-        }
 
     }
 
@@ -82,7 +74,6 @@ public class PlayerManager : NetworkBehaviour
 
             card.GetComponent<CardFlipper>().Flip(true);
         }
-
     }
 
     public void PlayCard(GameObject card, GameObject dropZonePosition)

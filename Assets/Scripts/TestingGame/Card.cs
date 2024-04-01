@@ -10,12 +10,8 @@ public class Card : NetworkBehaviour
 {
     [SerializeField] private CardSO cardSO;
 
-    [SyncVar(hook = nameof(OnVariableChanged)), SerializeField] private int cardOwnerID;
+    [SyncVar, SerializeField] private int cardOwnerID = 0;
 
-    private void OnVariableChanged(int oldValue, int newValue)
-    {
-        Debug.Log("Variable changed from " + oldValue + " to " + newValue);
-    }
 
     [SerializeField] private TMP_Text cardNameText;
 
@@ -81,6 +77,7 @@ public class Card : NetworkBehaviour
 
     public void UpdateCardOwnerID(int newID)
     {
+        Debug.Log("the other card is owned by you: " + isOwned);
         if (isOwned)
         {
             CmdSyncCardOwnerID(newID);
@@ -89,12 +86,13 @@ public class Card : NetworkBehaviour
         {
             RpcSyncCardOwnerID(newID);
         }
-
     }
 
     [Command]
     public void CmdSyncCardOwnerID(int newID)
     {
+        cardOwnerID = newID;
+
         RpcSyncCardOwnerID(newID);
     }
 

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +20,9 @@ public class DropZone : NetworkBehaviour
 
     [SerializeField] private List<GameObject> postions;
     [SerializeField] private List<Card> cards;
+
+    [SerializeField] private GameObject playerArea;
+    [SerializeField] private GameObject enemyArea;
 
     [SerializeField] private Card lastCardPlayed;
     private int cardsPlayed = 0;
