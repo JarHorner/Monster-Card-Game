@@ -181,6 +181,28 @@ public class CardGameManager : NetworkBehaviour
         DropZone.Instance.BattleCardsAlgorithm();
     }
 
+    public void UpdateCardOwnerID(int newID , Card updatedCard)
+    {
+        Debug.Log("The new ID will be: " + newID + " and the card being updated is: " + updatedCard.name);
+        //if (isOwned)
+        //{
+        //    CmdSyncCardOwnerID(newID);
+        //}
+        //else
+        //{
+        //    RpcSyncCardOwnerID(newID);
+        //}
+
+        RpcSyncCardOwnerID(newID, updatedCard);
+    }
+
+    [ClientRpc]
+    public void RpcSyncCardOwnerID(int newID, Card updatedCard)
+    {
+        updatedCard.SetCardOwnerID(newID);
+    }
+
+
     public bool IsPlayerTurn()
     {
         return state == State.Player1Turn || state == State.Player2Turn;

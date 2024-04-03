@@ -59,7 +59,7 @@ public class PlayerManager : NetworkBehaviour
     [ClientRpc]
     private void RpcDealCard(GameObject card)
     {
-        card.GetComponent<Card>().SetCardCardOwnerID(playerID);
+        card.GetComponent<Card>().SetCardOwnerID(playerID);
         if (isOwned)
         {
             card.transform.SetParent(playerArea.transform, false);

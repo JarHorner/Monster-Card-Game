@@ -210,7 +210,7 @@ public class DropZone : NetworkBehaviour
         if (card.topRank > cards[position].bottomRank)
         {
             Debug.Log("Your card won top battle!");
-            cards[position].UpdateCardOwnerID(PlayerManager.LocalInstance.GetPlayerID());
+            CardGameManager.Instance.UpdateCardOwnerID(SwapPlayerIDNum(cards[position].GetCardOwnerID()), cards[position]);
             PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);
         }
         else
@@ -224,7 +224,7 @@ public class DropZone : NetworkBehaviour
         if (card.leftRank > cards[position].rightRank)
         {
             Debug.Log("Your card won left battle!");
-            cards[position].UpdateCardOwnerID(PlayerManager.LocalInstance.GetPlayerID());
+            CardGameManager.Instance.UpdateCardOwnerID(SwapPlayerIDNum(cards[position].GetCardOwnerID()), cards[position]);
             PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);
         }
         else
@@ -238,7 +238,7 @@ public class DropZone : NetworkBehaviour
         if (card.rightRank > cards[position].leftRank)
         {
             Debug.Log("Your card won right battle!");
-            cards[position].UpdateCardOwnerID(PlayerManager.LocalInstance.GetPlayerID());
+            CardGameManager.Instance.UpdateCardOwnerID(SwapPlayerIDNum(cards[position].GetCardOwnerID()), cards[position]);
             PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);
         }
         else
@@ -252,13 +252,21 @@ public class DropZone : NetworkBehaviour
         if (card.bottomRank > cards[position].topRank)
         {
             Debug.Log("Your card won bottom battle!");
-            cards[position].UpdateCardOwnerID(PlayerManager.LocalInstance.GetPlayerID());
+            CardGameManager.Instance.UpdateCardOwnerID(SwapPlayerIDNum(cards[position].GetCardOwnerID()), cards[position]);
             PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);
         }
         else
         {
             Debug.Log("Your card lost top battle!");
         }
+    }
+
+    private int SwapPlayerIDNum(int num)
+    {
+        if (num == 1)
+            return 2;
+        else
+            return 1;
     }
 
     public string DetermineWinner()
