@@ -77,123 +77,123 @@ public class DropZone : NetworkBehaviour
             case ZeroPosition:
                 if (cards[OnePosition] != null)
                 {
-                    BattleRight(card, OnePosition);
+                    BattleRight(card, cards[OnePosition]);
                 }
                 if (cards[ThreePosition] != null)
                 {
-                    BattleBottom(card, ThreePosition);
+                    BattleBottom(card, cards[ThreePosition]);
                 }
                 break;
 
             case OnePosition:
                 if (cards[ZeroPosition] != null)
                 {
-                    BattleLeft(card, ZeroPosition);
+                    BattleLeft(card, cards[ZeroPosition]);
                 }
                 if (cards[TwoPosition] != null)
                 {
-                    BattleRight(card, TwoPosition);
+                    BattleRight(card, cards[TwoPosition]);
                 }
                 if (cards[FourPosition] != null)
                 {
-                    BattleBottom(card, FourPosition);
+                    BattleBottom(card, cards[FourPosition]);
                 }
                 break;
 
             case TwoPosition:
                 if (cards[OnePosition] != null)
                 {
-                    BattleLeft(card, OnePosition);
+                    BattleLeft(card, cards[OnePosition]);
                 }
                 if (cards[FivePosition] != null)
                 {
-                    BattleBottom(card, FivePosition);
+                    BattleBottom(card, cards[FivePosition]);
                 }
                 break;
 
             case ThreePosition:
                 if (cards[ZeroPosition] != null)
                 {
-                    BattleTop(card, ZeroPosition);
+                    BattleTop(card, cards[ZeroPosition]);
                 }
                 if (cards[FourPosition] != null)
                 {
-                    BattleRight(card, FourPosition);
+                    BattleRight(card, cards[FourPosition]);
                 }
                 if (cards[SixPosition] != null)
                 {
-                    BattleBottom(card, SixPosition);
+                    BattleBottom(card, cards[SixPosition]);
                 }
                 break;
 
             case FourPosition:
                 if (cards[OnePosition] != null)
                 {
-                    BattleTop(card, OnePosition);
+                    BattleTop(card, cards[OnePosition]);
                 }
                 if (cards[ThreePosition] != null)
                 {
-                    BattleLeft(card, ThreePosition);
+                    BattleLeft(card, cards[ThreePosition]);
                 }
                 if (cards[FivePosition] != null)
                 {
-                    BattleRight(card, FivePosition);
+                    BattleRight(card, cards[FivePosition]);
                 }
                 if (cards[SevenPosition] != null)
                 {
-                    BattleBottom(card, SevenPosition);
+                    BattleBottom(card, cards[SevenPosition]);
                 }
                 break;
 
             case FivePosition:
                 if (cards[TwoPosition] != null)
                 {
-                    BattleTop(card, TwoPosition);
+                    BattleTop(card, cards[TwoPosition]);
                 }
                 if (cards[FourPosition] != null)
                 {
-                    BattleLeft(card, FourPosition);
+                    BattleLeft(card, cards[FourPosition]);
                 }
                 if (cards[EightPosition] != null)
                 {
-                    BattleBottom(card, EightPosition);
+                    BattleBottom(card, cards[EightPosition]);
                 }
                 break;
 
             case SixPosition:
                 if (cards[ThreePosition] != null)
                 {
-                    BattleTop(card, ThreePosition);
+                    BattleTop(card, cards[ThreePosition]);
                 }
                 if (cards[SevenPosition] != null)
                 {
-                    BattleRight(card, SevenPosition);
+                    BattleRight(card, cards[SevenPosition]);
                 }
                 break;
 
             case SevenPosition:
                 if (cards[FourPosition] != null)
                 {
-                    BattleTop(card, FourPosition);
+                    BattleTop(card, cards[FourPosition]);
                 }
                 if (cards[SixPosition] != null)
                 {
-                    BattleLeft(card, SixPosition);
+                    BattleLeft(card, cards[SixPosition]);
                 }
                 if (cards[EightPosition] != null)
                 {
-                    BattleRight(card, EightPosition);
+                    BattleRight(card, cards[EightPosition]);
                 }
                 break;
 
             case EightPosition:
                 if (cards[FivePosition] != null)
                 {
-                    BattleTop(card, FivePosition);
+                    BattleTop(card, cards[FivePosition]);
                 }
                 if (cards[SevenPosition] != null)
                 {
-                    BattleLeft(card, SevenPosition);
+                    BattleLeft(card, cards[SevenPosition]);
                 }
                 break;
         }
@@ -205,15 +205,15 @@ public class DropZone : NetworkBehaviour
         return battlePlayedOut;
     }
 
-    private void BattleTop(Card card, int position)
+    private void BattleTop(Card playerCard, Card enemyCard)
     {
-        if (card.GetCardOwnerID() == cards[position].GetCardOwnerID()) return;
+        if (playerCard.GetCardOwnerID() == enemyCard.GetCardOwnerID()) return;
 
-        if (card.topRank > cards[position].bottomRank)
+        if (playerCard.topRank > enemyCard.bottomRank)
         {
             Debug.Log("Your card won top battle!");
-            CardGameManager.Instance.UpdateCardOwnerID(SwapPlayerIDNum(cards[position].GetCardOwnerID()), cards[position]);
-            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);
+            CardGameManager.Instance.UpdateCardOwnerID(SwapPlayerIDNum(enemyCard.GetCardOwnerID()), enemyCard);
+            PlayerManager.LocalInstance.CmdUpdateLosingCard(enemyCard.gameObject);
         }
         else
         {
@@ -221,15 +221,15 @@ public class DropZone : NetworkBehaviour
         }
     }
 
-    private void BattleLeft(Card card, int position)
+    private void BattleLeft(Card playerCard, Card enemyCard)
     {
-        if (card.GetCardOwnerID() == cards[position].GetCardOwnerID()) return;
+        if (playerCard.GetCardOwnerID() == enemyCard.GetCardOwnerID()) return;
 
-        if (card.leftRank > cards[position].rightRank)
+        if (playerCard.leftRank > enemyCard.rightRank)
         {
             Debug.Log("Your card won left battle!");
-            CardGameManager.Instance.UpdateCardOwnerID(SwapPlayerIDNum(cards[position].GetCardOwnerID()), cards[position]);
-            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);
+            CardGameManager.Instance.UpdateCardOwnerID(SwapPlayerIDNum(enemyCard.GetCardOwnerID()), enemyCard);
+            PlayerManager.LocalInstance.CmdUpdateLosingCard(enemyCard.gameObject);
         }
         else
         {
@@ -237,15 +237,15 @@ public class DropZone : NetworkBehaviour
         }
     }
 
-    private void BattleRight(Card card, int position)
+    private void BattleRight(Card playerCard, Card enemyCard)
     {
-        if (card.GetCardOwnerID() == cards[position].GetCardOwnerID()) return;
+        if (playerCard.GetCardOwnerID() == enemyCard.GetCardOwnerID()) return;
 
-        if (card.rightRank > cards[position].leftRank)
+        if (playerCard.rightRank > enemyCard.leftRank)
         {
             Debug.Log("Your card won right battle!");
-            CardGameManager.Instance.UpdateCardOwnerID(SwapPlayerIDNum(cards[position].GetCardOwnerID()), cards[position]);
-            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);
+            CardGameManager.Instance.UpdateCardOwnerID(SwapPlayerIDNum(enemyCard.GetCardOwnerID()), enemyCard);
+            PlayerManager.LocalInstance.CmdUpdateLosingCard(enemyCard.gameObject);
         }
         else
         {
@@ -253,15 +253,15 @@ public class DropZone : NetworkBehaviour
         }
     }
 
-    private void BattleBottom(Card card, int position)
+    private void BattleBottom(Card playerCard, Card enemyCard)
     {
-        if (card.GetCardOwnerID() == cards[position].GetCardOwnerID()) return;
+        if (playerCard.GetCardOwnerID() == enemyCard.GetCardOwnerID()) return;
 
-        if (card.bottomRank > cards[position].topRank)
+        if (playerCard.bottomRank > enemyCard.topRank)
         {
             Debug.Log("Your card won bottom battle!");
-            CardGameManager.Instance.UpdateCardOwnerID(SwapPlayerIDNum(cards[position].GetCardOwnerID()), cards[position]);
-            PlayerManager.LocalInstance.CmdUpdateLosingCard(cards[position].gameObject);
+            CardGameManager.Instance.UpdateCardOwnerID(SwapPlayerIDNum(enemyCard.GetCardOwnerID()), enemyCard);
+            PlayerManager.LocalInstance.CmdUpdateLosingCard(enemyCard.gameObject);
         }
         else
         {
