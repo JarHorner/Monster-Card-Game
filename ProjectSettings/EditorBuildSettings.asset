@@ -9,18 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuScene.unity
     guid: 9054fbfb073db8e42ad4e482515f00f1
   - enabled: 0
-    path: Assets/Scenes/CardSelectionScene.unity
-    guid: a120b5d2d4f116844aa468b8d471f9a6
-  - enabled: 0
-    path: Assets/Scenes/LobbyScene.unity
-    guid: abec3b9331a9f6f43b214bdb3d47092b
-  - enabled: 0
-    path: Assets/Scenes/CharacterSelectScene.unity
-    guid: d72ce05ec32bc164aa38462a8aac929a
-  - enabled: 0
-    path: Assets/Scenes/GameScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
     path: Assets/Scenes/LoadingScene.unity
     guid: 9947481630351cc4bbbc22444cd17042
   - enabled: 1

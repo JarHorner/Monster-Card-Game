@@ -6,7 +6,7 @@ using TMPro;
 
 public class CoinFlipUI : MonoBehaviour
 {
-    [SerializeField] private FlipCoin flipcoin;
+    [SerializeField] private CoinFlip flipcoin;
     [SerializeField] private TMP_Text flipWinnerText;
     [SerializeField] private GameObject choicePanel;
 

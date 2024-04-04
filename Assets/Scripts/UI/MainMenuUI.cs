@@ -1,26 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
-
-    [SerializeField] private Button playButton;
-    [SerializeField] private Button quitButton;
-
-    private void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
-        playButton.onClick.AddListener(() => {
-            //Loader.Load(Loader.Scene.CardSelectionScene);
-            GameMultiplayer.playMultiplayer = true;
+        
+    }
 
-            Loader.Load(Loader.Scene.LobbyScene);
-        });
-        quitButton.onClick.AddListener(() => {
-            Application.Quit();
-        });
-
-        Time.timeScale = 1f;
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }
