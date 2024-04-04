@@ -39,7 +39,7 @@ public class DropZone : NetworkBehaviour
 
     private void Update()
     {
-        if (cardsPlayed == 9 && !gameOver)
+        if (cardsPlayed == 1 && !gameOver)
         {
             CardGameManager.Instance.SetStateEndGame();
             gameOver = true;
@@ -61,7 +61,6 @@ public class DropZone : NetworkBehaviour
     {
         int positionIndex = postions.IndexOf(position);
         cards[positionIndex] = card.GetComponent<Card>();
-        cardsPlayed++;
     }
 
     public void ChangeLastCardPlayed(GameObject card)
@@ -201,6 +200,7 @@ public class DropZone : NetworkBehaviour
                 }
                 break;
         }
+        cardsPlayed++;
         battlePlayedOut = true;
     }
 
@@ -287,48 +287,4 @@ public class DropZone : NetworkBehaviour
     {
         return cards;
     }
-
-    //public void DetermineWinner()
-    //{
-    //    int playerCardCount = 0;
-    //    int enemyCardCount = 0;
-
-    //    foreach(Card card in cards)
-    //    {
-    //        if(card.GetCardOwnerID() == 1)
-    //        {
-    //            playerCardCount += 1;
-    //        }
-    //        else
-    //        {
-    //            enemyCardCount += 1;
-    //        }
-    //    }
-
-    //    RpcShowResultsOfGame(playerCardCount, enemyCardCount);
-    //}
-
-    //[ClientRpc]
-    //private void RpcShowResultsOfGame(int playerCardCount, int enemyCardCount)
-    //{
-    //    if (isServer)
-    //    {
-    //        if (playerCardCount > enemyCardCount)
-    //        {
-    //            return "You Win!" + "\n" + "You Had " + playerCardCount + " Cards" + "\n" + "Enemy Had " + enemyCardCount + " Cards";
-    //        }
-    //        else if (playerCardCount < enemyCardCount)
-    //        {
-    //            return "You Lose!" + "\n" + "You Had " + playerCardCount + " Cards" + "\n" + "Enemy Had " + enemyCardCount + " Cards";
-    //        }
-    //        else
-    //        {
-    //            throw new ArgumentException("Card count should never be equal. Check for calculation errors.");
-    //        }
-    //    }
-    //    else
-    //    {
-
-    //    }
-    //}
 }

@@ -11,8 +11,6 @@ public class StartGameUI : NetworkBehaviour
     public GameObject startGamePanel;
     public GameObject readyText;
 
-    [SyncVar] public int playersReady = 0;
-
     private void Start()
     {
         readyButton.interactable = true;
@@ -22,11 +20,13 @@ public class StartGameUI : NetworkBehaviour
 
     private void Update()
     {
-        if (playersReady == 2)
+        if (CardGameManager.Instance.GetPlayersReady() == 2 && CardGameManager.Instance.state == CardGameManager.State.WaitingToStart)
         {
             // Call a method to start the game on the server
             RpcStartGame();
             CardGameManager.Instance.SetStateAllPlayersReady();
+
+            CardGameUIManager.Instance.RpcDestoryStartGameUI();
         }
     }
 
@@ -37,29 +37,15 @@ public class StartGameUI : NetworkBehaviour
         startGamePanel.SetActive(false);
         readyText.SetActive(true);
 
-        PlayerClickedReadyButton();
-    }
-
-    public void PlayerClickedReadyButton()
-    {
-        Debug.Log("Command!");
-
-        playersReady++;
+        if (isServer)
+        {
+            CardGameManager.Instance.AddPlayersReady();
+        }
+        else {
+            PlayerManager.LocalInstance.CmdAddPlayersReady();
+        }
 
         PlayerManager.LocalInstance.CmdDealCards();
-
-        RpcUpdatePlayerReadyCount();
-    }
-
-    [ClientRpc]
-    public void RpcUpdatePlayerReadyCount()
-    {
-        Debug.Log("Client RPC!");
-
-        // Update the local player count
-        playersReady++;
-
-        // You can add UI updates or other logic here if needed
     }
 
     [ClientRpc]
@@ -68,8 +54,5 @@ public class StartGameUI : NetworkBehaviour
         Debug.Log("Start the Game");
 
         readyText.SetActive(false);
-
-        // Reset the player count for the next round or game
-        playersReady = 0;
     }
 }

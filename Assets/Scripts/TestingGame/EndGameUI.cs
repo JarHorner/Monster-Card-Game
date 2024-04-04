@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Mirror;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class EndGameUI : NetworkBehaviour
 {
@@ -12,8 +13,6 @@ public class EndGameUI : NetworkBehaviour
     [SerializeField] private TMP_Text winnerText;
     [SerializeField] private Button PlayAgainButton;
     [SerializeField] private Button MainMenuButton;
-
-    private int[] playersCardCounts = new int[2];
 
     void Start()
     {
@@ -81,20 +80,21 @@ public class EndGameUI : NetworkBehaviour
         }
     }
 
-
-
     private void PlayAgainOnClick()
     {
         Debug.Log("Play Again!");
+        if (isServer)
+        {
+            GameObject.Find("NetworkManager").GetComponent<CardNetworkManager>().DisconnectHost();
+        }
+        else
+        {
+            Debug.Log("Still active");
+        }
     }
 
     private void MainMenuOnClick()
     {
         Debug.Log("Main Menu!");
-    }
-
-    public void SetWinnerText(string newText)
-    {
-        winnerText.text = newText;
     }
 }

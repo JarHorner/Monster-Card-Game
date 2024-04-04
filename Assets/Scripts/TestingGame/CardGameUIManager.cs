@@ -10,6 +10,9 @@ public class CardGameUIManager : NetworkBehaviour
 
     [SerializeField] private GameObject UICanvas;
 
+    [SerializeField] private GameObject StartGameUIPrefab;
+    private GameObject StartGameUISpawnedObject;
+
     [SerializeField] private GameObject countdownTimerUIPrefab;
     private GameObject countdownTimerUISpawnedObject;
 
@@ -27,6 +30,17 @@ public class CardGameUIManager : NetworkBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void SpawnStartGameUI()
+    {
+        GameObject spawnedObject = Instantiate(StartGameUIPrefab);
+
+        StartGameUISpawnedObject = spawnedObject;
+
+        NetworkServer.Spawn(spawnedObject);
+
+        RpcMoveSpawnedObject(spawnedObject, 0f, 0f, 0f);
     }
 
     public void SpawnCountdownTimerUI()
@@ -81,6 +95,13 @@ public class CardGameUIManager : NetworkBehaviour
         RectTransform spawnedObjectRectTransform = gameObject.GetComponent<RectTransform>();
         spawnedObjectRectTransform.SetParent(UICanvas.transform);
         spawnedObjectRectTransform.localPosition = new Vector3(xPos, yPos, zPos);
+    }
+
+    [ClientRpc]
+    public void RpcDestoryStartGameUI()
+    {
+        if (StartGameUISpawnedObject)
+            NetworkServer.Destroy(StartGameUISpawnedObject);
     }
 
     [ClientRpc]

@@ -70,34 +70,6 @@ public class Card : NetworkBehaviour
         bottomRank = cardSO.bottomRank;
     }
 
-    //public void UpdateCardOwnerID(int newID)
-    //{
-    //    Debug.Log("the other card is owned by you: " + isOwned);
-    //    if (isOwned)
-    //    {
-    //        CmdSyncCardOwnerID(newID);
-    //    }
-    //    else
-    //    {
-    //        RpcSyncCardOwnerID(newID);
-    //    }
-    //}
-
-    //[Command]
-    //public void CmdSyncCardOwnerID(int newID)
-    //{
-    //    cardOwnerID = newID;
-
-    //    RpcSyncCardOwnerID(newID);
-    //}
-
-    //[ClientRpc]
-    //public void RpcSyncCardOwnerID(int newID)
-    //{
-    //    cardOwnerID = newID;
-    //}
-
-
     public int GetCardOwnerID()
     {
         return cardOwnerID;

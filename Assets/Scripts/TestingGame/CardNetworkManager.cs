@@ -10,6 +10,8 @@ public class CardNetworkManager : NetworkManager
     private int nextPlayerIndex = 1;
     private Dictionary<int, int> playerIdDictionary = new Dictionary<int, int>();
 
+    private bool hostDisconnected = false;
+
     public override void OnServerAddPlayer(NetworkConnectionToClient connection)
     {
         GameObject newPlayer = Instantiate(playerPrefab);
@@ -31,6 +33,8 @@ public class CardNetworkManager : NetworkManager
                 CardGameManager.Instance.RpcAssignPlayerId(playerManager, id);
                 id++;
             }
+
+            CardGameUIManager.Instance.SpawnStartGameUI();
         }
     }
 
@@ -48,9 +52,30 @@ public class CardNetworkManager : NetworkManager
         }
     }
 
+    public void DisconnectHost()
+    {
+        StopHost();
+        hostDisconnected = true;
+        Debug.Log("Host disconnected.");
+    }
+
+    public override void OnStopServer()
+    {
+        if (hostDisconnected)
+        {
+            // This prevents clients from being disconnected when the host disconnects
+            Debug.Log("Server stopped but connections preserved.");
+            hostDisconnected = false;
+        }
+        else
+        {
+            base.OnStopServer();
+        }
+    }
+
     public override void OnServerDisconnect(NetworkConnectionToClient conn)
     {
-
+        Debug.Log("Client disconnected.");
         base.OnServerDisconnect(conn);
     }
 }

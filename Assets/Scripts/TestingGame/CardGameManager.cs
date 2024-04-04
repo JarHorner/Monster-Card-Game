@@ -11,12 +11,12 @@ public class CardGameManager : NetworkBehaviour
         WaitingToStart,
         AllPlayersReady,
         CountdownToStart,
-        EndTurn,
         Player1Turn,
         Player2Turn,
         Battle,
         Ending,
         GameOver,
+        Standby,
     }
 
     public static CardGameManager Instance { get; private set; }
@@ -39,6 +39,7 @@ public class CardGameManager : NetworkBehaviour
     }
 
     [SyncVar] private int lastPlayersTurn; //can be 1 or 2
+    [SyncVar, SerializeField] public int playersReady = 0;
 
     [SyncVar] private float countdownToStartTimer = 0f;
     [SyncVar] private float playerTurnTimer = 0f;
@@ -135,7 +136,10 @@ public class CardGameManager : NetworkBehaviour
             case State.GameOver:
                 CardGameUIManager.Instance.SpawnEndGameUI();
 
-                state = State.WaitingToStart;
+                state = State.Standby;
+                break;
+            case State.Standby:
+
                 break;
         }
     }
@@ -208,6 +212,16 @@ public class CardGameManager : NetworkBehaviour
         updatedCard.SetCardOwnerID(newID);
     }
 
+    public void AddPlayersReady()
+    {
+        Debug.Log("Adding readied player");
+        playersReady++;
+    }
+
+    public int GetPlayersReady()
+    {
+        return playersReady;
+    }
 
     public bool IsPlayerTurn()
     {

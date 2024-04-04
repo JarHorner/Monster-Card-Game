@@ -144,6 +144,12 @@ public class PlayerManager : NetworkBehaviour
         Debug.Log("Targeted by other");
     }
 
+    [Command]
+    public void CmdAddPlayersReady()
+    {
+        CardGameManager.Instance.AddPlayersReady();
+    }
+
     public bool HasPickedUpCards()
     {
         return pickedUpCards;
