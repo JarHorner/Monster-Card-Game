@@ -207,6 +207,8 @@ public class DropZone : NetworkBehaviour
 
     private void BattleTop(Card card, int position)
     {
+        if (card.GetCardOwnerID() == cards[position].GetCardOwnerID()) return;
+
         if (card.topRank > cards[position].bottomRank)
         {
             Debug.Log("Your card won top battle!");
@@ -221,6 +223,8 @@ public class DropZone : NetworkBehaviour
 
     private void BattleLeft(Card card, int position)
     {
+        if (card.GetCardOwnerID() == cards[position].GetCardOwnerID()) return;
+
         if (card.leftRank > cards[position].rightRank)
         {
             Debug.Log("Your card won left battle!");
@@ -235,6 +239,8 @@ public class DropZone : NetworkBehaviour
 
     private void BattleRight(Card card, int position)
     {
+        if (card.GetCardOwnerID() == cards[position].GetCardOwnerID()) return;
+
         if (card.rightRank > cards[position].leftRank)
         {
             Debug.Log("Your card won right battle!");
@@ -249,6 +255,8 @@ public class DropZone : NetworkBehaviour
 
     private void BattleBottom(Card card, int position)
     {
+        if (card.GetCardOwnerID() == cards[position].GetCardOwnerID()) return;
+
         if (card.bottomRank > cards[position].topRank)
         {
             Debug.Log("Your card won bottom battle!");

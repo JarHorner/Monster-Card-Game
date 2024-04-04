@@ -184,14 +184,6 @@ public class CardGameManager : NetworkBehaviour
     public void UpdateCardOwnerID(int newID , Card updatedCard)
     {
         Debug.Log("The new ID will be: " + newID + " and the card being updated is: " + updatedCard.name);
-        //if (isOwned)
-        //{
-        //    CmdSyncCardOwnerID(newID);
-        //}
-        //else
-        //{
-        //    RpcSyncCardOwnerID(newID);
-        //}
 
         RpcSyncCardOwnerID(newID, updatedCard);
     }
