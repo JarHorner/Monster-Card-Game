@@ -19,6 +19,10 @@ public class CardGameUIManager : NetworkBehaviour
     [SerializeField] private GameObject EndGameUIPrefab;
     private GameObject endGameUISpawnedObject;
 
+    [SerializeField] private GameObject changeTurnUIPrefab;
+    private GameObject changeTurnUISpawnedObject;
+
+
 
     private void Awake()
     {
@@ -58,6 +62,19 @@ public class CardGameUIManager : NetworkBehaviour
         RpcMoveSpawnedObject(spawnedObject, 0f, 0f, 0f);
     }
 
+    public void SpawnChangeTurnUI(string turnText)
+    {
+        GameObject spawnedObject = Instantiate(changeTurnUIPrefab);
+
+        changeTurnUISpawnedObject = spawnedObject;
+
+        NetworkServer.Spawn(spawnedObject);
+
+        spawnedObject.GetComponent<ChangeTurnUI>().SetPlayerTurnText(turnText);
+
+        RpcMoveSpawnedObject(spawnedObject, 0f, 0f, 0f);
+    }
+
     [ClientRpc]
     private void RpcMoveSpawnedObject(GameObject gameObject, float xPos, float yPos, float zPos)
     {
@@ -78,6 +95,13 @@ public class CardGameUIManager : NetworkBehaviour
     {
         if (turnTimerUISpawnedObject)
             NetworkServer.Destroy(turnTimerUISpawnedObject);
+    }
+
+    [ClientRpc]
+    public void RpcDestoryChangeTurnUI()
+    {
+        if (changeTurnUISpawnedObject)
+            NetworkServer.Destroy(changeTurnUISpawnedObject);
     }
 
 

@@ -346,6 +346,7 @@ MonoBehaviour:
   - {fileID: 7142179403301740431, guid: 4dd55aebb386f4a41a03c21b2e9f30ef, type: 3}
   - {fileID: 9149509910550653065, guid: cb5b03d3ebf5d434b961049a908e1391, type: 3}
   - {fileID: 6765230518449122976, guid: a94923bdbd6f9b441abe53db2e1956d4, type: 3}
+  - {fileID: 1670391490912385915, guid: 367542c3a7216db44b6fa9e58dc77fa0, type: 3}
   - {fileID: 6053245585220330258, guid: b42fdef71925f0c4498c6438fad0af04, type: 3}
   - {fileID: 3453218967686488646, guid: 27b0a2eac33ea294aa07aa7f04043a11, type: 3}
   - {fileID: 8675746230620022748, guid: 326332a228575d2459ea22a045ff9527, type: 3}
@@ -2241,6 +2242,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6765230518449122976, guid: a94923bdbd6f9b441abe53db2e1956d4, type: 3}
     - target: {fileID: 6782840114693561207, guid: a23da0855b268e64b8f7c34af52d185e, type: 3}
+      propertyPath: changeTurnUIPrefab
+      value: 
+      objectReference: {fileID: 1670391490912385915, guid: 367542c3a7216db44b6fa9e58dc77fa0, type: 3}
+    - target: {fileID: 6782840114693561207, guid: a23da0855b268e64b8f7c34af52d185e, type: 3}
       propertyPath: CountdownTimerUIObject
       value: 
       objectReference: {fileID: 9149509910550653065, guid: cb5b03d3ebf5d434b961049a908e1391, type: 3}
@@ -2349,6 +2354,10 @@ PrefabInstance:
     - target: {fileID: 3028830504850720937, guid: dd0b9925008d6dd43b01b048a2c11552, type: 3}
       propertyPath: m_Name
       value: StartGameUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028830504850720937, guid: dd0b9925008d6dd43b01b048a2c11552, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4174532174445215836, guid: dd0b9925008d6dd43b01b048a2c11552, type: 3}
       propertyPath: m_Pivot.x

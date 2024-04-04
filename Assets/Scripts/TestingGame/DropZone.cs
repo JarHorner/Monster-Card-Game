@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using System;
 
 public class DropZone : NetworkBehaviour
 {
+    private bool gameOver = false;
+
     //Constant numbers to avoid magic numbers
     private const int ZeroPosition = 0;
     private const int OnePosition = 1;
@@ -36,9 +39,10 @@ public class DropZone : NetworkBehaviour
 
     private void Update()
     {
-        if (cardsPlayed == 9)
+        if (cardsPlayed == 9 && !gameOver)
         {
             CardGameManager.Instance.SetStateEndGame();
+            gameOver = true;
         }
     }
 
@@ -273,40 +277,58 @@ public class DropZone : NetworkBehaviour
     {
         if (num == 1)
             return 2;
-        else
+        else if (num == 2)
             return 1;
-    }
-
-    public string DetermineWinner()
-    {
-        int playerCardCount = 0;
-        int enemyCardCount = 0;
-
-        foreach(Card card in cards)
-        {
-            CardFlipper cardflipper = card.GetComponent<CardFlipper>();
-            if (cardflipper.DeterminePlayerCard())
-            {
-                playerCardCount += 1;
-            }
-            else
-            {
-                enemyCardCount += 1;
-            }
-        }
-
-
-        if (playerCardCount == enemyCardCount)
-        {
-            return "Tie!" + "\n" + "You Had " + playerCardCount + " Cards" + "\n" + "Enemy Had " + enemyCardCount + " Cards";
-        }
-        else if (playerCardCount > enemyCardCount)
-        {
-            return "You Win!" + "\n" + "You Had " + playerCardCount + " Cards" + "\n" + "Enemy Had " + enemyCardCount + " Cards";
-        }
         else
-        {
-            return "You Lose!" + "\n" + "You Had " + playerCardCount + " Cards" + "\n" + "Enemy Had " + enemyCardCount + " Cards";
-        }
+            throw new ArgumentException("ID should be either 1 or 2, look for errors assigning IDs");
     }
+
+    public List<Card> GetCards()
+    {
+        return cards;
+    }
+
+    //public void DetermineWinner()
+    //{
+    //    int playerCardCount = 0;
+    //    int enemyCardCount = 0;
+
+    //    foreach(Card card in cards)
+    //    {
+    //        if(card.GetCardOwnerID() == 1)
+    //        {
+    //            playerCardCount += 1;
+    //        }
+    //        else
+    //        {
+    //            enemyCardCount += 1;
+    //        }
+    //    }
+
+    //    RpcShowResultsOfGame(playerCardCount, enemyCardCount);
+    //}
+
+    //[ClientRpc]
+    //private void RpcShowResultsOfGame(int playerCardCount, int enemyCardCount)
+    //{
+    //    if (isServer)
+    //    {
+    //        if (playerCardCount > enemyCardCount)
+    //        {
+    //            return "You Win!" + "\n" + "You Had " + playerCardCount + " Cards" + "\n" + "Enemy Had " + enemyCardCount + " Cards";
+    //        }
+    //        else if (playerCardCount < enemyCardCount)
+    //        {
+    //            return "You Lose!" + "\n" + "You Had " + playerCardCount + " Cards" + "\n" + "Enemy Had " + enemyCardCount + " Cards";
+    //        }
+    //        else
+    //        {
+    //            throw new ArgumentException("Card count should never be equal. Check for calculation errors.");
+    //        }
+    //    }
+    //    else
+    //    {
+
+    //    }
+    //}
 }

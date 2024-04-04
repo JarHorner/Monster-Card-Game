@@ -88,6 +88,9 @@ public class CardGameManager : NetworkBehaviour
 
                     CardGameUIManager.Instance.SpawnTurnTimerUI();
 
+                    string turnText = "PLAYER 1 \n TURN!";
+                    StartCoroutine(SpawnChangeTurnText(turnText));
+
                     state = State.Player1Turn;
                 }
                 break;
@@ -118,12 +121,14 @@ public class CardGameManager : NetworkBehaviour
                 playerTurnTimer = playerTurnTimerMax;
                 if (lastPlayersTurn == 1)
                 {
-                    Debug.Log("IT IS PLAYER 2 TURN!");
+                    string turnText = "PLAYER 2 \n TURN!";
+                    StartCoroutine(SpawnChangeTurnText(turnText));
                     state = State.Player2Turn;
                 }
                 else
                 {
-                    Debug.Log("IT IS PLAYER 1 TURN!");
+                    string turnText = "PLAYER 1 \n TURN!";
+                    StartCoroutine(SpawnChangeTurnText(turnText));
                     state = State.Player1Turn;
                 }
                 break;
@@ -158,6 +163,15 @@ public class CardGameManager : NetworkBehaviour
             Debug.LogError("IsPlayersTurn should not get here. This means a players number is being assigned incorrectly.");
             return false;
         }
+    }
+
+    IEnumerator SpawnChangeTurnText(string turnText)
+    {
+        CardGameUIManager.Instance.SpawnChangeTurnUI(turnText);
+
+        yield return new WaitForSeconds(1f);
+
+        CardGameUIManager.Instance.RpcDestoryChangeTurnUI();
     }
 
     [ClientRpc]
