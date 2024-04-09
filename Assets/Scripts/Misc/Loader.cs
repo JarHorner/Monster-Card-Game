@@ -9,12 +9,10 @@ public static class Loader
 
     public enum Scene
     {
-        GameScene,
-        LoadingScene,
-        LobbyScene,
-        CharacterSelectScene,
         MainMenuScene,
-        CardSelectionScene,
+        ConnectingScene,
+        LoadingScene,
+        GameScene,
     }
 
 
@@ -29,10 +27,6 @@ public static class Loader
         SceneManager.LoadScene(Scene.LoadingScene.ToString());
     }
 
-    public static void LoadNetwork(Scene targetScene)
-    {
-        NetworkManager.Singleton.SceneManager.LoadScene(targetScene.ToString(), LoadSceneMode.Single);
-    }
 
     public static void LoaderCallback()
     {

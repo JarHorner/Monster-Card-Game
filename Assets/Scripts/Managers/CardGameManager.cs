@@ -54,6 +54,8 @@ public class CardGameManager : NetworkBehaviour
     {
         Instance = this;
     }
+
+
     public override void OnStartClient()
     {
         state = State.WaitingToStart;
