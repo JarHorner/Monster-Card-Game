@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using TMPro;
 
 public class NeedClientPanelUI : NetworkBehaviour
 {
     private bool hiddenPanel = false;
+    [SerializeField] private TMP_Text joinCode;
+
+    private void Start()
+    {
+        joinCode.text = GameObject.Find("NetworkManager").GetComponent<CardNetworkManager>().joinCode;
+    }
+
     void Update()
     {
         if (!hiddenPanel && NetworkServer.connections.Count == 2)

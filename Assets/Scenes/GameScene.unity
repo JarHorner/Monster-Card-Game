@@ -2001,6 +2001,10 @@ PrefabInstance:
       propertyPath: sceneId
       value: 3736586684
       objectReference: {fileID: 0}
+    - target: {fileID: 1950865319235047890, guid: 078991b9added264fa02f7df026e4dbc, type: 3}
+      propertyPath: joinCode
+      value: 
+      objectReference: {fileID: 1437817168390392774}
     - target: {fileID: 6546454135140259300, guid: 078991b9added264fa02f7df026e4dbc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2090,6 +2094,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 078991b9added264fa02f7df026e4dbc, type: 3}
+--- !u!114 &1437817168390392774 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 430418921941084110, guid: 078991b9added264fa02f7df026e4dbc, type: 3}
+  m_PrefabInstance: {fileID: 1437817168390392773}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1443298146016998511
 PrefabInstance:
   m_ObjectHideFlags: 0

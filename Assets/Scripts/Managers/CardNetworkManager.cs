@@ -7,6 +7,9 @@ using System.Net.Sockets;
 
 public class CardNetworkManager : NetworkManager
 {
+    public RelayManager relayManager;
+    public string joinCode;
+
     [SerializeField] private List<GameObject> players;
 
     public float searchTime = 5f; // Time to search for a host
@@ -69,6 +72,12 @@ public class CardNetworkManager : NetworkManager
         Debug.Log("Host disconnected.");
     }
 
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        Debug.Log("Server started...");
+    }
+
     public override void OnStopServer()
     {
         if (hostDisconnected)
@@ -81,6 +90,18 @@ public class CardNetworkManager : NetworkManager
         {
             base.OnStopServer();
         }
+    }
+
+    public override void OnClientConnect()
+    {
+        base.OnClientConnect();
+        Debug.Log("Client connected...");
+    }
+
+    public override void OnClientDisconnect()
+    {
+        base.OnClientDisconnect();
+        Debug.Log("Client disconnected...");
     }
 
     public override void OnServerConnect(NetworkConnectionToClient conn)
