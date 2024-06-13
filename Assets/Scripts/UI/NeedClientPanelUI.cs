@@ -5,24 +5,21 @@ using Mirror;
 
 public class NeedClientPanelUI : NetworkBehaviour
 {
-    //private NetworkManager networkManager;
-
-    private void Start()
-    {
-        //networkManager = FindObjectOfType<NetworkManager>();
-    }
-
+    private bool hiddenPanel = false;
     void Update()
     {
-        if (NetworkServer.connections.Count == 2)
+        if (!hiddenPanel && NetworkServer.connections.Count == 2)
         {
-            RpcRemovePanel();
+            RpcDestroyPanel();
+            Debug.Log("Hiding need client panel!");
         }
     }
 
+    // ClientRpc to destroy the object on all clients
     [ClientRpc]
-    public void RpcRemovePanel()
+    private void RpcDestroyPanel()
     {
         gameObject.SetActive(false);
+        hiddenPanel = true;
     }
 }
