@@ -9,6 +9,8 @@ public class CardNetworkManager : NetworkManager
 {
     [SerializeField] private List<GameObject> players;
 
+    public float searchTime = 5f; // Time to search for a host
+
     private int nextPlayerIndex = 1;
     private Dictionary<int, int> playerIdDictionary = new Dictionary<int, int>();
 
@@ -17,62 +19,8 @@ public class CardNetworkManager : NetworkManager
 
     private new void Awake()
     {
-        //CheckForHosts();
+
     }
-
-    //private void CheckForHosts()
-    //{
-    //    Debug.Log("Checking for Hosts");
-    //    if (!NetworkServer.active)
-    //    {
-    //        //Check if any hosts are already connected
-    //        bool anyHosts = false;
-    //        foreach (var player in NetworkServer.connections)
-    //        {
-    //            if (player.Value.identity != null && player.Value.identity.isServer)
-    //            {
-    //                anyHosts = true;
-    //                break;
-    //            }
-    //        }
-
-    //        //If no hosts are connected, become the host
-    //        if (!anyHosts)
-    //        {
-    //            StartHost();
-    //        }
-    //        else
-    //        {
-    //            //If hosts are already connected, become a client
-    //            ConnectToHost();
-    //            StartClient(new System.Uri(networkAddress));
-    //        }
-    //    }
-    //}
-
-    //private void ConnectToHost()
-    //{
-    //    // Get the first available host
-    //    NetworkConnection hostConnection = null;
-    //    foreach (var player in NetworkServer.connections)
-    //    {
-    //        if (player.Value.identity != null && player.Value.identity.isServer)
-    //        {
-    //            hostConnection = player.Value;
-    //            break;
-    //        }
-    //    }
-
-    //    if (hostConnection != null)
-    //    {
-    //        // Connect to the host
-    //        StartClient(new System.Uri(networkAddress));
-    //    }
-    //    else
-    //    {
-    //        Debug.LogError("Failed to find a host connection.");
-    //    }
-    //}
 
     public override void OnServerAddPlayer(NetworkConnectionToClient connection)
     {

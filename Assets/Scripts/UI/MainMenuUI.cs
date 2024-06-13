@@ -12,7 +12,7 @@ public class MainMenuUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayButton.onClick.AddListener(PlayOnClick);
+        //PlayButton.onClick.AddListener(PlayOnClick);
         QuitButton.onClick.AddListener(QuitOnClick);
     }
 
